@@ -11,7 +11,7 @@ SPEC=$(echo "$spec" | tr '[:lower:]' '[:upper:]')
 #    ls raw/"${spec}"_all_*.dat raw/../raw.copiedtotape/"${spec}"_all_*.dat -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {prin#t "$1\n"}' | sort -n | tail -1 \
 #)
 lastRun=$( \
-    ls raw/rsidis_production_*.dat.0 raw/../raw.copiedtotape/rsidis_production_*.dat.0 cache/rsidis_production_*.dat.0 -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {print "$1\n"}' | sort -n | tail -1 \
+    ls raw/ndelta_production_*.dat.0 raw/../raw.copiedtotape/ndelta_production_*.dat.0 cache/ndelta_production_*.dat.0 -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {print "$1\n"}' | sort -n | tail -1 \
 )
 
 # If no arguments are given, ask the user interactively
@@ -41,10 +41,10 @@ fi
 # Which scripts to run.
 script="SCRIPTS/${SPEC}/PRODUCTION/replay_production_${spec}_hElec_pProt.C"
 analysis="get_good_coin_ev.C"
-config="CONFIG/${SPEC}/PRODUCTION/${spec}_production_rsidis.cfg"
-confighms="CONFIG/${SPEC}/PRODUCTION/${spec}_production_rsidis_hms.cfg"
-configshms="CONFIG/${SPEC}/PRODUCTION/${spec}_production_rsidis_shms.cfg"
-#expertConfig="CONFIG/${SPEC}/PRODUCTION/${spec}_production_rsidis.cfg" 
+config="CONFIG/${SPEC}/PRODUCTION/${spec}_production_ndelta.cfg"
+confighms="CONFIG/${SPEC}/PRODUCTION/${spec}_production_ndelta_hms.cfg"
+configshms="CONFIG/${SPEC}/PRODUCTION/${spec}_production_ndelta_shms.cfg"
+#expertConfig="CONFIG/${SPEC}/PRODUCTION/${spec}_production_ndelta.cfg" 
 
 #Define some useful directories
 rootFileDir="./ROOTfiles"
@@ -92,9 +92,9 @@ summaryFile="${reportFileDir}/summary_production_${runNum}_${numEvents}.report"
 
 # What is base name of onlineGUI output.
 outFile="${spec}_production_${runNum}"
-outExpertFile="summaryPlots_${runNum}_${spec}_production_rsidis"
-outExpertFilehms="summaryPlots_${runNum}_${spec}_production_rsidis_hms"
-outExpertFileshms="summaryPlots_${runNum}_${spec}_production_rsidis_shms"
+outExpertFile="summaryPlots_${runNum}_${spec}_production_ndelta"
+outExpertFilehms="summaryPlots_${runNum}_${spec}_production_ndelta_hms"
+outExpertFileshms="summaryPlots_${runNum}_${spec}_production_ndelta_shms"
 outFileMonitor="output.txt"
 
 # Replay out files
@@ -148,7 +148,7 @@ hydra_configs=(
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
-  log_dir="/home/cdaq/rsidis-2025/logs/${runNum}"
+  log_dir="/home/cdaq/ndelta-2025/logs/${runNum}"
   mkdir -p "$log_dir" || { echo "[FATAL] Could not create log directory: $log_dir"; exit 1; }
   
   pids=()
@@ -185,15 +185,15 @@ hydra_configs=(
   
   # If all succeeded, run change script
   if [[ ! " ${statuses[@]} " =~ [^0[:space:]] ]]; then
-    echo "[INFO] All panguin jobs succeeded. Running copy_rsidis_images.sh ${runNum}"
-    copy_log="${log_dir}/copy_rsidis_coin_images_${runNum}.log"
-    ./copy_rsidis_images.sh "${runNum}" &> "$copy_log"
+    echo "[INFO] All panguin jobs succeeded. Running copy_ndelta_images.sh ${runNum}"
+    copy_log="${log_dir}/copy_ndelta_coin_images_${runNum}.log"
+    ./copy_ndelta_images.sh "${runNum}" &> "$copy_log"
     copy_status=$?
 
     if [ $copy_status -eq 0 ]; then
-        echo "[SUCCESS] copy_rsidis_images.sh completed successfully."
+        echo "[SUCCESS] copy_ndelta_images.sh completed successfully."
     else
-        echo "[ERROR] copy_rsidis_images.sh failed with status $copy_status. See log: $copy_log"
+        echo "[ERROR] copy_ndelta_images.sh failed with status $copy_status. See log: $copy_log"
     fi
   else
       echo "[ERROR] One or more panguin jobs failed. Skipping changePanguinNames script."

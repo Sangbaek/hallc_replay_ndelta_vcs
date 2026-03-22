@@ -6,7 +6,7 @@ if [ -z "$currentRun" ]; then
   exit 1
 fi
 
-base_out=/home/cdaq/rsidis-2025/hydra_in/
+base_out=/home/cdaq/ndelta-2025/hydra_in/
 
 declare -A dir_map=(
   [HMS]="HMS"
