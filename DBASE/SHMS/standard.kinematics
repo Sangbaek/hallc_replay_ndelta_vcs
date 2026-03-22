@@ -5200,8 +5200,18 @@ ppcentral = 4.146
 ppartmass = 0.0005109
 hpartmass = 0.0005109
 
-22178-29999
+22178-24738
 gpbeam = 10.673
+gtargmass_amu = 1.00794
+htheta_lab = -13.50
+ptheta_lab = -16.99
+hpcentral = 4.4
+ppcentral = 4.4
+ppartmass = 0.0005109
+hpartmass = 0.0005109
+
+24739-29999
+gpbeam = 1.419
 gtargmass_amu = 1.00794
 htheta_lab = -13.50
 ptheta_lab = -16.99

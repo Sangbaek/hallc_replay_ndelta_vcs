@@ -1,6 +1,6 @@
 ; Cosmic flag for beta calculation
 
-pcosmicflag=0
+pcosmicflag=1
 
 ; for now manually set hte FADC mode
 ;  1 == Use the pulse int - pulse ped

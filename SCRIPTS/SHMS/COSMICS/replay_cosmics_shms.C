@@ -16,7 +16,7 @@ void replay_cosmics_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
 
   // Create file name patterns.
   const char* RunFileNamePattern = "ndelta_production_%05d.dat.0";
-  //  const char* RunFileNamePattern = "rsidis_production_%05d.dat.0";  
+  //    const char* RunFileNamePattern = "rsidis_production_%05d.dat.0";  
   const char* ROOTFileNamePattern = "ROOTfiles/shms_replay_cosmics_%d_%d.root";
   vector<TString> pathList;
   pathList.push_back(".");

@@ -50,21 +50,21 @@ TH1F ptrig_pdc_raw_ref8  'SHMS PDC Raw Reference Time 8; Raw TDC Time (TDC Units
 TH1F ptrig_pdc_raw_ref9  'SHMS PDC Raw Reference Time 9; Raw TDC Time (TDC Units); Counts / 10 TDC Units;'  T.shms.pDCREF9_tdcTimeRaw  1500 0 25000
 TH1F ptrig_pdc_raw_ref10 'SHMS PDC Raw Reference Time 10; Raw TDC Time (TDC Units); Counts / 10 TDC Units;' T.shms.pDCREF10_tdcTimeRaw 1500 0 25000
 
-TH1F ptrig_pdc_ref1  'SHMS PDC Reference Time 1; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF1_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref2  'SHMS PDC Reference Time 2; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF2_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref3  'SHMS PDC Reference Time 3; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF3_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref4  'SHMS PDC Reference Time 4; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF4_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref5  'SHMS PDC Reference Time 5; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF5_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref6  'SHMS PDC Reference Time 6; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF6_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref7  'SHMS PDC Reference Time 7; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF7_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref8  'SHMS PDC Reference Time 8; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF8_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref9  'SHMS PDC Reference Time 9; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF9_tdcTime  4000 0 4000
-TH1F ptrig_pdc_ref10 'SHMS PDC Reference Time 10; TDC Time (ns); Counts / 1 ns;' T.shms.pDCREF10_tdcTime 4000 0 4000
+#TH1F ptrig_pdc_ref1  'SHMS PDC Reference Time 1; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF1_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref2  'SHMS PDC Reference Time 2; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF2_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref3  'SHMS PDC Reference Time 3; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF3_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref4  'SHMS PDC Reference Time 4; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF4_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref5  'SHMS PDC Reference Time 5; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF5_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref6  'SHMS PDC Reference Time 6; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF6_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref7  'SHMS PDC Reference Time 7; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF7_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref8  'SHMS PDC Reference Time 8; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF8_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref9  'SHMS PDC Reference Time 9; TDC Time (ns); Counts / 1 ns;'  T.shms.pDCREF9_tdcTime  4000 0 4000
+#TH1F ptrig_pdc_ref10 'SHMS PDC Reference Time 10; TDC Time (ns); Counts / 1 ns;' T.shms.pDCREF10_tdcTime 4000 0 4000
 
 #------------
 # SHMS NGCER
 #------------
-TH1F ptrig_pngc_sum_pped      'SHMS Noble Gas Sum FADC Pulse Pedestal; Pulse Pedestal; Number of Entries / 2 mV'               T.shms.pNGCER_adcPed          500  0 1000
+#TH1F ptrig_pngc_sum_pped      'SHMS Noble Gas Sum FADC Pulse Pedestal; Pulse Pedestal; Number of Entries / 2 mV'               T.shms.pNGCER_adcPed          500  0 1000
 TH1F ptrig_pngc_sum_pped_raw  'SHMS Noble Gas Sum FADC Raw Pulse Pedestal; Pulse Pedestal; Number of Entries / 10 ADC Units'   T.shms.pNGCER_adcPedRaw       410  0 4100
 TH1F ptrig_pngc_sum_pint      'SHMS Noble Gas Sum FADC Pulse Integral; Pulse Integral; Number of Entries / 0.25 pC'            T.shms.pNGCER_adcPulseInt     3200 -400 400
 TH1F ptrig_pngc_sum_pint_raw  'SHMS Noble Gas Sum FADC Raw Pulse Integral; Pulse Integral; Number of Entries / 10 ADC Units'   T.shms.pNGCER_adcPulseIntRaw  3000 0 30000
@@ -78,7 +78,7 @@ TH1F ptrig_pngc_sum_tdc_raw   'SHMS Noble Gas Sum Raw TDC Time; TDC Time; Number
 #------------
 # SHMS HGCER
 #------------
-TH1F ptrig_phgc_sum_pped      'SHMS Heavy Gas Sum FADC Pulse Pedestal; Pulse Pedestal; Number of Entries / 2 mV'               T.shms.pHGCER_adcPed          500  0 1000
+#TH1F ptrig_phgc_sum_pped      'SHMS Heavy Gas Sum FADC Pulse Pedestal; Pulse Pedestal; Number of Entries / 2 mV'               T.shms.pHGCER_adcPed          500  0 1000
 TH1F ptrig_phgc_sum_pped_raw  'SHMS Heavy Gas Sum FADC Raw Pulse Pedestal; Pulse Pedestal; Number of Entries / 10 ADC Units'   T.shms.pHGCER_adcPedRaw       410  0 4100
 TH1F ptrig_phgc_sum_pint      'SHMS Heavy Gas Sum FADC Pulse Integral; Pulse Integral; Number of Entries / 0.25 pC'            T.shms.pHGCER_adcPulseInt     3200 -400 400
 TH1F ptrig_phgc_sum_pint_raw  'SHMS Heavy Gas Sum FADC Raw Pulse Integral; Pulse Integral; Number of Entries / 10 ADC Units'   T.shms.pHGCER_adcPulseIntRaw  3000 0 30000

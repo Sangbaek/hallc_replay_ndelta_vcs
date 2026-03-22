@@ -132,7 +132,7 @@ TH1F htrig_hdsum_tdc 'HMS hDsum TDC Time;  TDC Time (ns); Counts / 0.1 ns;' T.hm
 # HMS PreShower TRIG Pulse Profile
 #----------------------------------
 
-TH1F htrig_hpreShwr_adc_pped 'HMS Pre-Shower Pulse Pedestal;  Pulse Pedestal (mV); Counts / 2 mV;' T.hms.hPSHWR_adcPed 500 0 1000
+#TH1F htrig_hpreShwr_adc_pped 'HMS Pre-Shower Pulse Pedestal;  Pulse Pedestal (mV); Counts / 2 mV;' T.hms.hPSHWR_adcPed 500 0 1000
 TH1F htrig_hpreShwr_adc_pi 'HMS Pre-Shower Pulse Integral;  Pulse Integral (pC); Counts / 0.25 pC;' T.hms.hPSHWR_adcPulseInt 320 0 80
 TH1F htrig_hpreShwr_adc_pamp 'HMS Pre-Shower Pulse Amplitude;  Pulse Amplitude (mV); Counts / 2 mV;' T.hms.hPSHWR_adcPulseAmp 500 0 1000
 #TH1F htrig_hpreShwr_tdc 'HMS Pre-Shower TDC Time;  TDC Time (ns); Counts / 0.1 ns;' T.hms.hPSHWR_tdcTime 4000 0 400
@@ -141,7 +141,7 @@ TH1F htrig_hpreShwr_adc_pamp 'HMS Pre-Shower Pulse Amplitude;  Pulse Amplitude (
 # HMS Shower TRIG Pulse Profile
 #----------------------------------
 
-TH1F htrig_hshwr_adc_pped 'HMS Shower Pulse Pedestal;  Pulse Pedestal (mV); Counts / 2 mV;' T.hms.hSHWR_adcPed 500 0 1000
+#TH1F htrig_hshwr_adc_pped 'HMS Shower Pulse Pedestal;  Pulse Pedestal (mV); Counts / 2 mV;' T.hms.hSHWR_adcPed 500 0 1000
 TH1F htrig_hshwr_adc_pi 'HMS Shower Pulse Integral;  Pulse Integral (pC); Counts / 0.25 pC;' T.hms.hSHWR_adcPulseInt 320 0 80
 TH1F htrig_hshwr_adc_pamp 'HMS Shower Pulse Amplitude;  Pulse Amplitude (mV); Counts / 2 mV;' T.hms.hSHWR_adcPulseAmp 500 0 1000
 TH1F htrig_hshwr_tdc 'HMS Shower TDC Time;  TDC Time (ns); Counts / 0.1 ns;' T.hms.hSHWR_tdcTime 4000 0 400
@@ -161,7 +161,7 @@ TH1F htrig_hcersum_rawtdc 'HMS Cherenkov Sum Raw TDC Time; Raw TDC Time (TDC Uni
 # HMS Gas Cherenkov TRIG Pulse Profile
 #---------------------------------------
 
-TH1F htrig_hcersum_adc_pped 'HMS Cherenkov Sum Pulse Pedestal;  Pulse Pedestal (mV); Counts / 2 mV;' T.hms.hCER_adcPed 500 0 1000
+#TH1F htrig_hcersum_adc_pped 'HMS Cherenkov Sum Pulse Pedestal;  Pulse Pedestal (mV); Counts / 2 mV;' T.hms.hCER_adcPed 500 0 1000
 TH1F htrig_hcersum_adc_pi 'HMS Cherenkov Sum Pulse Integral;  Pulse Integral (pC); Counts / 0.25 pC;' T.hms.hCER_adcPulseInt 320 0 80
 TH1F htrig_hcersum_adc_pamp 'HMS Cherenkov Sum Pulse Amplitude;  Pulse Amplitude (mV); Counts / 2 mV;' T.hms.hCER_adcPulseAmp 500 0 1000
 TH1F htrig_hcersum_tdc 'HMS Cherenkov Sum TDC Time;  TDC Time (ns); Counts / 0.1 ns;' T.hms.hCER_tdcTime 400 0 4000

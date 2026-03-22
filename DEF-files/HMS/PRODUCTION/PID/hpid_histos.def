@@ -75,7 +75,7 @@ TH1F hhodo_beta_notrack 'HMS Hodo Calculated Beta Without Track Info; Beta; Numb
 TH1F hhodo_beta 'HMS Hodo Beta; Beta; Number of Entries / 0.015' H.hod.beta 100 0 1.5
 TH1F hhodo_fpHitsTime 'HMS Hodo Focal Plane Time; Focal Plane Time (ns); Number of Entries / 1 ns' H.hod.fpHitsTime 90 0 90 
 TH1F hhodo_starttime 'HMS Hodo Start Time; Start Time (ns); Number of Entries / 1ns' H.hod.starttime 90 0 90
-TH1F hhodo_good_startime 'HMS Hodo Good Start Flag; Good Start Time Flag (=1 is good); Number of Entries' H.hod.goodstarttime 5 0 5
+TH1F hhodo_good_startime 'HMS Hodo Good Start Flag; Good Start Time Flag (=1 is good); Number of Entries' H.hod.goodstarttime 5 -0.5 4.5
 # TH2F hhodo_xhod_vs_yhod 'HMS Hodo Projected X vs. Y; Y_hodo(cm) / 1mm; X_hodo(cm) / 1mm' H.hod.y_hodo H.hod.x_hodo 1000 -50 50 1000 -50 50
 # TH1F hhodo_1x_diffdistrack 'HMS Hodo 1X Diff Distance track (cm); Diff distance (cm); Counts ' H.hod.1x.DiffDisTrack 100 -10. 10.
 # TH1F hhodo_1y_diffdistrack 'HMS Hodo 1Y Diff Distance track (cm); Diff distance (cm); Counts ' H.hod.1y.DiffDisTrack 100 -10. 10.
