@@ -148,7 +148,7 @@ hydra_configs=(
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
-  log_dir="/home/cdaq/ndelta-2025/logs/${runNum}"
+  log_dir="/home/cdaq/ndelta_vcs2-2026/logs/${runNum}"
   mkdir -p "$log_dir" || { echo "[FATAL] Could not create log directory: $log_dir"; exit 1; }
   
   pids=()

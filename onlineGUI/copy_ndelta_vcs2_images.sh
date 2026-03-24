@@ -6,13 +6,13 @@ if [ -z "$currentRun" ]; then
   exit 1
 fi
 
-base_out=/home/cdaq/ndelta-2025/hydra_in/
+base_out=/home/cdaq/ndelta_vcs2-2026/hydra_in/
 
 declare -A dir_map=(
   [HMS]="HMS"
   [SHMS]="SHMS"
-  [HMS_RSIDIS]="HMS_RSIDIS"
-  [SHMS_RSIDIS]="SHMS_RSIDIS"
+#  [HMS_RSIDIS]="HMS_RSIDIS"
+#  [SHMS_RSIDIS]="SHMS_RSIDIS"
   [COIN]="COIN"
 )
 
@@ -45,10 +45,10 @@ HMS_PID
 HMS_Trigger_Pedestal_Tracking
 "
 
-plots_by_dir[HMS_RSIDIS]="
-HMS_Kinematics
-HMS_Good_DIS_Counts
-"
+#plots_by_dir[HMS_RSIDIS]="
+#HMS_Kinematics
+#HMS_Good_DIS_Counts
+#"
 
 plots_by_dir[SHMS]="
 SHMS_Time_Shift_Monitoring
@@ -78,10 +78,10 @@ SHMS_PID
 SHMS_Trigger_Pedestal_Tracking
 "
 
-plots_by_dir[SHMS_RSIDIS]="
-SHMS_Kinematics
-SHMS_GOOD_DIS_Counts
-"
+#plots_by_dir[SHMS_RSIDIS]="
+#SHMS_Kinematics
+#SHMS_GOOD_DIS_Counts
+#"
 
 plots_by_dir[COIN]="
 COIN_Cointime
