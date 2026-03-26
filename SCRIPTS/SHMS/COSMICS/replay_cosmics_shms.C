@@ -93,11 +93,10 @@ void replay_cosmics_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   THaApparatus* beam = new THcRasteredBeam("P.rb", "Rastered Beamline");
   gHaApps->Add(beam);
 
-  //  THcBPM* bpmc12 = new THcBPM("bpmc12", "C12 BPM");
-  //  beam->AddDetector(bpmc12);
-  
-  
-  //  beam->Add(bpmc12);
+  THcBPM* bpmc12 = new THcBPM("bpmc12", "C12 BPM");
+  beam->AddDetector(bpmc12);
+  beam->Add(bpmc12);
+
   // Add physics modules
   // Calculate reaction point
   THcReactionPoint* prp = new THcReactionPoint("P.react", "SHMS reaction point", "P", "P.rb");
@@ -115,6 +114,9 @@ void replay_cosmics_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   THcHodoEff* peff = new THcHodoEff("phodeff", "SHMS hodo efficiency", "P.hod");
   gHaPhysics->Add(peff);   
 
+  // Add event handler for prestart event 137
+  THcEvt137Handler* ev137 = new THcEvt137Handler("evt137", "Config Event type 137");
+  gHaEvtHandlers->Add(ev137);
   // Add event handler for prestart event 125.
   THcConfigEvtHandler* ev125 = new THcConfigEvtHandler("HC", "Config Event type 125");
   gHaEvtHandlers->Add(ev125);
