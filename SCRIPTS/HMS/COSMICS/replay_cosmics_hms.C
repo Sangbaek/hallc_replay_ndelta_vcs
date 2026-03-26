@@ -109,6 +109,10 @@ void replay_cosmics_hms(Int_t RunNumber=0, Int_t MaxEvent=0) {
   THcHodoEff* heff = new THcHodoEff("hhodeff", "HMS hodo efficiency", "H.hod");
   gHaPhysics->Add(heff);
 
+
+  // Add event handler for prestart event 137
+  THcEvt137Handler* ev137 = new THcEvt137Handler("evt137", "Config Event type 137");
+  gHaEvtHandlers->Add(ev137);  
   // Add handler for prestart event 125.
   THcConfigEvtHandler* ev125 = new THcConfigEvtHandler("HC", "Config Event type 125");
   gHaEvtHandlers->Add(ev125);
