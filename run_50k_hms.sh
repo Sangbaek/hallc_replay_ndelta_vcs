@@ -141,7 +141,7 @@ hydra_configs=(
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
   echo ""
-  echo "Adding RSIDIS panguin plots to Hydra for run ${runNum}"
+  echo "Adding NDELTA panguin plots to Hydra for run ${runNum}"
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
