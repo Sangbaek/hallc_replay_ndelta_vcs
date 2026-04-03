@@ -49,5 +49,5 @@ ran_coincut        ccleantrack && ranctime
 e_cut_cal          P.cal.etottracknorm > 0.6 && P.cal.etottracknorm < 2.0
 e_cut_cer          P.hgcer.npeSum > 5.0 && P.ngcer.npeSum > 15.0
 select_e_cut       e_cut_cal && e_cut_cer
-betacut_proton     H.gtr.beta > 0.6 && H.gtr.beta < 0.8
+betacut_proton     H.gtr.beta > 0.3 && H.gtr.beta < 0.6
 coincut_ep         ccleantrack && select_e_cut && betacut_proton

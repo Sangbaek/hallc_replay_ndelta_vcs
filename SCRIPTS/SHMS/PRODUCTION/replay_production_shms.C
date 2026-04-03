@@ -17,7 +17,8 @@ void replay_production_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   // Create file name patterns.
   //  const char* RunFileNamePattern = "shms_all_%05d.dat.0";
   //const char* RunFileNamePattern = "lad_Production_%05d.dat.0";
-  const char* RunFileNamePattern = "rsidis_production_%05d.dat.0";
+  //  const char* RunFileNamePattern = "rsidis_production_%05d.dat.0";
+  const char* RunFileNamePattern = "ndelta_production_%05d.dat.0";  
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
@@ -35,6 +36,18 @@ void replay_production_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   gHcParms->Load("PARAM/TRIG/tshms.param");
   // Load fadc debug parameters
   gHcParms->Load("PARAM/SHMS/GEN/p_fadc_debug.param");
+
+  //********  Start-up with no timing windows  *****************
+  //Overwrite the existing reference times with
+  //the default values specified in hallc_replay.  
+  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/SHMS/GEN/p_no_reference_times.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
+
+  //Now remove all Timing Windows and revert to 
+  //the default values specifid in hallc_replay
+  gHcParms->AddString("g_ctp_no_timing_windows_filename", "PARAM/SHMS/GEN/pdet_cuts_no_timing_windows.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_timing_windows_filename"));
+  //************************************************************
 
   // const char* CurrentFileNamePattern = "low_curr_bcm/bcmcurrent_%d.param";
   // gHcParms->Load(Form(CurrentFileNamePattern, RunNumber));
@@ -83,6 +96,21 @@ void replay_production_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   // Add rastered beam apparatus
   THaApparatus* beam = new THcRasteredBeam("P.rb", "Rastered Beamline");
   gHaApps->Add(beam);
+
+  THcBPM* bpmc12 = new THcBPM("bpmc12", "C12 BPM");
+  beam->AddDetector(bpmc12);
+
+  THcBPM* bpma = new THcBPM("bpma", "H07A BPM");
+  beam->AddDetector(bpma);
+
+  THcBPM* bpmb = new THcBPM("bpmb", "H07B BPM");
+  beam->AddDetector(bpmb);
+
+
+  THcBPM* bpmc = new THcBPM("bpmc", "H07C BPM");
+  beam->AddDetector(bpmc);
+
+
   // Add physics modules
   // Calculate reaction point
   THcReactionPoint* prp = new THcReactionPoint("P.react", "SHMS reaction point", "P", "P.rb");
@@ -100,6 +128,9 @@ void replay_production_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   THcHodoEff* peff = new THcHodoEff("phodeff", "SHMS hodo efficiency", "P.hod");
   gHaPhysics->Add(peff);   
 
+  // Add event handler for prestart event 137
+  THcEvt137Handler* ev137 = new THcEvt137Handler("evt137", "Config Event type 137");
+  gHaEvtHandlers->Add(ev137);
   // Add event handler for prestart event 125.
   THcConfigEvtHandler* ev125 = new THcConfigEvtHandler("HC", "Config Event type 125");
   gHaEvtHandlers->Add(ev125);
@@ -133,6 +164,9 @@ void replay_production_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   // tests/cuts, loops over Acpparatus's and PhysicsModules,
   // and executes the output routines.
   THcAnalyzer* analyzer = new THcAnalyzer;
+
+  // Makes g.evtype = g.tsevtyp
+  analyzer->EnableAltEvType();
 
   // A simple event class to be output to the resulting tree.
   // Creating your own descendant of THaEvent is one way of

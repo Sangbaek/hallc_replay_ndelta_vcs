@@ -4,12 +4,11 @@
 spec=${0##*_}
 spec=${spec%%.sh}
 SPEC=$(echo "$spec" | tr '[:lower:]' '[:upper:]')
-exp="ndelta"
 
 # What is the last run number for the spectrometer.
 # The pre-fix zero must be stripped because ROOT is ... well ROOT
 lastRun=$( \
-    ls raw/"${exp}"_production_*.dat.0 raw/../raw.copiedtotape/"${exp}"_production_*.dat.0 -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {print "$1\n"}' | sort -n | tail -1 \
+    ls raw/"${spec}"_all_*.dat raw/../raw.copiedtotape/"${spec}"_all_*.dat -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {print "$1\n"}' | sort -n | tail -1 \
 )
 
 # Which run to analyze.
@@ -22,15 +21,16 @@ fi
 numEvents=$2
 
 # Which scripts to run.
-script="SCRIPTS/${SPEC}/COSMICS/replay_cosmics_${spec}.C"
-config="CONFIG/${SPEC}/COSMICS/${spec}_cosmics.cfg"
-expertConfig="CONFIG/${SPEC}/COSMICS/${spec}_cosmics_expert.cfg"
+script="SCRIPTS/${SPEC}/PRODUCTION/replay_production_${spec}.C"
+config="CONFIG/${SPEC}/PRODUCTION/${spec}_production.cfg"
+expertConfig="CONFIG/${SPEC}/PRODUCTION/${spec}_production_expert.cfg"
 
 # Define some useful directories
 rootFileDir="./ROOTfiles"
 monRootDir="./HISTOGRAMS/${SPEC}/ROOT"
 monPdfDir="./HISTOGRAMS/${SPEC}/PDF"
-reportFileDir="./REPORT_OUTPUT/${SPEC}/COSMICS"
+mkdir -p ${monRootDir} ${monPdfDir}
+reportFileDir="./REPORT_OUTPUT/${SPEC}/PRODUCTION"
 reportMonDir="./UTIL_OL/REP_MON"
 reportMonOutDir="./MON_OUTPUT/REPORT"
 
@@ -46,29 +46,28 @@ runReportMon="./${reportMonDir}/reportSummary.py ${runNum} ${numEvents} ${spec} 
 openReportMon="emacs ${reportMonOutDir}/${reportMonFile}"
 
 # Name of the replay ROOT file
-replayFile="${spec}_replay_cosmics_${runNum}"
+replayFile="${spec}_replay_production_${runNum}"
 rootFile="${replayFile}_${numEvents}.root"
 latestRootFile="${rootFileDir}/${replayFile}_latest.root"
 
 # Names of the monitoring file
-monRootFile="${spec}_cosmics_${runNum}.root"
-monPdfFile="${spec}_cosmics_${runNum}.pdf"
-#monExpertPdfFile="${spec}_cosmics_expert_${runNum}.pdf"
-monExpertPdfFile="summaryPlots_${runNum}_${spec}_cosmics_expert.pdf"
-latestMonRootFile="${monRootDir}/${spec}_cosmics_latest.root"
-latestMonPdfFile="${monPdfDir}/${spec}_cosmics_latest.pdf"
+monRootFile="${spec}_production_${runNum}.root"
+monPdfFile="${spec}_production_${runNum}.pdf"
+monExpertPdfFile="${spec}_production_expert_${runNum}.pdf"
+latestMonRootFile="${monRootDir}/${spec}_production_latest.root"
+latestMonPdfFile="${monPdfDir}/${spec}_production_latest.pdf"
 
 # Where to put log
-reportFile="${reportFileDir}/replay_${spec}_cosmics_${runNum}_${numEvents}.txt"
-summaryFile="${reportFileDir}/summary_cosmics_${runNum}_${numEvents}.txt"
+reportFile="${reportFileDir}/replay_${spec}_production_${runNum}_${numEvents}.txt"
+summaryFile="${reportFileDir}/summary_production_${runNum}_${numEvents}.txt"
 
 # What is base name of onlineGUI output.
-outFile="${spec}_cosmics_${runNum}"
-outExpertFile="summaryPlots_${runNum}_${spec}_cosmics_expert"
+outFile="${spec}_production_${runNum}"
+outExpertFile="summaryPlots_${runNum}_${spec}_production_expert"
 outFileMonitor="output.txt"
 
 # Replay out files
-replayReport="${reportFileDir}/replayReport_${spec}_cosmics_${runNum}_${numEvents}.txt"
+replayReport="${reportFileDir}/replayReport_${spec}_production_${runNum}_${numEvents}.txt"
 
 # Start analysis and monitoring plots.
 {
@@ -120,20 +119,20 @@ replayReport="${reportFileDir}/replayReport_${spec}_cosmics_${runNum}_${numEvent
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
-#  sleep 2
+  sleep 2
 
-#  echo "" 
-#  echo ""
-#  echo ""
-#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-#  echo ""
-#  echo "Generating report file monitoring data file ${SPEC} run ${runNum}."
-#  echo ""
-#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+  echo "" 
+  echo ""
+  echo ""
+  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+  echo ""
+  echo "Generating report file monitoring data file ${SPEC} run ${runNum}."
+  echo ""
+  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
-#  eval ${runReportMon}
-#  mv "${outFileMonitor}" "${reportMonOutDir}/${reportMonFile}"
-#  eval ${openReportMon}
+  eval ${runReportMon}
+  mv "${outFileMonitor}" "${reportMonOutDir}/${reportMonFile}"
+  eval ${openReportMon}
 
   sleep 2
 
@@ -150,3 +149,42 @@ replayReport="${reportFileDir}/replayReport_${spec}_cosmics_${runNum}_${numEvent
   echo ""
 
 } 2>&1 | tee "${replayReport}"
+
+
+###########################################################
+function yes_or_no() {
+    while true; do
+	read -p "$* [y/n]: " yn
+	case $yn in
+	    [Yy]*) return 0 ;;
+	    [Nn]*)
+		echo "No entered"
+		return 1
+		;;
+	esac
+    done
+}
+# function used to prompt user for questions
+# post pdfs in hclog
+yes_or_no "Upload these plots to logbook HCLOG? " && {
+    read -p "Enter a text body for the log entry (or leave blank): " logCaption
+    echo "$logCaption" >caption.txt
+   if [ "$numEvents" -eq -1 ]; then
+      title="Full replay plots for run ${runNum}"
+    else
+      title="$((numEvents / 1000))k replay plots for run ${runNum}"
+   fi
+   /site/ace/certified/apps/bin/logentry \
+       -cert /home/cdaq/.elogcert \
+       -t "$title" \
+       -e cdaq \
+       -l HCLOG \
+       -a "./HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf" \
+       -b "caption.txt"
+#       -a ${latestMonPdfFile} \
+#       -a ${latestMonPdfFilehms} \
+#       -a ${latestMonPdfFileshms} \
+
+   
+   rm -rf "caption.txt"
+}

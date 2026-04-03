@@ -9,7 +9,7 @@
 ; Cut is on reference time per detector.
 
 ; no cuts
-pdc_tdcrefcut=-0
+;pdc_tdcrefcut=-0
 phodo_tdcrefcut=-0
 phodo_adcrefcut=-0
 pngcer_adcrefcut=-0

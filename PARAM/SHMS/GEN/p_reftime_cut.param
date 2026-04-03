@@ -19,7 +19,7 @@
 
 ; determined for fall 2019 startup
 ; cut variable = pDCREF(min)
-;pdc_tdcrefcut=-15200
+pdc_tdcrefcut=-19000
 ; cut variable = pT1
 ;phodo_tdcrefcut=-4300
 ; cut variable = pFADC_TREF_ROC2

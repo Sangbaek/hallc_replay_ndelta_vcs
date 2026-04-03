@@ -22,7 +22,7 @@ if [ $# -eq 0 ]; then
   fi    
   read -p "Enter number of events (default 50000): " numEvents
   if [ -z "$numEvents" ]; then
-    numEvents=50000
+    numEvents=-1
   fi
 else
   # If 1st argument provided
@@ -34,7 +34,7 @@ else
   # If 2nd argument provided
   numEvents=$2
   if [ -z "$numEvents" ]; then
-    numEvents=50000
+    numEvents=-1
   fi
 fi
 

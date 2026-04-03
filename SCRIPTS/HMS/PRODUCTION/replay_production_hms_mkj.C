@@ -1,4 +1,4 @@
-void replay_production_hms(Int_t RunNumber=0, Int_t MaxEvent=0) {
+void replay_production_hms_mkj(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
@@ -25,7 +25,7 @@ void replay_production_hms(Int_t RunNumber=0, Int_t MaxEvent=0) {
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
 
-  const char* ROOTFileNamePattern = "ROOTfiles/hms_replay_production_%d_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/mkj_hms_replay_production_%d_%d.root";
 
   // Load Global parameters
   // Add variables to global list.
@@ -71,7 +71,6 @@ void replay_production_hms(Int_t RunNumber=0, Int_t MaxEvent=0) {
   gHaApps->Add(HMS);
   //Accept these events
   HMS->SetEvtType(2);
-  HMS->SetEvtType(1);  
 
   // Add drift chambers to HMS apparatus
   THcDC* dc = new THcDC("dc", "Drift Chambers");
@@ -183,15 +182,15 @@ void replay_production_hms(Int_t RunNumber=0, Int_t MaxEvent=0) {
   // Define output ROOT file
   analyzer->SetOutFile(ROOTFileName.Data());
   // Define output DEF-file 
-  analyzer->SetOdefFile("DEF-files/HMS/PRODUCTION/hstackana_production.def");
+  analyzer->SetOdefFile("DEF-files/HMS/PRODUCTION/hstackana_production_mkj.def");
   // Define cuts file
   analyzer->SetCutFile("DEF-files/HMS/PRODUCTION/CUTS/hstackana_production_cuts.def");    // optional
   // File to record cuts accounting information for cuts
-  analyzer->SetSummaryFile(Form("REPORT_OUTPUT/HMS/PRODUCTION/summary_production_%d_%d.report", RunNumber, MaxEvent));    // optional
+  analyzer->SetSummaryFile(Form("REPORT_OUTPUT/HMS/PRODUCTION/mkj_summary_production_%d_%d.report", RunNumber, MaxEvent));    // optional
   // Start the actual analysis.
   analyzer->Process(run);
   // Create report file from template.
   analyzer->PrintReport("TEMPLATES/HMS/PRODUCTION/hstackana_production.template",
-			Form("REPORT_OUTPUT/HMS/PRODUCTION/replay_hms_production_%d_%d.report", RunNumber, MaxEvent));
+			Form("REPORT_OUTPUT/HMS/PRODUCTION/mkj_replay_hms_production_%d_%d.report", RunNumber, MaxEvent));
 
 }

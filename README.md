@@ -2,7 +2,7 @@
 
 This is Hall C Replay for NDelta-VCS2 experiment.
 
-During the experiment, shift takers are supposed to use cdaql2 machine.
+During the experiment, shift takers are supposed to use cdaql1 machine.
 
 The replay is set in /home/cdaq/ndelta_vcs2-2026/hallc_replay_ndelta_vcs .
 

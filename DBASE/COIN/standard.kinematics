@@ -12420,3 +12420,118 @@ ppcentral = 6.538
 hpartmass = 0.000511
 ppartmass = 0.13957
 
+# ndelta vcs March 30th, 2026
+
+26145 - 26145
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -68.74
+hpcentral = 0.43
+ptheta_lab = 17.6
+ppcentral = 1.325
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26146 - 26146
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -68.74
+hpcentral = 0.43
+ptheta_lab = 17.6
+ppcentral = 1.325
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26147 - 26147
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -68.74
+hpcentral = 0.43
+ptheta_lab = 17.6
+ppcentral = 1.325
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26148 - 26148
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -68.74
+hpcentral = 0.43
+ptheta_lab = 17.6
+ppcentral = 1.325
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26149 - 26149
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -68.74
+hpcentral = 0.43
+ptheta_lab = 17.6
+ppcentral = 1.325
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26150 - 26150
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -68.74
+hpcentral = 0.43
+ptheta_lab = 17.6
+ppcentral = 1.325
+ppartmass = 0.000511
+hpartmass = 0.9382726
+
+26151 - 26154
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -65.48
+hpcentral = 0.5
+ptheta_lab = 20.58
+ppcentral = 1.294
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26155 - 26157
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -60.94
+hpcentral = 0.58
+ptheta_lab = 24.96
+ppcentral = 1.243
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+
+26158 - 26204
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -26.725
+hpcentral = 0.571
+ptheta_lab = 10.49
+ppcentral = 1.0553
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26205 - 26226
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -32.65
+hpcentral = 0.566
+ptheta_lab = 10.49
+ppcentral = 1.0553
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+26227 - 99999
+gpbeam = 1.419
+gtargmass_amu =  1.00794 
+htheta_lab = -13.755
+hpcentral = 0.546
+ptheta_lab = 10.49
+ppcentral = 1.0553
+ppartmass = 0.000511
+hpartmass = 0.938272
+
+
+

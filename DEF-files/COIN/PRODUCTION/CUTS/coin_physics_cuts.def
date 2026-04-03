@@ -1,0 +1,57 @@
+Block: Physics
+
+hcleantrack        H.gtr.index > -1
+pcleantrack        P.gtr.index > -1
+ccleantrack        hcleantrack && pcleantrack
+
+coin_ndelta       abs(CTime.epCoinTime_ROC2-160) < 10 
+sideband1         abs(CTime.epCoinTime_ROC2-180) < 10 
+sideband2         abs(CTime.epCoinTime_ROC2-140) < 10 
+sideband          sideband1 || sideband2
+
+coincut            ccleantrack && goodctime
+tight_coin         ccleantrack && tightctime
+ran_coincut        ccleantrack && ranctime
+
+he_cut_cal          H.cal.etottracknorm > 0.6 && H.cal.etottracknorm < 1.6
+he_cut_cer          H.cer.npeSum > 0.5
+hselect_e_cut       he_cut_cal && he_cut_cer
+hbetacut_proton     P.gtr.beta > 0.3 && P.gtr.beta < 0.6
+hcoincut_ep         ccleantrack && hselect_e_cut && hbetacut_proton
+
+pe_cut_cal          P.cal.etottracknorm > 0.6# && P.cal.etottracknorm < 1.6
+pe_cut_cer          P.hgcer.npeSum > 1 #0.5
+pselect_e_cut       pe_cut_cal && pe_cut_cer
+pbetacut_proton     H.gtr.beta > 0.3 && H.gtr.beta < 0.6
+pcoincut_ep         ccleantrack && pselect_e_cut && pbetacut_proton
+
+h_mom_acc_cut       H.gtr.dp >-8.0 && H.gtr.dp <8.0
+p_mom_acc_cut       P.gtr.dp > -10 && P.gtr.dp < 22
+
+detector_cut        h_mom_acc_cut && p_mom_acc_cut && pselect_e_cut # Bill's log 4482768
+
+W_cut               abs(P.kin.primary.W - 1.230) < 0.005 # +- 5 MeV universal for all ndelta
+
+Q2_cut_kin_d        abs(P.kin.primary.Q2 - 0.05 ) < 0.005 # same for *d settings
+Q2_cut_kin_a        abs(P.kin.primary.Q2 - 0.026 ) < 0.005 # same for *a settings
+Q2_cut_kin_b        abs(P.kin.primary.Q2 - 0.03 ) < 0.005 # same for *b settings
+Q2_cut_kin_c        abs(P.kin.primary.Q2 - 0.04 ) < 0.005 # same for *c settings
+
+th_pq_cut_kin_1d    H.kin.secondary.thx_cm * 180/3.141952 < 10
+th_pq_cut_kin_2d    abs(H.kin.secondary.thx_cm * 180/3.141952 - 15) < 5
+th_pq_cut_kin_3d    abs(H.kin.secondary.thx_cm * 180/3.141952 - 33) < 5
+
+kine_cut_kin_1d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_1d
+kine_cut_kin_2d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_2d
+kine_cut_kin_3d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_3d
+ana_kin_1d          kine_cut_kin_1d && detector_cut
+ana_kin_2d          kine_cut_kin_2d && detector_cut
+ana_kin_3d          kine_cut_kin_3d && detector_cut
+coinpeak_kin_1d     coin_ndelta && ana_kin_1d
+coinpeak_kin_2d     coin_ndelta && ana_kin_2d
+coinpeak_kin_3d     coin_ndelta && ana_kin_3d
+coinpeak_kin_4d     coinpeak_kin_3d
+sideband_kin_1d     sideband && ana_kin_1d
+sideband_kin_2d     sideband && ana_kin_2d
+sideband_kin_3d     sideband && ana_kin_3d
+sideband_kin_4d     sideband_kin_3d

@@ -55,11 +55,14 @@ gfrxa_adc_zero_offset = 55200
 gfrxb_adc_zero_offset = 54850
 gfrya_adc_zero_offset = 55150
 gfryb_adc_zero_offset = 54600
-gfrxa_adcpercm = 77000
-gfrxb_adcpercm = 83500
-gfrya_adcpercm = 75500
-gfryb_adcpercm = 82000
-
+;gfrxa_adcpercm = 77000
+;gfrxb_adcpercm = 83500
+;gfrya_adcpercm = 75500
+;gfryb_adcpercm = 82000
+gfrxa_adcpercm = 154000
+gfrxb_adcpercm = 167000
+gfrya_adcpercm = 151000
+gfryb_adcpercm = 164000
  
  
 ; positions of FR magnets relative to target
@@ -70,3 +73,18 @@ gbpmc12_calib_rot = 0.02
 gbpmc12_pedestals = 34000, 34000, 34000, 34000
 gbpmc12_rotmatrix = -0.707, 0.707, 0.707, 0.707
 gbpmc12_offsets = 0.0, 0.0
+
+gbpma_calib_rot = 0.02
+gbpma_pedestals = 34000, 34000, 34000, 34000
+gbpma_rotmatrix = -0.707, 0.707, 0.707, 0.707
+gbpma_offsets = 0.0, 0.0
+
+gbpmb_calib_rot = 0.02
+gbpmb_pedestals = 34000, 34000, 34000, 34000
+gbpmb_rotmatrix = -0.707, 0.707, 0.707, 0.707
+gbpmb_offsets = 0.0, 0.0
+
+gbpmc_calib_rot = 0.02
+gbpmc_pedestals = 34000, 34000, 34000, 34000
+gbpmc_rotmatrix = -0.707, 0.707, 0.707, 0.707
+gbpmc_offsets = 0.0, 0.0

@@ -6,20 +6,39 @@
 ! PAERO_ID=25      ::  ,ADC+,ADC-
 ! PCAL_ID=26       ::  ADC
 ! PRASTER_ID=28    ::  ADC
-! PBPM_ID=29       ::  ADC
+! PBPMC12_ID=40   ::  ADC
+! PBPMA_ID=41  ::  ADC
+! PBPMB_ID=42  ::  ADC
+! PBPMC_ID=43  ::  ADC
 
-DETECTOR=29
-
+DETECTOR=41
 ROC=2
-
-SLOT=13
-  8,   1,   1,   0  ! C12 X+
- 11,   1,   2,   0  ! C12 X-
-
-SLOT=10
-  7,   1,   3,   0  ! C12 Y+
-  8,   1,   4,   0  ! C12 Y-
-
+SLOT=15
+   0,   1,   1,   0  ! H07A X+
+   1,   1,   2,   0  ! H07A X-
+   2,   1,   3,   0  ! H07A Y+
+   3,   1,   4,   0  ! H07A Y-
+DETECTOR=42
+ROC=2
+SLOT=15
+   4,   1,   1,   0  ! H07B X+
+   5,   1,   2,   0  ! H07B X-
+   6,   1,   3,   0  ! H07B Y+
+   7,   1,   4,   0  ! H07B Y-
+DETECTOR=43
+ROC=2
+SLOT=15
+  8,   1,   1,   0  ! H07C X+
+  9,   1,   2,   0  ! H07C X-
+  10,   1,   3,   0  ! H07C Y+
+  11,   1,   4,   0  ! H07C Y-  
+DETECTOR=40
+ROC=2
+SLOT=15
+  12,   1,   1,   0  ! C12 X+
+  13,   1,   2,   0  ! C12 X-
+  14,   1,   3,   0  ! C12 Y+
+  15,   1,   4,   0  ! C12 Y-  
 
 DETECTOR=20
 
