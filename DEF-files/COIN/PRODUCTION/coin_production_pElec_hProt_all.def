@@ -1,20 +1,29 @@
-block T.coin.hTRIG*
-block T.coin.pTRIG*
+block T.coin.*
 block CTime*
-block P.kin.*
-block H.kin.*
+
 block g*
+block H.cer.*
+block H.dc.*
+block H.tr.*
+block H.hod.*
+block H.cal.*
+block H.gtr.*
+block H.kin.*
+block H.rb.*
+block H.react.*
 
-#include "DEF-files/SHMS/PRODUCTION/DC/pdc_vars.def"
-#include "DEF-files/SHMS/PRODUCTION/GTR/pgtr_vars.def"
-#include "DEF-files/SHMS/PRODUCTION/PID/ppid_vars.def"
-#include "DEF-files/SHMS/PRODUCTION/EPICS/pepics_vars.def"
-#include "DEF-files/SHMS/PRODUCTION/KIN/pkin_vars.def"
+block P.ngcer.*
+block P.dc.*
+block P.tr.*
+block P.hod.*
+block P.hgcer.*
+block P.aero.*
+block P.cal.*
+block P.gtr.*
+block P.kin.*
+block P.rb.*
+block P.react.*
 
-#include "DEF-files/HMS/PRODUCTION/GTR/hgtr_vars.def"
-#include "DEF-files/HMS/PRODUCTION/PID/hpid_vars.def"
-#include "DEF-files/HMS/PRODUCTION/EPICS/hepics_vars.def"
-#include "DEF-files/HMS/PRODUCTION/KIN/hkin_vars.def"
 
 begin epics
 IBC3H00CRCUR4
