@@ -38,20 +38,35 @@ Q2_cut_kin_b        abs(P.kin.primary.Q2 - 0.03 ) < 0.005 # same for *b settings
 Q2_cut_kin_c        abs(P.kin.primary.Q2 - 0.04 ) < 0.005 # same for *c settings
 
 th_pq_cut_kin_1d    H.kin.secondary.thx_cm * 180/3.141952 < 10
-th_pq_cut_kin_2d    abs(H.kin.secondary.thx_cm * 180/3.141952 - 15) < 5
-th_pq_cut_kin_3d    abs(H.kin.secondary.thx_cm * 180/3.141952 - 33) < 5
+th_pq_cut_kin_2d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 17.5) < 3
+th_pq_cut_kin_3d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 33) < 3
+th_pq_cut_kin_5d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 55) < 3
+th_pq_cut_kin_6d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 75) < 3
+th_pq_cut_kin_7d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 85) < 3
 
 kine_cut_kin_1d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_1d
 kine_cut_kin_2d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_2d
 kine_cut_kin_3d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_3d
+kine_cut_kin_5d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_5d
+kine_cut_kin_6d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_6d
+kine_cut_kin_7d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_7d
 ana_kin_1d          kine_cut_kin_1d && detector_cut
 ana_kin_2d          kine_cut_kin_2d && detector_cut
 ana_kin_3d          kine_cut_kin_3d && detector_cut
+ana_kin_5d          kine_cut_kin_5d && detector_cut
+ana_kin_6d          kine_cut_kin_6d && detector_cut
+ana_kin_7d          kine_cut_kin_7d && detector_cut
 coinpeak_kin_1d     coin_ndelta && ana_kin_1d
 coinpeak_kin_2d     coin_ndelta && ana_kin_2d
 coinpeak_kin_3d     coin_ndelta && ana_kin_3d
 coinpeak_kin_4d     coinpeak_kin_3d
+coinpeak_kin_5d     coin_ndelta && ana_kin_5d
+coinpeak_kin_6d     coin_ndelta && ana_kin_6d
+coinpeak_kin_7d     coin_ndelta && ana_kin_7d
 sideband_kin_1d     sideband && ana_kin_1d
 sideband_kin_2d     sideband && ana_kin_2d
 sideband_kin_3d     sideband && ana_kin_3d
 sideband_kin_4d     sideband_kin_3d
+sideband_kin_5d     sideband && ana_kin_5d
+sideband_kin_6d     sideband && ana_kin_6d
+sideband_kin_7d     sideband && ana_kin_7d
