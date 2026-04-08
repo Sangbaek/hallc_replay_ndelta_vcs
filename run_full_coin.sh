@@ -200,67 +200,67 @@ hydra_configs=(
 #  fi
 #  echo "[INFO] Detailed Logs for hydra setup available in: $log_dir"
 
-  sleep 2
-
-  echo "" 
-  echo ""
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-  echo ""
-  echo "Running onlineGUI for analyzed HMS COIN run ${runNum}:"
-  echo " -> CONFIG:  ${confighms}"
-  echo " -> RUN:     ${runNum}"
-  echo " -> COMMAND: ${runOnlineGUI}"
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-
-  sleep 2
-  [ "$(basename "$PWD")" = "onlineGUI" ] || cd onlineGUI
-
-  eval ${runOnlineGUIhms}
-  eval ${saveOnlineGUIhms}
-  mv "${outExpertFilehms}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFilehms}.pdf"
-
-  echo "" 
-  echo ""
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-  echo ""
-  echo "Running onlineGUI for analyzed SHMS COIN run ${runNum}:"
-  echo " -> CONFIG:  ${configshms}"
-  echo " -> RUN:     ${runNum}"
-  echo " -> COMMAND: ${runOnlineGUIshms}"
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-
-  sleep 2
-  eval ${runOnlineGUIshms}
-  eval ${saveOnlineGUIshms}
-  mv "${outExpertFileshms}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFileshms}.pdf"
-
-  echo "" 
-  echo ""
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-  echo ""
-  echo "Running onlineGUI for analyzed COIN run ${runNum}:"
-  echo " -> CONFIG:  ${config}"
-  echo " -> RUN:     ${runNum}"
-  echo " -> COMMAND: ${runOnlineGUI}"
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-
-  sleep 2  
-  eval ${runOnlineGUI}
-  eval ${saveExpertOnlineGUI}
-  echo ${saveExpertOnlineGUI}  
-  echo here?
-  mv "${outExpertFile}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf"
-  echo here?
-  cd ..
-  ln -fs ${outExpertFilehms}.pdf ${latestMonPdfFilehms}
-  ln -fs ${outExpertFileshms}.pdf ${latestMonPdfFileshms}
-  ln -fs ${outExpertFile}.pdf ${latestMonPdfFile}    
+#  sleep 2
+#
+#  echo "" 
+#  echo ""
+#  echo ""
+#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+#  echo ""
+#  echo "Running onlineGUI for analyzed HMS COIN run ${runNum}:"
+#  echo " -> CONFIG:  ${confighms}"
+#  echo " -> RUN:     ${runNum}"
+#  echo " -> COMMAND: ${runOnlineGUI}"
+#  echo ""
+#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+#
+#  sleep 2
+#  [ "$(basename "$PWD")" = "onlineGUI" ] || cd onlineGUI
+#
+#  eval ${runOnlineGUIhms}
+#  eval ${saveOnlineGUIhms}
+#  mv "${outExpertFilehms}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFilehms}.pdf"
+#
+#  echo "" 
+#  echo ""
+#  echo ""
+#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+#  echo ""
+#  echo "Running onlineGUI for analyzed SHMS COIN run ${runNum}:"
+#  echo " -> CONFIG:  ${configshms}"
+#  echo " -> RUN:     ${runNum}"
+#  echo " -> COMMAND: ${runOnlineGUIshms}"
+#  echo ""
+#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+#
+#  sleep 2
+#  eval ${runOnlineGUIshms}
+#  eval ${saveOnlineGUIshms}
+#  mv "${outExpertFileshms}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFileshms}.pdf"
+#
+#  echo "" 
+#  echo ""
+#  echo ""
+#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+#  echo ""
+#  echo "Running onlineGUI for analyzed COIN run ${runNum}:"
+#  echo " -> CONFIG:  ${config}"
+#  echo " -> RUN:     ${runNum}"
+#  echo " -> COMMAND: ${runOnlineGUI}"
+#  echo ""
+#  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+#
+#  sleep 2  
+#  eval ${runOnlineGUI}
+#  eval ${saveExpertOnlineGUI}
+#  echo ${saveExpertOnlineGUI}  
+#  echo here?
+#  mv "${outExpertFile}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf"
+#  echo here?
+#  cd ..
+#  ln -fs ${outExpertFilehms}.pdf ${latestMonPdfFilehms}
+#  ln -fs ${outExpertFileshms}.pdf ${latestMonPdfFileshms}
+#  ln -fs ${outExpertFile}.pdf ${latestMonPdfFile}    
 
 
   echo "" 
