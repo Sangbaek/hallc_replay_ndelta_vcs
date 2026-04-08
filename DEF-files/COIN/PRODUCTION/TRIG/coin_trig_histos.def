@@ -1,10 +1,18 @@
 TH1F hcoin 'CTime.epCoinTime_ROC2 No Cuts; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 
-TH1F hcoin_coinpeak_kin_2d 'CTime.epCoinTime_ROC2 coinpeak 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_2d
-TH1F hcoin_sideband_kin_2d 'CTime.epCoinTime_ROC2 sideband 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_2d
+#TH1F hcoin_coinpeak_kin_2d 'CTime.epCoinTime_ROC2 coinpeak 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_2d
+#TH1F hcoin_sideband_kin_2d 'CTime.epCoinTime_ROC2 sideband 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_2d
 
-TH1F hcoin_coinpeak_kin_3d 'CTime.epCoinTime_ROC2 coinpeak 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_3d
-TH1F hcoin_sideband_kin_3d 'CTime.epCoinTime_ROC2 sideband 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_3d
+#TH1F hcoin_coinpeak_kin_3d 'CTime.epCoinTime_ROC2 coinpeak 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_3d
+#TH1F hcoin_sideband_kin_3d 'CTime.epCoinTime_ROC2 sideband 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_3d
 
+#TH1F hcoin_coinpeak_kin_5d 'CTime.epCoinTime_ROC2 coinpeak 5d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_5d
+#TH1F hcoin_sideband_kin_5d 'CTime.epCoinTime_ROC2 sideband 5d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_5d
+
+TH1F hcoin_coinpeak_kin_6d 'CTime.epCoinTime_ROC2 coinpeak 6d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_6d
+TH1F hcoin_sideband_kin_6d 'CTime.epCoinTime_ROC2 sideband 6d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_6d
+
+#TH1F hcoin_coinpeak_kin_7d 'CTime.epCoinTime_ROC2 coinpeak 7d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_7d
+#TH1F hcoin_sideband_kin_7d 'CTime.epCoinTime_ROC2 sideband 7d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_7d
 
 ############################
 #   BETA VS COINTIME

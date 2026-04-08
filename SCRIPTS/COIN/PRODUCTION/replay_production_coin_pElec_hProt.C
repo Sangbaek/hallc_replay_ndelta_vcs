@@ -41,8 +41,8 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   //********  Start-up with no timing windows  *****************
   //Overwrite the existing reference times with
   //the default values specified in hallc_replay.  
-  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/SHMS/GEN/p_no_reference_times.param");
-  gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
+  //  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/SHMS/GEN/p_no_reference_times.param");
+  //gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
 
   //Now remove all Timing Windows and revert to 
   //the default values specifid in hallc_replay
@@ -51,8 +51,8 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
 
   //Overwrite the existing reference times with
   //the default values specified in hallc_replay.  
-  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/HMS/GEN/h_no_reference_times.param");
-  gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
+  //gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/HMS/GEN/h_no_reference_times.param");
+  //gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
 
   //Now remove all Timing Windows and revert to 
   //the default values specifid in hallc_replay
@@ -289,7 +289,7 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   analyzer->SetOutFile(ROOTFileName.Data());
 
   // Define DEF-file+
-  if(MaxEvent>100000){analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt.def");}
+  if(MaxEvent>100000 || MaxEvent==-1){analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt.def");}
   else { analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt_all.def");}
 
   // Define cuts file
