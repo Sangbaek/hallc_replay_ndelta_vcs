@@ -6,7 +6,7 @@ hcut_cer_elec       	  H.cer.npeSum>.5
 hcut_cer_pi       	  H.cer.npeSum<.5
 
 HMSScinGood           H.hod.goodscinhit == 1
-HMSGoodBetanotrk      H.hod.betanotrack > 0.8 && H.hod.betanotrack < 1.3
+HMSGoodBetanotrk      H.hod.betanotrack > 0.1 && H.hod.betanotrack < .7
 
 
 HMSScinShould         HMSScinGood && HMSGoodBetanotrk 
