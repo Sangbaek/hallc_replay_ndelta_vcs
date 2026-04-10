@@ -74,7 +74,7 @@ openReportMon="emacs ${reportMonOutDir}/${reportMonFile}"
 
 # Name of the replay ROOT file
 replayFile="${spec}_replay_production_${runNum}"
-rootFile="${replayFile}_${numEvents}.root"
+rootFile="${replayFile}_${numEvents}_0.root"
 latestRootFile="${rootFileDir}/${replayFile}_latest.root"
 
 # Names of the monitoring file
@@ -87,7 +87,7 @@ latestMonPdfFilehms="${monPdfDir}/${spec}_production_hms_latest.pdf"
 latestMonPdfFileshms="${monPdfDir}/${spec}_production_shms_latest.pdf"
 
 # Where to put log.
-reportFile="${reportFileDir}/replay_${spec}_production_${runNum}_${numEvents}.report"
+reportFile="${reportFileDir}/replay_${spec}_production_${runNum}_${numEvents}_0.report"
 summaryFile="${reportFileDir}/summary_production_${runNum}_${numEvents}.report"
 
 # What is base name of onlineGUI output.
