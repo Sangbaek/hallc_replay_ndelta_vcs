@@ -1,0 +1,851 @@
+Reading startup commands from /home/cdaq/.root/rootlogon.C
+
+Processing SCRIPTS/COIN/PRODUCTION/replay_production_coin_pElec_hProt.C(26278,1000,11)...
+Opening parameter file: [0] DBASE/COIN/standard.database
+Reading Parameters for run 26278
+Opening parameter file: [0] DBASE/COIN/general.param
+Opening parameter file: [1] PARAM/GEN/genflags.param
+Opening parameter file: [1] PARAM/GEN/gdebug.param
+Opening parameter file: [1] PARAM/GEN/gtarget.param
+Opening parameter file: [1] PARAM/GEN/gbeam.param
+Opening parameter file: [1] PARAM/GEN/gscalers.param
+Opening parameter file: [1] PARAM/HMS/GEN/hcana.param
+Opening parameter file: [1] PARAM/HMS/GEN/hdebug.param
+Opening parameter file: [1] PARAM/HMS/GEN/hmsflags.param
+Opening parameter file: [1] PARAM/HMS/GEN/htracking.param
+Opening parameter file: [1] PARAM/HMS/GEN/h_reftime_cut_coindaq.param
+Opening parameter file: [1] PARAM/HMS/CER/hcer_geom.param
+Opening parameter file: [1] PARAM/HMS/DC/hdc_geom.param
+Opening parameter file: [1] PARAM/HMS/HODO/hhodo_geom.param
+Opening parameter file: [1] PARAM/HMS/AERO/haero_geom.param
+Opening parameter file: [1] PARAM/HMS/CAL/hcal_geom.param
+Opening parameter file: [1] PARAM/HMS/CER/hcer_cuts.param
+Opening parameter file: [1] PARAM/HMS/DC/hdc_cuts.param
+Opening parameter file: [1] PARAM/HMS/HODO/hhodo_cuts.param
+Opening parameter file: [1] PARAM/HMS/AERO/haero_cuts.param
+Opening parameter file: [1] PARAM/HMS/CAL/hcal_cuts.param
+Opening parameter file: [1] PARAM/HMS/CER/hcer_calib.param
+Opening parameter file: [1] PARAM/HMS/DC/hdc_calib.param
+Opening parameter file: [1] PARAM/HMS/DC/hdc_tzero_per_wire.param
+Opening parameter file: [1] PARAM/HMS/HODO/hhodo_calib.param
+Opening parameter file: [1] PARAM/HMS/HODO/hhodo_TWcalib.param
+Opening parameter file: [1] PARAM/HMS/HODO/hhodo_Vpcalib.param
+Opening parameter file: [1] PARAM/HMS/AERO/haero_calib.param
+Opening parameter file: [1] PARAM/HMS/CAL/hcal_calib.param
+Opening parameter file: [1] PARAM/SHMS/GEN/pcana.param
+Opening parameter file: [1] PARAM/SHMS/GEN/pdebug.param
+Opening parameter file: [1] PARAM/SHMS/GEN/shmsflags.param
+Opening parameter file: [1] PARAM/SHMS/GEN/ptracking.param
+Opening parameter file: [1] PARAM/SHMS/GEN/p_reftime_cut.param
+Opening parameter file: [1] PARAM/SHMS/NGCER/pngcer_geom.param
+Opening parameter file: [1] PARAM/SHMS/DC/pdc_geom.param
+Opening parameter file: [1] PARAM/SHMS/HODO/phodo_geom.param
+Opening parameter file: [1] PARAM/SHMS/HGCER/phgcer_geom.param
+Opening parameter file: [1] PARAM/SHMS/AERO/paero_geom.param
+Opening parameter file: [1] PARAM/SHMS/CAL/pcal_geom.param
+Opening parameter file: [1] PARAM/SHMS/NGCER/pngcer_cuts.param
+Opening parameter file: [1] PARAM/SHMS/DC/pdc_cuts.param
+Opening parameter file: [1] PARAM/SHMS/HODO/phodo_cuts.param
+Opening parameter file: [1] PARAM/SHMS/HGCER/phgcer_cuts.param
+Opening parameter file: [1] PARAM/SHMS/AERO/paero_cuts.param
+Opening parameter file: [1] PARAM/SHMS/CAL/pcal_cuts.param
+Opening parameter file: [1] PARAM/SHMS/NGCER/pngcer_calib.param
+Opening parameter file: [1] PARAM/SHMS/DC/pdc_calib.param
+Opening parameter file: [1] PARAM/SHMS/DC/pdc_tzero_per_wire.param
+Opening parameter file: [1] PARAM/SHMS/HODO/phodo_calib.param
+Opening parameter file: [1] PARAM/SHMS/HODO/phodo_TWcalib.param
+Opening parameter file: [1] PARAM/SHMS/HODO/phodo_Vpcalib.param
+Opening parameter file: [1] PARAM/SHMS/HGCER/phgcer_calib.param
+Opening parameter file: [1] PARAM/SHMS/AERO/paero_calib.param
+Opening parameter file: [1] PARAM/SHMS/CAL/pcal_calib.param
+Opening parameter file: [0] DBASE/COIN/standard.kinematics
+Reading Parameters for run 26278
+Opening parameter file: [0] PARAM/TRIG/tcoin.param
+Opening parameter file: [0] PARAM/HMS/GEN/h_fadc_debug.param
+Opening parameter file: [0] PARAM/SHMS/GEN/p_fadc_debug.param
+Opening parameter file: [0] PARAM/SHMS/GEN/pdet_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/SHMS/NGCER/pngcer_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/SHMS/AERO/paero_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/SHMS/CAL/pcal_cuts_no_timing_windows.param
+Opening parameter file: [0] PARAM/HMS/GEN/hdet_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/HMS/CER/hcer_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/HMS/DC/hdc_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/HMS/HODO/hhodo_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/HMS/AERO/haero_cuts_no_timing_windows.param
+Opening parameter file: [1] PARAM/HMS/CAL/hcal_cuts_no_timing_windows.param
+
+ Detector ID Map
+
+   HDC 11
+   HSCIN 13
+   HCER 14
+   HCAL 15
+   HRASTER 18
+   PNGCER 21
+   PDC 22
+   PSCIN 23
+   PHGCER 24
+   PAERO 25
+   PCAL 26
+   PRASTER 28
+   TCOIN 30
+
+THcRun  "uninitialized run"
+Run number:   0
+Run date:     Sun Jan  1 00:00:00 1995
+Data version: 0
+Requested event range: 1-1000
+Analyzed events:       0
+Assume Date:           0
+Database read:         0
+Initialized:           0
+Opened:                0
+Date set/read/req:     0 0 1
+Run num set/read/req:  0 0 1
+Run type set/read/req: 0 0 1
+Prescales set/rd/req:  0 0 0
+DAQInfo set/rd/req:    0 0 0
+CODA file:      ./raw/ndelta_production_26278.dat.11
+Initializing run object
+THaRun: Reading init info from ./raw/ndelta_production_26278.dat.0
+Prestart at 1
+DAQ info at 17 len 4931
+DAQ info at 19 len 3393
+DAQ info at 23 len 4320
+Creating new output file: ROOTfiles/coin_replay_production_26278_1000_11.root
+Info in <THaCrateMap::init(tloc)>: Opened database file MAPS/db_cratemap.dat
+THcRun  "RUN_26278"
+Run number:   26278
+Run date:     Mon Apr  6 03:16:05 2026
+Data version: 3
+Requested event range: 1-1000
+CODA file:      ./raw/ndelta_production_26278.dat.11
+Initializing analysis objects
+Initializing D
+Initializing P
+In THcHallCSpectrometer::ReadDatabase()
+ GetName() P
+p From Formula Mispointing_y = -0.06
+p From Formula Mispointing_x = -0.126
+
+
+
+hodo planes = 4
+sel using scin = 0
+fPruneXp = 0.2
+fPruneYp = 0.2
+fPruneYtar = 20
+fPruneDelta = 30
+fPruneBeta = 30
+fPruneDf = 1
+fPruneChiBeta = 100
+fPruneFpTime = 1000
+fPruneNPMT = 6
+sel using prune = 1
+fPartMass = 0.000511
+fPcentral = 1.0553 -0.4
+fThetalab = 10.49 0
+Read 131 matrix element terms
+Defining pngcer_tdcref_miss and pngcer_adcref_miss
+Created Cherenkov detector P.ngcer with 4 PMTs
+ fSampThreshold 1 = 5
+ fSampThreshold = 5
+InitHitList: THcCherenkovHit RefTimeCuts: 0 -3200
+THcHitList::InitHitList : Prestart event 137 not found.
+Plane Name List: 1u1 1u2 1x1 1x2 1v1 1v2 2v2 2v1 2x2 2x1 2u2 2u1
+Drift Chambers: 12 planes in 2 chambers
+Created Drift Chamber 1, Ch1
+Created Drift Chamber 2, Ch2
+ DC tdc ref time cut = -5000
+InitHitList: THcRawDCHit RefTimeCuts: -5000 0
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining pdc_tdcref_miss and pdc_adcref_miss
+Plane counts: 107 107 79 79 107 107 107 107 79 79 107 107
+Plane Name List : 1x 1y 2x 2y
+Created Scintillator Plane 1x, Hodoscope Plane 1x
+Created Scintillator Plane 1y, Hodoscope Plane 1y
+Created Scintillator Plane 2x, Hodoscope Plane 2x
+Created Scintillator Plane 2y, Hodoscope Plane 2y
+ Hodo tdc ref time cut = -5000 -3200
+InitHitList: THcRawHodoHit RefTimeCuts: -5000 -3200
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining pscin_tdcref_miss and pscin_adcref_miss
+USING 100 NSEC WINDOW FOR FP NO_TRACK CALCULATIONS.
+ fRatio_xpfp_to_xfp= 0.0018
+Defining phgcer_tdcref_miss and phgcer_adcref_miss
+Created Cherenkov detector P.hgcer with 4 PMTs
+ fSampThreshold 1 = 5
+ fSampThreshold = 5
+InitHitList: THcCherenkovHit RefTimeCuts: 0 -3200
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining paero_tdcref_miss and paero_adcref_miss
+Created aerogel detector P.aero with 7 PMT pairs
+InitHitList: THcAerogelHit RefTimeCuts: 0 -3200
+THcHitList::InitHitList : Prestart event 137 not found.
+From THcShower::Setup: created Shower planes for P: pr, fly.
+InitHitList: THcRawShowerHit RefTimeCuts: 0 -3200
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining pcal_tdcref_miss and pcal_adcref_miss
+THcShowerPlane::DefineVariables: registered counters P.cal.stat_trksum1 and P.cal.stat_hitsum1
+ fSampThreshold 1 = 5
+Initializing P.rb
+InitHitList: THcRasterRawHit RefTimeCuts: 0 0
+THcHitList::InitHitList : Prestart event 137 not found.
+ THcRaster is using EPICS bpm for beam position
+Initializing H
+In THcHallCSpectrometer::ReadDatabase()
+ GetName() H
+h From Formula Mispointing_x = 0.107
+
+
+
+hodo planes = 4
+sel using scin = 0
+fPruneXp = 0.2
+fPruneYp = 0.2
+fPruneYtar = 20
+fPruneDelta = 30
+fPruneBeta = 30
+fPruneDf = 1
+fPruneChiBeta = 100
+fPruneFpTime = 1000
+fPruneNPMT = 6
+sel using prune = 1
+fPartMass = 0.938272
+fPcentral = 0.445 0
+fThetalab = -55.662 0
+Read 461 matrix element terms
+Plane Name List: 1u1 1u2 1x1 1x2 1v2 1v1 2v1 2v2 2x2 2x1 2u2 2u1
+Drift Chambers: 12 planes in 2 chambers
+Created Drift Chamber 1, Ch1
+Created Drift Chamber 2, Ch2
+ DC tdc ref time cut = -18000
+InitHitList: THcRawDCHit RefTimeCuts: -18000 0
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining hdc_tdcref_miss and hdc_adcref_miss
+Plane counts: 96 96 102 102 96 96 96 96 102 102 96 96
+Plane Name List : 1x 1y 2x 2y
+Created Scintillator Plane 1x, Hodoscope Plane 1x
+Created Scintillator Plane 1y, Hodoscope Plane 1y
+Created Scintillator Plane 2x, Hodoscope Plane 2x
+Created Scintillator Plane 2y, Hodoscope Plane 2y
+ Hodo tdc ref time cut = -31000 -2600
+InitHitList: THcRawHodoHit RefTimeCuts: -31000 -2600
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining hscin_tdcref_miss and hscin_adcref_miss
+USING 20 NSEC WINDOW FOR FP NO_TRACK CALCULATIONS.
+ fRatio_xpfp_to_xfp= 0.0011
+Defining hcer_tdcref_miss and hcer_adcref_miss
+Created Cherenkov detector H.cer with 2 PMTs
+ fSampThreshold 1 = 5
+ fSampThreshold = 5
+InitHitList: THcCherenkovHit RefTimeCuts: 0 -2600
+THcHitList::InitHitList : Prestart event 137 not found.
+*** WARNING!!!  Rounded hcal_adcrefcut to nearest integer 
+From THcShower::Setup: created Shower planes for H: 1pr, 2ta, 3ta, 4ta.
+InitHitList: THcRawShowerHit RefTimeCuts: 0 -2600
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining hcal_tdcref_miss and hcal_adcref_miss
+THcShowerPlane::DefineVariables: registered counters H.cal.stat_trksum1 and H.cal.stat_hitsum1
+THcShowerPlane::DefineVariables: registered counters H.cal.stat_trksum2 and H.cal.stat_hitsum2
+THcShowerPlane::DefineVariables: registered counters H.cal.stat_trksum3 and H.cal.stat_hitsum3
+THcShowerPlane::DefineVariables: registered counters H.cal.stat_trksum4 and H.cal.stat_hitsum4
+Initializing H.rb
+InitHitList: THcRasterRawHit RefTimeCuts: 0 0
+THcHitList::InitHitList : Prestart event 137 not found.
+ THcRaster is using EPICS bpm for beam position
+Initializing T
+ Trig = 4
+pTRIG1_ROC1 27
+pTRIG4_ROC1 30
+pTRIG1_ROC2 58
+pTRIG4_ROC2 61
+pRF 112
+hRF 111
+*** WARNING!!!  Rounded t_coin_trig_tdcrefcut to nearest integer 
+*** WARNING!!!  Rounded t_coin_trig_adcrefcut to nearest integer 
+InitHitList: THcTrigRawHit RefTimeCuts: -5000 -3200
+THcHitList::InitHitList : Prestart event 137 not found.
+Defining t_coin_tdcref_miss and t_coin_adcref_miss
+Initializing P.react
+Initializing P.extcor
+In THcExtTarCor::ReadDatabase()
+Initializing P.gtr
+Initializing phodeff
+
+
+THcHodoEff::ReadDatabase nplanes=4
+Plane = 1    counters = 13
+Plane = 2    counters = 13
+Plane = 3    counters = 14
+Plane = 4    counters = 21
+THcHodoEff::Init nplanes=4
+THcHodoEff::Init Apparatus = hod P
+Initializing H.react
+Initializing H.extcor
+In THcExtTarCor::ReadDatabase()
+Initializing H.gtr
+Initializing hhodeff
+
+
+THcHodoEff::ReadDatabase nplanes=4
+Plane = 1    counters = 16
+Plane = 2    counters = 10
+Plane = 3    counters = 16
+Plane = 4    counters = 10
+THcHodoEff::Init nplanes=4
+THcHodoEff::Init Apparatus = hod H
+Initializing P.kin.primary
+In THcPrimaryKine::ReadDatabase()
+Initializing H.kin.secondary
+THcSecondaryKine particleMASS: 0.938272
+Initializing CTime
+*************************************************
+Initializing THcCointTime Physics Modue
+Hadron Arm   -------> H
+Electron Arm -------> P
+TrigDet  -------> T.coin
+**************************************************
+Initializing epics
+Initializing P
+Howdy !  We are initializing THcScalerEvtHandler !!   name =   P
+Setting scaler clock ... channel = 31 ... freq = 1e+06
+Initializing H
+Howdy !  We are initializing THcScalerEvtHandler !!   name =   H
+Setting scaler clock ... channel = 31 ... freq = 1e+06
+Initializing HC
+Initializing epics
+Loading cuts from DEF-files/COIN/PRODUCTION/CUTS/coin_production_cuts.def
+Initializing output
+
+THaOutput definitions: 
+=== Number of variables 3647
+=== Number of formulas 9
+=== Number of histograms 525
+
+Decoder: helicity disabled
+
+Starting analysis
+Info in <THaCrateMap::init(tloc)>: Opened database file MAPS/db_cratemap.dat
+Banks found (event 13172947):
+ roc  bank     pos     len
+   1   250    2602    1476
+   1  1190    4080      86
+   2   250     395    1945
+   2  1190    2342     122
+   3  1190    2468     130
+   4   250     257     132
+   6  1190      39     214
+Sum                   4105
+1000
+Missing Ref times:             P.ngcer         0         0
+Missing Ref times:                P.dc         0         0
+Missing Ref times:               P.hod         0         0
+Missing Ref times:             P.hgcer         0         0
+Missing Ref times:              P.aero         0         0
+Missing Ref times:               P.cal         0         0
+Missing Ref times:                H.dc         0         0
+Missing Ref times:               H.hod         0         0
+Missing Ref times:               H.cer         0         0
+Missing Ref times:               H.cal         0         0
+Missing Ref times:              T.coin         0         0
+THcScalerEvtHandler::End Analyzing 0 delayed scaler events
+THcScalerEvtHandler::End Analyzing 0 delayed scaler events
+Event limit reached.
+==== 2026-04-09 21:35:33 -0400
+Summary for run 26278
+Counter summary:
+1000  events read
+1000  events decoded
+1000  physics events
+1000  physics events analyzed
+1000  events accepted
+
+Cut summary:
+Name                               Def                                                                                                   Called     Passed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+BLOCK: RawDecode
+Pedestal_event                     g.evtyp==99                                                                                           1000       0    (0%)
+SHMS_event                         g.evtyp==1                                                                                            1000       0    (0%)
+HMS_event                          g.evtyp==2                                                                                            1000       0    (0%)
+BOTH_SINGLES_event                 g.evtyp==3                                                                                            1000       0    (0%)
+COIN_ONLY_event                    g.evtyp==4                                                                                            1000       1000 (100%)
+SHMS_COIN_event                    g.evtyp==5                                                                                            1000       0    (0%)
+HMS_COIN_event                     g.evtyp==6                                                                                            1000       0    (0%)
+COIN_ALL_event                     g.evtyp==7                                                                                            1000       0    (0%)
+ALL_events                         g.evtyp>=1&&g.evtyp<=7                                                                                1000       1000 (100%)
+ALL_COIN_events                    g.evtyp>=4&&g.evtyp<=7                                                                                1000       1000 (100%)
+ALL_HMS_events                     HMS_event||COIN_ONLY_event||HMS_COIN_event||COIN_ALL_event                                            1000       1000 (100%)
+ALL_SHMS_events                    SHMS_event||COIN_ONLY_event||SHMS_COIN_event||COIN_ALL_event                                          1000       1000 (100%)
+RawDecode_master                   ALL_events                                                                                            1000       1000 (100%)
+
+BLOCK: Decode
+pTRIG1_ROC2                        T.coin.pTRIG1_ROC2_tdcTime>-10000.0&&T.coin.pTRIG1_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG2_ROC2                        T.coin.pTRIG2_ROC2_tdcTime>-10000.0&&T.coin.pTRIG2_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG3_ROC2                        T.coin.pTRIG3_ROC2_tdcTime>-10000.0&&T.coin.pTRIG3_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG4_ROC2                        T.coin.pTRIG4_ROC2_tdcTime>-10000.0&&T.coin.pTRIG4_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG5_ROC2                        T.coin.pTRIG5_ROC2_tdcTime>-10000.0&&T.coin.pTRIG5_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG6_ROC2                        T.coin.pTRIG6_ROC2_tdcTime>-10000.0&&T.coin.pTRIG6_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG1_ROC1                        T.coin.pTRIG1_ROC1_tdcTime>-10000.0&&T.coin.pTRIG1_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG2_ROC1                        T.coin.pTRIG2_ROC1_tdcTime>-10000.0&&T.coin.pTRIG2_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG3_ROC1                        T.coin.pTRIG3_ROC1_tdcTime>-10000.0&&T.coin.pTRIG3_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG4_ROC1                        T.coin.pTRIG4_ROC1_tdcTime>-10000.0&&T.coin.pTRIG4_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG5_ROC1                        T.coin.pTRIG5_ROC1_tdcTime>-10000.0&&T.coin.pTRIG5_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+pTRIG6_ROC1                        T.coin.pTRIG6_ROC1_tdcTime>-10000.0&&T.coin.pTRIG6_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG1_ROC2                        T.coin.hTRIG1_ROC2_tdcTime>-10000.0&&T.coin.hTRIG1_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG2_ROC2                        T.coin.hTRIG2_ROC2_tdcTime>-10000.0&&T.coin.hTRIG2_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG3_ROC2                        T.coin.hTRIG3_ROC2_tdcTime>-10000.0&&T.coin.hTRIG3_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG4_ROC2                        T.coin.hTRIG4_ROC2_tdcTime>-10000.0&&T.coin.hTRIG4_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG5_ROC2                        T.coin.hTRIG5_ROC2_tdcTime>-10000.0&&T.coin.hTRIG5_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG6_ROC2                        T.coin.hTRIG6_ROC2_tdcTime>-10000.0&&T.coin.hTRIG6_ROC2_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG1_ROC1                        T.coin.hTRIG1_ROC1_tdcTime>-10000.0&&T.coin.hTRIG1_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG2_ROC1                        T.coin.hTRIG2_ROC1_tdcTime>-10000.0&&T.coin.hTRIG2_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG3_ROC1                        T.coin.hTRIG3_ROC1_tdcTime>-10000.0&&T.coin.hTRIG3_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG4_ROC1                        T.coin.hTRIG4_ROC1_tdcTime>-10000.0&&T.coin.hTRIG4_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG5_ROC1                        T.coin.hTRIG5_ROC1_tdcTime>-10000.0&&T.coin.hTRIG5_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+hTRIG6_ROC1                        T.coin.hTRIG6_ROC1_tdcTime>-10000.0&&T.coin.hTRIG6_ROC1_tdcTime<10000.0                               1000       1000 (100%)
+shms_trigs                         SHMS_event                                                                                            1000       0    (0%)
+hms_trigs                          HMS_event                                                                                             1000       0    (0%)
+SHMS_edtm_accepted                 T.coin.pEDTM_tdcTime!=0.0                                                                             1000       0    (0%)
+SHMS_physics_accepted              T.coin.pEDTM_tdcTime==0.0                                                                             1000       1000 (100%)
+HMS_edtm_accepted                  T.coin.hEDTM_tdcTime!=0.0                                                                             1000       0    (0%)
+HMS_physics_accepted               T.coin.hEDTM_tdcTime==0.0                                                                             1000       1000 (100%)
+goodctime                          ALL_events                                                                                            1000       1000 (100%)
+tightctime                         ALL_events                                                                                            1000       1000 (100%)
+ranctime                           ALL_events                                                                                            1000       1000 (100%)
+pcut_good_S1_time                  T.coin.p1T_tdcTime>241&&T.coin.p1T_tdcTime<243                                                        1000       4    (0.4%)
+pcut_good_S2X_time                 T.coin.p2X_tdcTime>180&&T.coin.p2X_tdcTime<220                                                        1000       1    (0.1%)
+pcut_good_S1_S2X_time              pcut_good_S1_time&&pcut_good_S2X_time                                                                 1000       0    (0%)
+ALL_COIN_events_NO_EDTM            T.coin.hEDTM_tdcTime==0.0&&T.coin.pEDTM_tdcTime==0.0&&ALL_COIN_events                                 1000       1000 (100%)
+ALL_events_NO_EDTM                 T.coin.hEDTM_tdcTime==0.0&&T.coin.pEDTM_tdcTime==0.0&&ALL_events                                      1000       1000 (100%)
+Decode_master                      ALL_events_NO_EDTM                                                                                    1000       1000 (100%)
+
+BLOCK: CoarseTracking
+pcut_time_cut1                     P.dc.1u1.time>0&&P.dc.1u1.time<250                                                                    1000       754  (75.4%)
+pcut_time_cut2                     P.dc.1u2.time>0&&P.dc.1u2.time<250                                                                    1000       745  (74.5%)
+pcut_time_cut3                     P.dc.1x1.time>0&&P.dc.1x1.time<250                                                                    1000       741  (74.1%)
+pcut_time_cut4                     P.dc.1x2.time>0&&P.dc.1x2.time<250                                                                    1000       733  (73.3%)
+pcut_time_cut5                     P.dc.1v1.time>0&&P.dc.1v1.time<250                                                                    1000       744  (74.4%)
+pcut_time_cut6                     P.dc.1v2.time>0&&P.dc.1v2.time<250                                                                    1000       748  (74.8%)
+pcut_time_cut7                     P.dc.2v2.time>0&&P.dc.2v2.time<250                                                                    1000       731  (73.1%)
+pcut_time_cut8                     P.dc.2v1.time>0&&P.dc.2v1.time<250                                                                    1000       720  (72%)
+pcut_time_cut9                     P.dc.2x2.time>0&&P.dc.2x2.time<250                                                                    1000       730  (73%)
+pcut_time_cut10                    P.dc.2x1.time>0&&P.dc.2x1.time<250                                                                    1000       695  (69.5%)
+pcut_time_cut11                    P.dc.2u2.time>0&&P.dc.2u2.time<250                                                                    1000       728  (72.8%)
+pcut_time_cut12                    P.dc.2u1.time>0&&P.dc.2u1.time<250                                                                    1000       730  (73%)
+shmsDC1Planes_large                (P.dc.1x1.nhit+P.dc.1u2.nhit+P.dc.1u1.nhit+P.dc.1v1.nhit+P.dc.1x2.nhit+P.dc.1v2.nhit)>20              1000       16   (1.6%)
+shmsDC2Planes_large                (P.dc.2x1.nhit+P.dc.2u2.nhit+P.dc.2u1.nhit+P.dc.2v1.nhit+P.dc.2x2.nhit+P.dc.2v2.nhit)>20              1000       11   (1.1%)
+shmsDCany_large                    shmsDC1Planes_large||shmsDC2Planes_large                                                              1000       20   (2%)
+shms_ch1_gt0                       P.dc.Ch1.nhit>0                                                                                       1000       768  (76.8%)
+shms_ch2_gt0                       P.dc.Ch2.nhit>0                                                                                       1000       752  (75.2%)
+shms_ch_gt0                        P.dc.Ch2.nhit>0&&P.dc.Ch1.nhit>0                                                                      1000       738  (73.8%)
+shms_ch_gt4                        P.dc.Ch2.nhit>3&&P.dc.Ch1.nhit>3                                                                      1000       718  (71.8%)
+shms_ch2_gt0_noch1                 P.dc.Ch2.nhit>0&&P.dc.Ch1.nhit==0                                                                     1000       14   (1.4%)
+shms_ch1_gt0_noch2                 P.dc.Ch1.nhit>0&&P.dc.Ch2.nhit==0                                                                     1000       30   (3%)
+shms_noch1_noch2                   P.dc.Ch1.nhit==0&&P.dc.Ch2.nhit==0                                                                    1000       218  (21.8%)
+shms_ch_gt0_track                  shms_ch_gt0&&P.dc.ntrack>0                                                                            1000       698  (69.8%)
+shms_ch_gt4_track                  shms_ch_gt4&&P.dc.ntrack>0                                                                            1000       698  (69.8%)
+shms_ch1_gt0_gtime                 P.dc.Ch1.nhit>0&&pcut_good_S1_S2X_time                                                                1000       0    (0%)
+shms_ch2_gt0_gtime                 P.dc.Ch2.nhit>0&&pcut_good_S1_S2X_time                                                                1000       0    (0%)
+shms_ch_gt0_gtime                  P.dc.Ch2.nhit>0&&P.dc.Ch1.nhit>0&&pcut_good_S1_S2X_time                                               1000       0    (0%)
+shms_ch_gt4_gtime                  P.dc.Ch2.nhit>3&&P.dc.Ch1.nhit>3&&pcut_good_S1_S2X_time                                               1000       0    (0%)
+shms_ch2_gt0_noch1_gtime           P.dc.Ch2.nhit>0&&P.dc.Ch1.nhit==0&&pcut_good_S1_S2X_time                                              1000       0    (0%)
+shms_ch1_gt0_noch2_gtime           P.dc.Ch1.nhit>0&&P.dc.Ch2.nhit==0&&pcut_good_S1_S2X_time                                              1000       0    (0%)
+shms_noch1_noch2_gtime             P.dc.Ch1.nhit==0&&P.dc.Ch2.nhit==0&&pcut_good_S1_S2X_time                                             1000       0    (0%)
+shms_ch_gt0_track_gtime            shms_ch_gt0&&P.dc.ntrack>0&&pcut_good_S1_S2X_time                                                     1000       0    (0%)
+shms_ch_gt4_track_gtime            shms_ch_gt4&&P.dc.ntrack>0&&pcut_good_S1_S2X_time                                                     1000       0    (0%)
+shmsDC1_1hit_x1                    P.dc.1x1.nhit==1                                                                                      1000       506  (50.6%)
+shmsDC1_1hit_u1                    P.dc.1u1.nhit==1                                                                                      1000       515  (51.5%)
+shmsDC1_1hit_u2                    P.dc.1u2.nhit==1                                                                                      1000       506  (50.6%)
+shmsDC1_1hit_v1                    P.dc.1v1.nhit==1                                                                                      1000       518  (51.8%)
+shmsDC1_1hit_v2                    P.dc.1v2.nhit==1                                                                                      1000       520  (52%)
+shmsDC1_1hit_x2                    P.dc.1x2.nhit==1                                                                                      1000       507  (50.7%)
+shmsDC2_1hit_x1                    P.dc.2x1.nhit==1                                                                                      1000       511  (51.1%)
+shmsDC2_1hit_u1                    P.dc.2u1.nhit==1                                                                                      1000       532  (53.2%)
+shmsDC2_1hit_u2                    P.dc.2u2.nhit==1                                                                                      1000       527  (52.7%)
+shmsDC2_1hit_v1                    P.dc.2v1.nhit==1                                                                                      1000       521  (52.1%)
+shmsDC2_1hit_v2                    P.dc.2v2.nhit==1                                                                                      1000       536  (53.6%)
+shmsDC2_1hit_x2                    P.dc.2x2.nhit==1                                                                                      1000       533  (53.3%)
+p1hit1                             P.dc.1x1.nhit>=1                                                                                      1000       743  (74.3%)
+p1hit2                             P.dc.1u1.nhit>=1                                                                                      1000       754  (75.4%)
+p1hit3                             P.dc.1u2.nhit>=1                                                                                      1000       748  (74.8%)
+p1hit4                             P.dc.1v1.nhit>=1                                                                                      1000       749  (74.9%)
+p1hit5                             P.dc.1v2.nhit>=1                                                                                      1000       752  (75.2%)
+p1hit6                             P.dc.1x2.nhit>=1                                                                                      1000       738  (73.8%)
+p2hit1                             P.dc.2x1.nhit>=1                                                                                      1000       704  (70.4%)
+p2hit2                             P.dc.2u1.nhit>=1                                                                                      1000       734  (73.4%)
+p2hit3                             P.dc.2u2.nhit>=1                                                                                      1000       734  (73.4%)
+p2hit4                             P.dc.2v1.nhit>=1                                                                                      1000       724  (72.4%)
+p2hit5                             P.dc.2v2.nhit>=1                                                                                      1000       734  (73.4%)
+p2hit6                             P.dc.2x2.nhit>=1                                                                                      1000       733  (73.3%)
+shmsDC1Planes6hits                 shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_u2&&shmsDC1_1hit_x2&&shmsDC1_1hit_v1&&shmsDC1_1hit_v2  1000       359  (35.9%)
+shmsDC2Planes6hits                 shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_u2&&shmsDC2_1hit_x2&&shmsDC2_1hit_v1&&shmsDC2_1hit_v2  1000       373  (37.3%)
+shmsDC1_5hits_x1                   shmsDC1_1hit_u1&&shmsDC1_1hit_u2&&shmsDC1_1hit_x2&&shmsDC1_1hit_v1&&shmsDC1_1hit_v2                   1000       375  (37.5%)
+shmsDC1_6hits_x1                   p1hit1&&shmsDC1_1hit_u1&&shmsDC1_1hit_u2&&shmsDC1_1hit_x2&&shmsDC1_1hit_v1&&shmsDC1_1hit_v2           1000       368  (36.8%)
+shmsDC1_5hits_u1                   shmsDC1_1hit_x1&&shmsDC1_1hit_u2&&shmsDC1_1hit_x2&&shmsDC1_1hit_v1&&shmsDC1_1hit_v2                   1000       374  (37.4%)
+shmsDC1_6hits_u1                   p1hit2&&shmsDC1_1hit_x1&&shmsDC1_1hit_u2&&shmsDC1_1hit_x2&&shmsDC1_1hit_v1&&shmsDC1_1hit_v2           1000       373  (37.3%)
+shmsDC1_5hits_u2                   shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_x2&&shmsDC1_1hit_v1&&shmsDC1_1hit_v2                   1000       378  (37.8%)
+shmsDC1_6hits_u2                   p1hit3&&shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_x2&&shmsDC1_1hit_v1&&shmsDC1_1hit_v2           1000       376  (37.6%)
+shmsDC1_5hits_v1                   shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_x2&&shmsDC1_1hit_u2&&shmsDC1_1hit_v2                   1000       369  (36.9%)
+shmsDC1_6hits_v1                   p1hit4&&shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_x2&&shmsDC1_1hit_u2&&shmsDC1_1hit_v2           1000       369  (36.9%)
+shmsDC1_5hits_v2                   shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_x2&&shmsDC1_1hit_u2&&shmsDC1_1hit_v1                   1000       377  (37.7%)
+shmsDC1_6hits_v2                   p1hit5&&shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_x2&&shmsDC1_1hit_u2&&shmsDC1_1hit_v1           1000       374  (37.4%)
+shmsDC1_5hits_x2                   shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_v1&&shmsDC1_1hit_u2&&shmsDC1_1hit_v2                   1000       377  (37.7%)
+shmsDC1_6hits_x2                   p1hit6&&shmsDC1_1hit_x1&&shmsDC1_1hit_u1&&shmsDC1_1hit_v1&&shmsDC1_1hit_u2&&shmsDC1_1hit_v2           1000       368  (36.8%)
+shmsDC2_5hits_x1                   shmsDC2_1hit_u1&&shmsDC2_1hit_u2&&shmsDC2_1hit_x2&&shmsDC2_1hit_v1&&shmsDC2_1hit_v2                   1000       399  (39.9%)
+shmsDC2_6hits_x1                   p2hit1&&shmsDC2_1hit_u1&&shmsDC2_1hit_u2&&shmsDC2_1hit_x2&&shmsDC2_1hit_v1&&shmsDC2_1hit_v2           1000       383  (38.3%)
+shmsDC2_5hits_u1                   shmsDC2_1hit_x1&&shmsDC2_1hit_u2&&shmsDC2_1hit_x2&&shmsDC2_1hit_v1&&shmsDC2_1hit_v2                   1000       388  (38.8%)
+shmsDC2_6hits_u1                   p2hit2&&shmsDC2_1hit_x1&&shmsDC2_1hit_u2&&shmsDC2_1hit_x2&&shmsDC2_1hit_v1&&shmsDC2_1hit_v2           1000       388  (38.8%)
+shmsDC2_5hits_u2                   shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_x2&&shmsDC2_1hit_v1&&shmsDC2_1hit_v2                   1000       391  (39.1%)
+shmsDC2_6hits_u2                   p2hit3&&shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_x2&&shmsDC2_1hit_v1&&shmsDC2_1hit_v2           1000       391  (39.1%)
+shmsDC2_5hits_v1                   shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_x2&&shmsDC2_1hit_u2&&shmsDC2_1hit_v2                   1000       391  (39.1%)
+shmsDC2_6hits_v1                   p2hit4&&shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_x2&&shmsDC2_1hit_u2&&shmsDC2_1hit_v2           1000       386  (38.6%)
+shmsDC2_5hits_v2                   shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_x2&&shmsDC2_1hit_u2&&shmsDC2_1hit_v1                   1000       389  (38.9%)
+shmsDC2_6hits_v2                   p2hit5&&shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_x2&&shmsDC2_1hit_u2&&shmsDC2_1hit_v1           1000       389  (38.9%)
+shmsDC2_5hits_x2                   shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_v1&&shmsDC2_1hit_u2&&shmsDC2_1hit_v2                   1000       387  (38.7%)
+shmsDC2_6hits_x2                   p2hit6&&shmsDC2_1hit_x1&&shmsDC2_1hit_u1&&shmsDC2_1hit_v1&&shmsDC2_1hit_u2&&shmsDC2_1hit_v2           1000       385  (38.5%)
+shms1HitsLt                        P.dc.Ch1.nhit<=P.dc.Ch1.maxhits&&g.evtyp==1                                                           1000       0    (0%)
+shms2HitsLt                        P.dc.Ch2.nhit<=P.dc.Ch2.maxhits&&g.evtyp==1                                                           1000       0    (0%)
+shmsHitsLt                         P.dc.Ch1.nhit<=P.dc.Ch1.maxhits&&P.dc.Ch2.nhit<=P.dc.Ch2.maxhits&&g.evtyp==1                          1000       0    (0%)
+shmsDC1PlanesGT                    (p1hit1+p1hit2+p1hit3+p1hit4+p1hit5+p1hit6)>=5                                                        1000       742  (74.2%)
+shmsDC2PlanesGT                    (p2hit1+p2hit2+p2hit3+p2hit4+p2hit5+p2hit6)>=5                                                        1000       723  (72.3%)
+shmsPlanesGT                       shmsDC1PlanesGT&&shmsDC2PlanesGT                                                                      1000       712  (71.2%)
+shmsHitsPlanes                     (P.dc.Ch1.nhit<=6)&&(P.dc.Ch2.nhit<=6)&&shmsPlanesGT                                                  1000       286  (28.6%)
+pSpacePoints                       P.dc.Ch1.spacepoints>=1&&P.dc.Ch2.spacepoints>=1                                                      1000       698  (69.8%)
+pSpacePointsStub                   P.dc.stubtest==1&&P.dc.Ch1.spacepoints>=1&&P.dc.Ch2.spacepoints>=1                                    1000       698  (69.8%)
+pcut_FoundTrack                    P.dc.ntrack>0                                                                                         1000       698  (69.8%)
+pStubLT                            P.dc.stubtest==1                                                                                      1000       698  (69.8%)
+f1PSpacePoints                     shms1HitsLt&&shmsDC1PlanesGT&&P.dc.Ch1.spacepoints==0&&g.evtyp==1                                     1000       0    (0%)
+f2PSpacePoints                     shms2HitsLt&&shmsDC2PlanesGT&&P.dc.Ch2.spacepoints==0&&g.evtyp==1                                     1000       0    (0%)
+pTest1                             shmsHitsPlanes&&(!pSpacePoints)                                                                       1000       4    (0.4%)
+pTest2                             pSpacePoints&&(!pStubLT)                                                                              1000       0    (0%)
+hcut_time_cut1                     H.dc.1x1.time>0&&H.dc.1x1.time<250                                                                    1000       964  (96.4%)
+hcut_time_cut2                     H.dc.1v2.time>0&&H.dc.1v2.time<250                                                                    1000       959  (95.9%)
+hcut_time_cut3                     H.dc.1u1.time>0&&H.dc.1u1.time<250                                                                    1000       970  (97%)
+hcut_time_cut4                     H.dc.1v1.time>0&&H.dc.1v1.time<250                                                                    1000       969  (96.9%)
+hcut_time_cut5                     H.dc.1u2.time>0&&H.dc.1u2.time<250                                                                    1000       953  (95.3%)
+hcut_time_cut6                     H.dc.1x2.time>0&&H.dc.1x2.time<250                                                                    1000       969  (96.9%)
+hcut_time_cut7                     H.dc.2x1.time>0&&H.dc.2x1.time<250                                                                    1000       982  (98.2%)
+hcut_time_cut8                     H.dc.2v2.time>0&&H.dc.1v2.time<250                                                                    1000       989  (98.9%)
+hcut_time_cut9                     H.dc.2u1.time>0&&H.dc.2u1.time<250                                                                    1000       986  (98.6%)
+hcut_time_cut10                    H.dc.2v1.time>0&&H.dc.2v1.time<250                                                                    1000       993  (99.3%)
+hcut_time_cut11                    H.dc.2u2.time>0&&H.dc.2u2.time<250                                                                    1000       989  (98.9%)
+hcut_time_cut12                    H.dc.2x2.time>0&&H.dc.2x2.time<250                                                                    1000       992  (99.2%)
+hmsDC1Planes_large                 (H.dc.1x1.nhit+H.dc.1v2.nhit+H.dc.1u1.nhit+H.dc.1v1.nhit+H.dc.1x2.nhit+H.dc.1u2.nhit)>20              1000       0    (0%)
+hmsDC2Planes_large                 (H.dc.2x1.nhit+H.dc.2v2.nhit+H.dc.2u1.nhit+H.dc.2v1.nhit+H.dc.2x2.nhit+H.dc.2u2.nhit)>20              1000       0    (0%)
+hmsDCany_large                     hmsDC1Planes_large||hmsDC2Planes_large                                                                1000       0    (0%)
+hmsDC1_1hit_x1                     H.dc.1x1.nhit==1                                                                                      1000       899  (89.9%)
+hmsDC1_1hit_v2                     H.dc.1v2.nhit==1                                                                                      1000       875  (87.5%)
+hmsDC1_1hit_u1                     H.dc.1u1.nhit==1                                                                                      1000       914  (91.4%)
+hmsDC1_1hit_v1                     H.dc.1v1.nhit==1                                                                                      1000       913  (91.3%)
+hmsDC1_1hit_u2                     H.dc.1u2.nhit==1                                                                                      1000       877  (87.7%)
+hmsDC1_1hit_x2                     H.dc.1x2.nhit==1                                                                                      1000       915  (91.5%)
+hmsDC2_1hit_x1                     H.dc.2x1.nhit==1                                                                                      1000       882  (88.2%)
+hmsDC2_1hit_v2                     H.dc.2v2.nhit==1                                                                                      1000       882  (88.2%)
+hmsDC2_1hit_u1                     H.dc.2u1.nhit==1                                                                                      1000       891  (89.1%)
+hmsDC2_1hit_v1                     H.dc.2v1.nhit==1                                                                                      1000       874  (87.4%)
+hmsDC2_1hit_u2                     H.dc.2u2.nhit==1                                                                                      1000       905  (90.5%)
+hmsDC2_1hit_x2                     H.dc.2x2.nhit==1                                                                                      1000       893  (89.3%)
+h1hit1                             H.dc.1x1.nhit>=1                                                                                      1000       985  (98.5%)
+h1hit2                             H.dc.1v2.nhit>=1                                                                                      1000       995  (99.5%)
+h1hit3                             H.dc.1u1.nhit>=1                                                                                      1000       993  (99.3%)
+h1hit4                             H.dc.1v1.nhit>=1                                                                                      1000       992  (99.2%)
+h1hit5                             H.dc.1u2.nhit>=1                                                                                      1000       991  (99.1%)
+h1hit6                             H.dc.1x2.nhit>=1                                                                                      1000       996  (99.6%)
+h2hit1                             H.dc.2x1.nhit>=1                                                                                      1000       986  (98.6%)
+h2hit2                             H.dc.2v2.nhit>=1                                                                                      1000       995  (99.5%)
+h2hit3                             H.dc.2u1.nhit>=1                                                                                      1000       990  (99%)
+h2hit4                             H.dc.2v1.nhit>=1                                                                                      1000       996  (99.6%)
+h2hit5                             H.dc.2u2.nhit>=1                                                                                      1000       992  (99.2%)
+h2hit6                             H.dc.2x2.nhit>=1                                                                                      1000       998  (99.8%)
+hmsDC1Planes6hits                  (H.dc.1x1.nhit+H.dc.1v2.nhit+H.dc.1u1.nhit+H.dc.1v1.nhit+H.dc.1x2.nhit+H.dc.1u2.nhit)==6              1000       610  (61%)
+hmsDC2Planes6hits                  (H.dc.2x1.nhit+H.dc.2v2.nhit+H.dc.2u1.nhit+H.dc.2v1.nhit+H.dc.2x2.nhit+H.dc.2u2.nhit)==6              1000       554  (55.4%)
+hmsDC1_5hits_x1                    hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                        1000       651  (65.1%)
+hmsDC1_6hits_x1                    h1hit1&&hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                1000       647  (64.7%)
+hmsDC1_5hits_v2                    hmsDC1_1hit_x1&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                        1000       672  (67.2%)
+hmsDC1_6hits_v2                    h1hit2&&hmsDC1_1hit_x1&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                1000       670  (67%)
+hmsDC1_5hits_u1                    hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                        1000       638  (63.8%)
+hmsDC1_6hits_u1                    h1hit3&&hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                1000       637  (63.7%)
+hmsDC1_5hits_v1                    hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                        1000       644  (64.4%)
+hmsDC1_6hits_v1                    h1hit4&&hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_x2&&hmsDC1_1hit_u2                1000       642  (64.2%)
+hmsDC1_5hits_x2                    hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_u2                        1000       638  (63.8%)
+hmsDC1_6hits_x2                    h1hit6&&hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_u2                1000       637  (63.7%)
+hmsDC1_5hits_u2                    hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2                        1000       662  (66.2%)
+hmsDC1_6hits_u2                    h1hit5&&hmsDC1_1hit_x1&&hmsDC1_1hit_v2&&hmsDC1_1hit_u1&&hmsDC1_1hit_v1&&hmsDC1_1hit_x2                1000       660  (66%)
+hmsDC2_5hits_x1                    hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                        1000       616  (61.6%)
+hmsDC2_6hits_x1                    h2hit1&&hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                1000       608  (60.8%)
+hmsDC2_5hits_v2                    hmsDC2_1hit_x1&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                        1000       611  (61.1%)
+hmsDC2_6hits_v2                    h2hit2&&hmsDC2_1hit_x1&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                1000       610  (61%)
+hmsDC2_5hits_u1                    hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                        1000       609  (60.9%)
+hmsDC2_6hits_u1                    h2hit3&&hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                1000       605  (60.5%)
+hmsDC2_5hits_v1                    hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                        1000       612  (61.2%)
+hmsDC2_6hits_v1                    h2hit4&&hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_x2&&hmsDC2_1hit_u2                1000       610  (61%)
+hmsDC2_5hits_x2                    hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_u2                        1000       605  (60.5%)
+hmsDC2_6hits_x2                    h2hit6&&hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_u2                1000       605  (60.5%)
+hmsDC2_5hits_u2                    hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2                        1000       596  (59.6%)
+hmsDC2_6hits_u2                    h2hit5&&hmsDC2_1hit_x1&&hmsDC2_1hit_v2&&hmsDC2_1hit_u1&&hmsDC2_1hit_v1&&hmsDC2_1hit_x2                1000       593  (59.3%)
+hms1HitsLt                         H.dc.Ch1.nhit<=H.dc.Ch1.maxhits&&g.evtyp==1                                                           1000       0    (0%)
+hms2HitsLt                         H.dc.Ch2.nhit<=H.dc.Ch2.maxhits&&g.evtyp==1                                                           1000       0    (0%)
+hmsHitsLt                          H.dc.Ch1.nhit<=H.dc.Ch1.maxhits&&H.dc.Ch2.nhit<=H.dc.Ch2.maxhits&&g.evtyp==1                          1000       0    (0%)
+hmsDC1PlanesGT                     (h1hit1+h1hit2+h1hit3+h1hit4+h1hit5+h1hit6)>=5                                                        1000       990  (99%)
+hmsDC2PlanesGT                     (h2hit1+h2hit2+h2hit3+h2hit4+h2hit5+h2hit6)>=5                                                        1000       994  (99.4%)
+hmsPlanesGT                        hmsDC1PlanesGT&&hmsDC2PlanesGT                                                                        1000       986  (98.6%)
+hmsHitsPlanes                      (H.dc.Ch1.nhit<=H.dc.Ch1.maxhits)&&(H.dc.Ch2.nhit<=H.dc.Ch2.maxhits)&&hmsPlanesGT                     1000       986  (98.6%)
+hSpacePoints                       H.dc.Ch1.spacepoints>=1&&H.dc.Ch2.spacepoints>=1                                                      1000       982  (98.2%)
+hSpacePointsStub                   H.dc.stubtest==1&&H.dc.Ch1.spacepoints>=1&&H.dc.Ch2.spacepoints>=1                                    1000       982  (98.2%)
+hFoundTrack                        H.dc.ntrack>0                                                                                         1000       982  (98.2%)
+hStubLT                            H.dc.stubtest==1                                                                                      1000       982  (98.2%)
+f1HSpacePoints                     hms1HitsLt&&hmsDC1PlanesGT&&H.dc.Ch1.spacepoints==0&&g.evtyp==1                                       1000       0    (0%)
+f2HSpacePoints                     hms2HitsLt&&hmsDC2PlanesGT&&H.dc.Ch2.spacepoints==0&&g.evtyp==1                                       1000       0    (0%)
+hTest1                             hmsHitsPlanes&&(!hSpacePoints)                                                                        1000       4    (0.4%)
+hTest2                             hSpacePoints&&(!hStubLT)                                                                              1000       0    (0%)
+CoarseTracking_master              ALL_events_NO_EDTM                                                                                    1000       1000 (100%)
+
+BLOCK: CoarseReconstruct
+CoarseReconstruct_master           ALL_events_NO_EDTM                                                                                    1000       1000 (100%)
+
+BLOCK: Tracking
+Tracking_master                    ALL_events_NO_EDTM                                                                                    1000       1000 (100%)
+
+BLOCK: Reconstruct
+pcut_cer_ng_elec                   P.ngcer.npeSum>0.5                                                                                    1000       2    (0.2%)
+pcut_cer_ng_pi                     P.ngcer.npeSum<=0.5                                                                                   1000       998  (99.8%)
+pcut_cer_hg_elec                   P.hgcer.npeSum>0.5                                                                                    1000       801  (80.1%)
+pcut_cer_hg_pi                     P.hgcer.npeSum<=0.5                                                                                   1000       199  (19.9%)
+pcut_cer_pi_both                   pcut_cer_ng_pi&&pcut_cer_hg_pi                                                                        1000       199  (19.9%)
+pcut_cer_elec_both                 pcut_cer_ng_elec&&pcut_cer_hg_elec                                                                    1000       2    (0.2%)
+pcut_cal_elec                      P.cal.etracknorm>0.6&&P.cal.etracknorm<1.6                                                            1000       515  (51.5%)
+pcut_cal_pi                        P.cal.etracknorm<=0.6&&P.cal.etracknorm>0.                                                            1000       88   (8.8%)
+pcut_elec_all                      pcut_cer_ng_elec&&pcut_cer_hg_elec&&pcut_cal_elec                                                     1000       0    (0%)
+pcut_pi_all                        pcut_cer_ng_pi&&pcut_cer_hg_pi&&pcut_cal_pi                                                           1000       9    (0.9%)
+shmsScinGood                       P.hod.goodscinhit==1                                                                                  1000       591  (59.1%)
+shmsGoodBetanotrk                  P.hod.betanotrack>0.5&&P.hod.betanotrack<1.4                                                          1000       906  (90.6%)
+shmsScinShould                     shmsScinGood&&shmsGoodBetanotrk                                                                       1000       567  (56.7%)
+shmsScinShoulde                    shmsScinShould&&P.cal.etotnorm>0.6&&P.cal.etotnorm<1.6&&P.hgcer.npeSum>0.5                            1000       339  (33.9%)
+shmsScinShouldh                    shmsScinShould&&P.cal.etotnorm<=0.6&&P.cal.etotnorm>0.                                                1000       11   (1.1%)
+shmsScinDid                        shmsScinShould&&P.dc.ntrack>0                                                                         1000       408  (40.8%)
+shmsScinDide                       shmsScinShoulde&&P.dc.ntrack>0                                                                        1000       237  (23.7%)
+shmsScinDidh                       shmsScinShouldh&&P.dc.ntrack>0                                                                        1000       10   (1%)
+pcut_goodHDC1x1                    P.dc.1x1.nhit>0&&P.dc.1x1.nhit<3                                                                      1000       662  (66.2%)
+pcut_goodHDC1u2                    P.dc.1u2.nhit>0&&P.dc.1u2.nhit<3                                                                      1000       661  (66.1%)
+pcut_goodHDC1u1                    P.dc.1u1.nhit>0&&P.dc.1u1.nhit<3                                                                      1000       672  (67.2%)
+pcut_goodHDC1v1                    P.dc.1v1.nhit>0&&P.dc.1v1.nhit<3                                                                      1000       678  (67.8%)
+pcut_goodHDC1v2                    P.dc.1v2.nhit>0&&P.dc.1v2.nhit<3                                                                      1000       667  (66.7%)
+pcut_goodHDC1x2                    P.dc.1x2.nhit>0&&P.dc.1x2.nhit<3                                                                      1000       675  (67.5%)
+pcut_goodHDC2x1                    P.dc.2x1.nhit>0&&P.dc.2x1.nhit<3                                                                      1000       659  (65.9%)
+pcut_goodHDC2u2                    P.dc.2u2.nhit>0&&P.dc.2u2.nhit<3                                                                      1000       670  (67%)
+pcut_goodHDC2u1                    P.dc.2u1.nhit>0&&P.dc.2u1.nhit<3                                                                      1000       667  (66.7%)
+pcut_goodHDC2v1                    P.dc.2v1.nhit>0&&P.dc.2v1.nhit<3                                                                      1000       676  (67.6%)
+pcut_goodHDC2v2                    P.dc.2v2.nhit>0&&P.dc.2v2.nhit<3                                                                      1000       675  (67.5%)
+pcut_goodHDC2x2                    P.dc.2x2.nhit>0&&P.dc.2x2.nhit<3                                                                      1000       678  (67.8%)
+pcut_goodHDC1                      pcut_goodHDC1x1&&pcut_goodHDC1u2&&pcut_goodHDC1u1&&pcut_goodHDC1v1&&pcut_goodHDC1v2&&pcut_goodHDC1x2  1000       510  (51%)
+pcut_goodHDC2                      pcut_goodHDC2x1&&pcut_goodHDC2u2&&pcut_goodHDC2u1&&pcut_goodHDC2v1&&pcut_goodHDC2v2&&pcut_goodHDC2x2  1000       530  (53%)
+pcut_bothGood                      pcut_goodHDC1&&pcut_goodHDC2                                                                          1000       378  (37.8%)
+pcut_realhdc1x1                    pcut_goodHDC1x1&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       653  (65.3%)
+pcut_realhdc1u2                    pcut_goodHDC1u2&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       657  (65.7%)
+pcut_realhdc1u1                    pcut_goodHDC1u1&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       661  (66.1%)
+pcut_realhdc1v1                    pcut_goodHDC1v1&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       669  (66.9%)
+pcut_realhdc1v2                    pcut_goodHDC1v2&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       653  (65.3%)
+pcut_realhdc1x2                    pcut_goodHDC1x2&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       668  (66.8%)
+pcut_realhdc2x1                    pcut_goodHDC2x1&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       653  (65.3%)
+pcut_realhdc2u2                    pcut_goodHDC2u2&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       658  (65.8%)
+pcut_realhdc2u1                    pcut_goodHDC2u1&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       657  (65.7%)
+pcut_realhdc2v1                    pcut_goodHDC2v1&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       671  (67.1%)
+pcut_realhdc2v2                    pcut_goodHDC2v2&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       666  (66.6%)
+pcut_realhdc2x2                    pcut_goodHDC2x2&&((P.dc.Ch1.spacepoints+P.dc.Ch2.spacepoints)>0)                                      1000       668  (66.8%)
+pcut_Found1Track                   P.dc.ntrack==1                                                                                        1000       512  (51.2%)
+pcut_Found2Track                   P.dc.ntrack==2                                                                                        1000       62   (6.2%)
+pcut_Found3Track                   P.dc.ntrack==3                                                                                        1000       9    (0.9%)
+pcut_Found4Track                   P.dc.ntrack==4                                                                                        1000       69   (6.9%)
+pcut_anys1x                        P.hod.1x.nhits>0                                                                                      1000       781  (78.1%)
+pcut_anys1y                        P.hod.1y.nhits>0                                                                                      1000       981  (98.1%)
+pcut_anys2x                        P.hod.2x.nhits>0                                                                                      1000       946  (94.6%)
+pcut_anys2y                        P.hod.2y.nhits>0                                                                                      1000       988  (98.8%)
+pcut_goods1x                       P.hod.1x.nhits>0&&P.hod.1x.nhits<3                                                                    1000       781  (78.1%)
+pcut_goods1y                       P.hod.1y.nhits>0&&P.hod.1y.nhits<3                                                                    1000       951  (95.1%)
+pcut_goods1                        pcut_goods1x&&pcut_goods1y                                                                            1000       751  (75.1%)
+pcut_goods2x                       P.hod.2x.nhits>0&&P.hod.2x.nhits<3                                                                    1000       937  (93.7%)
+pcut_goods2y                       P.hod.2y.nhits>0&&P.hod.2y.nhits<3                                                                    1000       876  (87.6%)
+pcut_goods2                        pcut_goods2x&&pcut_goods2y                                                                            1000       825  (82.5%)
+pcut_goods1s2                      pcut_goods1&&pcut_goods2                                                                              1000       659  (65.9%)
+SHMS_hgcer_track_matched_region_1  P.hgcer.numTracksMatched[0]>0                                                                         1000       115  (11.5%)
+SHMS_hgcer_track_fired_region_1    P.hgcer.numTracksFired[0]>0                                                                           1000       89   (8.9%)
+SHMS_hgcer_track_matched_region_2  P.hgcer.numTracksMatched[1]>0                                                                         1000       168  (16.8%)
+SHMS_hgcer_track_fired_region_2    P.hgcer.numTracksFired[1]>0                                                                           1000       130  (13%)
+SHMS_hgcer_track_matched_region_3  P.hgcer.numTracksMatched[2]>0                                                                         1000       140  (14%)
+SHMS_hgcer_track_fired_region_3    P.hgcer.numTracksFired[2]>0                                                                           1000       127  (12.7%)
+SHMS_hgcer_track_matched_region_4  P.hgcer.numTracksMatched[3]>0                                                                         1000       69   (6.9%)
+SHMS_hgcer_track_fired_region_4    P.hgcer.numTracksFired[3]>0                                                                           1000       66   (6.6%)
+SHMS_hgcer_track_matched_tot       P.hgcer.totNumTracksMatched>0                                                                         1000       492  (49.2%)
+SHMS_hgcer_track_fired_tot         P.hgcer.totNumTracksFired>0                                                                           1000       412  (41.2%)
+SHMS_ngcer_track_matched_region_1  P.ngcer.numTracksMatched[0]>0                                                                         1000       99   (9.9%)
+SHMS_ngcer_track_fired_region_1    P.ngcer.numTracksFired[0]>0                                                                           1000       0    (0%)
+SHMS_ngcer_track_matched_region_2  P.ngcer.numTracksMatched[1]>0                                                                         1000       166  (16.6%)
+SHMS_ngcer_track_fired_region_2    P.ngcer.numTracksFired[1]>0                                                                           1000       0    (0%)
+SHMS_ngcer_track_matched_region_3  P.ngcer.numTracksMatched[2]>0                                                                         1000       156  (15.6%)
+SHMS_ngcer_track_fired_region_3    P.ngcer.numTracksFired[2]>0                                                                           1000       0    (0%)
+SHMS_ngcer_track_matched_region_4  P.ngcer.numTracksMatched[3]>0                                                                         1000       71   (7.1%)
+SHMS_ngcer_track_fired_region_4    P.ngcer.numTracksFired[3]>0                                                                           1000       0    (0%)
+SHMS_ngcer_track_matched_tot       P.ngcer.totNumTracksMatched>0                                                                         1000       492  (49.2%)
+SHMS_ngcer_track_fired_tot         P.ngcer.totNumTracksFired>0                                                                           1000       0    (0%)
+SHMS_aero_track_matched_region_1   P.aero.numTracksMatched[0]>0                                                                          1000       492  (49.2%)
+SHMS_aero_track_fired_region_1     P.aero.numTracksFired[0]>0                                                                            1000       482  (48.2%)
+SHMS_aero_track_matched_region_2   P.aero.numTracksMatched[1]>0                                                                          1000       0    (0%)
+SHMS_aero_track_fired_region_2     P.aero.numTracksFired[1]>0                                                                            1000       0    (0%)
+SHMS_aero_track_matched_region_3   P.aero.numTracksMatched[2]>0                                                                          1000       0    (0%)
+SHMS_aero_track_fired_region_3     P.aero.numTracksFired[2]>0                                                                            1000       0    (0%)
+SHMS_aero_track_matched_region_4   P.aero.numTracksMatched[3]>0                                                                          1000       0    (0%)
+SHMS_aero_track_fired_region_4     P.aero.numTracksFired[3]>0                                                                            1000       0    (0%)
+SHMS_aero_track_matched_region_5   P.aero.numTracksMatched[4]>0                                                                          1000       0    (0%)
+SHMS_aero_track_fired_region_5     P.aero.numTracksFired[4]>0                                                                            1000       0    (0%)
+SHMS_aero_track_matched_region_6   P.aero.numTracksMatched[5]>0                                                                          1000       0    (0%)
+SHMS_aero_track_fired_region_6     P.aero.numTracksFired[5]>0                                                                            1000       0    (0%)
+SHMS_aero_track_matched_region_7   P.aero.numTracksMatched[6]>0                                                                          1000       0    (0%)
+SHMS_aero_track_fired_region_7     P.aero.numTracksFired[6]>0                                                                            1000       0    (0%)
+SHMS_aero_track_matched_tot        P.aero.totNumTracksMatched>0                                                                          1000       492  (49.2%)
+SHMS_aero_track_fired_tot          P.aero.totNumTracksFired>0                                                                            1000       482  (48.2%)
+hcut_cer_pmt1_elec                 H.cer.npe[0]>.5                                                                                       1000       213  (21.3%)
+hcut_cer_pmt2_elec                 H.cer.npe[0]>.5                                                                                       1000       213  (21.3%)
+hcut_cer_elec                      H.cer.npeSum>.5                                                                                       1000       227  (22.7%)
+hcut_cer_pi                        H.cer.npeSum<.5                                                                                       1000       773  (77.3%)
+HMSScinGood                        H.hod.goodscinhit==1                                                                                  1000       515  (51.5%)
+HMSGoodBetanotrk                   H.hod.betanotrack>0.8&&H.hod.betanotrack<1.3                                                          1000       44   (4.4%)
+HMSScinShould                      HMSScinGood&&HMSGoodBetanotrk                                                                         1000       13   (1.3%)
+HMSScinShoulde                     HMSScinShould&&H.cal.etotnorm>0.6&&H.cal.etotnorm<2.0&&H.cer.npeSum>0.5                               1000       0    (0%)
+HMSScinShouldh                     HMSScinGood&&H.cal.etotnorm<0.6&&H.cal.etotnorm>0.0&&H.cer.npeSum<0.5                                 1000       2    (0.2%)
+HMSScinDid                         HMSScinShould&&H.dc.ntrack>0                                                                          1000       13   (1.3%)
+HMSScinDide                        HMSScinShoulde&&H.dc.ntrack>0                                                                         1000       0    (0%)
+HMSScinDidh                        HMSScinShouldh&&H.dc.ntrack>0                                                                         1000       2    (0.2%)
+hcut_goodHDC1x1                    H.dc.1x1.nhit>0&&H.dc.1x1.nhit<3                                                                      1000       956  (95.6%)
+hcut_goodHDC1v2                    H.dc.1v2.nhit>0&&H.dc.1v2.nhit<3                                                                      1000       959  (95.9%)
+hcut_goodHDC1u1                    H.dc.1u1.nhit>0&&H.dc.1u1.nhit<3                                                                      1000       966  (96.6%)
+hcut_goodHDC1v1                    H.dc.1v1.nhit>0&&H.dc.1v1.nhit<3                                                                      1000       965  (96.5%)
+hcut_goodHDC1u2                    H.dc.1u2.nhit>0&&H.dc.1u2.nhit<3                                                                      1000       935  (93.5%)
+hcut_goodHDC1x2                    H.dc.1x2.nhit>0&&H.dc.1x2.nhit<3                                                                      1000       965  (96.5%)
+hcut_goodHDC2x1                    H.dc.2x1.nhit>0&&H.dc.2x1.nhit<3                                                                      1000       931  (93.1%)
+hcut_goodHDC2v2                    H.dc.2v2.nhit>0&&H.dc.2v2.nhit<3                                                                      1000       944  (94.4%)
+hcut_goodHDC2u1                    H.dc.2u1.nhit>0&&H.dc.2u1.nhit<3                                                                      1000       950  (95%)
+hcut_goodHDC2v1                    H.dc.2v1.nhit>0&&H.dc.2v1.nhit<3                                                                      1000       943  (94.3%)
+hcut_goodHDC2u2                    H.dc.2u2.nhit>0&&H.dc.2u2.nhit<3                                                                      1000       951  (95.1%)
+hcut_goodHDC2x2                    H.dc.2x2.nhit>0&&H.dc.2x2.nhit<3                                                                      1000       949  (94.9%)
+hcut_goodHDC1                      hcut_goodHDC1x1&&hcut_goodHDC1v2&&hcut_goodHDC1u1&&hcut_goodHDC1v1&&hcut_goodHDC1u2&&hcut_goodHDC1x2  1000       798  (79.8%)
+hcut_goodHDC2                      hcut_goodHDC2x1&&hcut_goodHDC2v2&&hcut_goodHDC2u1&&hcut_goodHDC2v1&&hcut_goodHDC2u2&&hcut_goodHDC2x2  1000       732  (73.2%)
+hcut_bothGood                      hcut_goodHDC1&&hcut_goodHDC2                                                                          1000       589  (58.9%)
+hcut_realhdc1x1                    hcut_goodHDC1x1&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       956  (95.6%)
+hcut_realhdc1v2                    hcut_goodHDC1v2&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       959  (95.9%)
+hcut_realhdc1u1                    hcut_goodHDC1u1&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       966  (96.6%)
+hcut_realhdc1v1                    hcut_goodHDC1v1&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       965  (96.5%)
+hcut_realhdc1u2                    hcut_goodHDC1u2&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       935  (93.5%)
+hcut_realhdc1x2                    hcut_goodHDC1x2&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       965  (96.5%)
+hcut_realhdc2x1                    hcut_goodHDC2x1&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       931  (93.1%)
+hcut_realhdc2v2                    hcut_goodHDC2v2&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       944  (94.4%)
+hcut_realhdc2u1                    hcut_goodHDC2u1&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       950  (95%)
+hcut_realhdc2v1                    hcut_goodHDC2v1&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       943  (94.3%)
+hcut_realhdc2u2                    hcut_goodHDC2u2&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       951  (95.1%)
+hcut_realhdc2x2                    hcut_goodHDC2x2&&((H.dc.Ch1.spacepoints+H.dc.Ch2.spacepoints)>0)                                      1000       949  (94.9%)
+hcut_FoundTrack                    H.dc.ntrack>0                                                                                         1000       982  (98.2%)
+hcut_Found1Track                   H.dc.ntrack==1                                                                                        1000       893  (89.3%)
+hcut_Found2Track                   H.dc.ntrack==2                                                                                        1000       77   (7.7%)
+hcut_Found3Track                   H.dc.ntrack==3                                                                                        1000       4    (0.4%)
+hcut_Found4Track                   H.dc.ntrack==4                                                                                        1000       4    (0.4%)
+hcut_anys1x                        H.hod.1x.nhits>0                                                                                      1000       999  (99.9%)
+hcut_anys1y                        H.hod.1y.nhits>0                                                                                      1000       1000 (100%)
+hcut_anys2x                        H.hod.2x.nhits>0                                                                                      1000       999  (99.9%)
+hcut_anys2y                        H.hod.2y.nhits>0                                                                                      1000       915  (91.5%)
+hcut_goods1x                       H.hod.1x.nhits>0&&H.hod.1x.nhits<3                                                                    1000       978  (97.8%)
+hcut_goods1y                       H.hod.1y.nhits>0&&H.hod.1y.nhits<3                                                                    1000       995  (99.5%)
+hcut_goods1                        hcut_goods1x&&hcut_goods1y                                                                            1000       975  (97.5%)
+hcut_goods2x                       H.hod.2x.nhits>0&&H.hod.2x.nhits<3                                                                    1000       987  (98.7%)
+hcut_goods2y                       H.hod.2y.nhits>0&&H.hod.2y.nhits<3                                                                    1000       908  (90.8%)
+hcut_goods2                        hcut_goods2x&&hcut_goods2y                                                                            1000       897  (89.7%)
+hcut_goods1s2                      hcut_goods1&&hcut_goods2                                                                              1000       876  (87.6%)
+HMS_hcer_track_matched_region_1    H.cer.numTracksMatched[0]>0                                                                           1000       3    (0.3%)
+HMS_hcer_track_fired_region_1      H.cer.numTracksFired[0]>0                                                                             1000       1    (0.1%)
+HMS_hcer_track_matched_region_2    H.cer.numTracksMatched[1]>0                                                                           1000       1    (0.1%)
+HMS_hcer_track_fired_region_2      H.cer.numTracksFired[1]>0                                                                             1000       0    (0%)
+HMS_hcer_track_matched_tot         H.cer.totNumTracksMatched>0                                                                           1000       4    (0.4%)
+HMS_hcer_track_fired_tot           H.cer.totNumTracksFired>0                                                                             1000       1    (0.1%)
+Reconstruct_master                 ALL_events_NO_EDTM                                                                                    1000       1000 (100%)
+
+BLOCK: Physics
+hcut_CleanTrack                    H.gtr.index>-1&&H.gtr.dp>-8.0&&H.gtr.dp<8.0                                                           1000       665  (66.5%)
+hcut_Clean1Track                   H.gtr.index==0                                                                                        1000       924  (92.4%)
+hcut_Clean2Track                   H.gtr.index==1                                                                                        1000       51   (5.1%)
+hcut_Clean3Track                   H.gtr.index==2                                                                                        1000       2    (0.2%)
+hcut_Clean4Track                   H.gtr.index==3                                                                                        1000       3    (0.3%)
+pcut_CleanTrack                    P.gtr.index>-1&&P.gtr.dp>-10.0&&P.gtr.dp<22.0                                                         1000       638  (63.8%)
+pcut_Clean1Track                   P.gtr.index==0                                                                                        1000       572  (57.2%)
+pcut_Clean2Track                   P.gtr.index==1                                                                                        1000       43   (4.3%)
+pcut_Clean3Track                   P.gtr.index==2                                                                                        1000       9    (0.9%)
+pcut_Clean4Track                   P.gtr.index==3                                                                                        1000       45   (4.5%)
+pcut_CleanTrack_cer_elec           (P.gtr.index>-1)&&pcut_cer_elec_both                                                                  1000       1    (0.1%)
+pcut_p1hit1_cer_elec               p1hit1&&pcut_cer_elec_both                                                                            1000       2    (0.2%)
+pcut_CleanTrack_cal_elec           (P.gtr.index>-1)&&pcut_cal_elec                                                                       1000       515  (51.5%)
+pcut_p1hit1_cal_elec               p1hit1&&pcut_cal_elec                                                                                 1000       509  (50.9%)
+hcleantrack                        H.gtr.index>-1                                                                                        1000       982  (98.2%)
+pcleantrack                        P.gtr.index>-1                                                                                        1000       698  (69.8%)
+ccleantrack                        hcleantrack&&pcleantrack                                                                              1000       682  (68.2%)
+coin_ndelta                        abs(CTime.epCoinTime_ROC2-160)<10                                                                     1000       91   (9.1%)
+sideband1                          abs(CTime.epCoinTime_ROC2-180)<10                                                                     1000       75   (7.5%)
+sideband2                          abs(CTime.epCoinTime_ROC2-140)<10                                                                     1000       82   (8.2%)
+sideband                           sideband1||sideband2                                                                                  1000       157  (15.7%)
+coincut                            ccleantrack&&goodctime                                                                                1000       682  (68.2%)
+tight_coin                         ccleantrack&&tightctime                                                                               1000       682  (68.2%)
+ran_coincut                        ccleantrack&&ranctime                                                                                 1000       682  (68.2%)
+he_cut_cal                         H.cal.etottracknorm>0.6&&H.cal.etottracknorm<1.6                                                      1000       0    (0%)
+he_cut_cer                         H.cer.npeSum>0.5                                                                                      1000       227  (22.7%)
+hselect_e_cut                      he_cut_cal&&he_cut_cer                                                                                1000       0    (0%)
+hbetacut_proton                    P.gtr.beta>0.3&&P.gtr.beta<0.6                                                                        1000       0    (0%)
+hcoincut_ep                        ccleantrack&&hselect_e_cut&&hbetacut_proton                                                           1000       0    (0%)
+pe_cut_cal                         P.cal.etottracknorm>0.6                                                                               1000       669  (66.9%)
+pe_cut_cer                         P.hgcer.npeSum>1                                                                                      1000       793  (79.3%)
+pselect_e_cut                      pe_cut_cal&&pe_cut_cer                                                                                1000       542  (54.2%)
+pbetacut_proton                    H.gtr.beta>0.3&&H.gtr.beta<0.6                                                                        1000       863  (86.3%)
+pcoincut_ep                        ccleantrack&&pselect_e_cut&&pbetacut_proton                                                           1000       471  (47.1%)
+h_mom_acc_cut                      H.gtr.dp>-8.0&&H.gtr.dp<8.0                                                                           1000       665  (66.5%)
+p_mom_acc_cut                      P.gtr.dp>-10&&P.gtr.dp<22                                                                             1000       638  (63.8%)
+detector_cut                       h_mom_acc_cut&&p_mom_acc_cut&&pselect_e_cut                                                           1000       338  (33.8%)
+W_cut                              abs(P.kin.primary.W-1.230)<0.005                                                                      1000       57   (5.7%)
+Q2_cut_kin_d                       abs(P.kin.primary.Q2-0.05)<0.005                                                                      1000       263  (26.3%)
+Q2_cut_kin_a                       abs(P.kin.primary.Q2-0.026)<0.005                                                                     1000       3    (0.3%)
+Q2_cut_kin_b                       abs(P.kin.primary.Q2-0.03)<0.005                                                                      1000       7    (0.7%)
+Q2_cut_kin_c                       abs(P.kin.primary.Q2-0.04)<0.005                                                                      1000       221  (22.1%)
+th_pq_cut_kin_1d                   H.kin.secondary.thx_cm*180/3.141952<10                                                                1000       4    (0.4%)
+th_pq_cut_kin_2d                   abs(H.kin.secondary.thx_cm*180/3.141592-17.5)<3                                                       1000       3    (0.3%)
+th_pq_cut_kin_3d                   abs(H.kin.secondary.thx_cm*180/3.141592-33)<3                                                         1000       6    (0.6%)
+th_pq_cut_kin_5d                   abs(H.kin.secondary.thx_cm*180/3.141592-55)<3                                                         1000       38   (3.8%)
+th_pq_cut_kin_6d                   abs(H.kin.secondary.thx_cm*180/3.141592-75)<3                                                         1000       104  (10.4%)
+th_pq_cut_kin_7d                   abs(H.kin.secondary.thx_cm*180/3.141592-85)<3                                                         1000       110  (11%)
+kine_cut_kin_1d                    W_cut&&Q2_cut_kin_d&&th_pq_cut_kin_1d                                                                 1000       0    (0%)
+kine_cut_kin_2d                    W_cut&&Q2_cut_kin_d&&th_pq_cut_kin_2d                                                                 1000       0    (0%)
+kine_cut_kin_3d                    W_cut&&Q2_cut_kin_d&&th_pq_cut_kin_3d                                                                 1000       0    (0%)
+kine_cut_kin_5d                    W_cut&&Q2_cut_kin_d&&th_pq_cut_kin_5d                                                                 1000       0    (0%)
+kine_cut_kin_6d                    W_cut&&Q2_cut_kin_d&&th_pq_cut_kin_6d                                                                 1000       11   (1.1%)
+kine_cut_kin_7d                    W_cut&&Q2_cut_kin_d&&th_pq_cut_kin_7d                                                                 1000       5    (0.5%)
+ana_kin_1d                         kine_cut_kin_1d&&detector_cut                                                                         1000       0    (0%)
+ana_kin_2d                         kine_cut_kin_2d&&detector_cut                                                                         1000       0    (0%)
+ana_kin_3d                         kine_cut_kin_3d&&detector_cut                                                                         1000       0    (0%)
+ana_kin_5d                         kine_cut_kin_5d&&detector_cut                                                                         1000       0    (0%)
+ana_kin_6d                         kine_cut_kin_6d&&detector_cut                                                                         1000       8    (0.8%)
+ana_kin_7d                         kine_cut_kin_7d&&detector_cut                                                                         1000       4    (0.4%)
+coinpeak_kin_1d                    coin_ndelta&&ana_kin_1d                                                                               1000       0    (0%)
+coinpeak_kin_2d                    coin_ndelta&&ana_kin_2d                                                                               1000       0    (0%)
+coinpeak_kin_3d                    coin_ndelta&&ana_kin_3d                                                                               1000       0    (0%)
+coinpeak_kin_4d                    coinpeak_kin_3d                                                                                       1000       0    (0%)
+coinpeak_kin_5d                    coin_ndelta&&ana_kin_5d                                                                               1000       0    (0%)
+coinpeak_kin_6d                    coin_ndelta&&ana_kin_6d                                                                               1000       3    (0.3%)
+coinpeak_kin_7d                    coin_ndelta&&ana_kin_7d                                                                               1000       1    (0.1%)
+sideband_kin_1d                    sideband&&ana_kin_1d                                                                                  1000       0    (0%)
+sideband_kin_2d                    sideband&&ana_kin_2d                                                                                  1000       0    (0%)
+sideband_kin_3d                    sideband&&ana_kin_3d                                                                                  1000       0    (0%)
+sideband_kin_4d                    sideband_kin_3d                                                                                       1000       0    (0%)
+sideband_kin_5d                    sideband&&ana_kin_5d                                                                                  1000       0    (0%)
+sideband_kin_6d                    sideband&&ana_kin_6d                                                                                  1000       1    (0.1%)
+sideband_kin_7d                    sideband&&ana_kin_7d                                                                                  1000       0    (0%)
+Physics_master                     ALL_events_NO_EDTM                                                                                    1000       1000 (100%)
+
+Total     : Real Time =  16.42 seconds Cpu Time =  16.09 seconds
+Error in <THcFormula::Compile>:  Bad numerical expression : "P.EDTM.scalerCutRate"
+Error in <THcFormula::Compile>:  Bad numerical expression : "P.EDTM.scalerCutRate"
+Error in <THcFormula::Compile>:  Bad numerical expression : "H.EDTM.scalerCutRate"
+Error in <THcFormula::Compile>:  Bad numerical expression : "H.EDTM.scalerCutRate"

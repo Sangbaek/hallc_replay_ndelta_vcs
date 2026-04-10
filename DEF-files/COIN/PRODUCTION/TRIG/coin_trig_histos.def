@@ -1,3 +1,20 @@
+############################
+#   Ref Time 
+############################
+TH1F padc_ref 'FADC Reference Time ROC2 (Hodo 1x-); time (ns); counts' P.hod.1x.NegAdcRefTime*.0625 250 0 1000
+TH1F ptdc_ref 'TDC Reference Time ROC2 (Hodo 1x-); time (ns); counts' P.hod.1x.NegTdcRefTime*.09766 250 0 2000
+TH1F pdc_ref 'TDC Reference Time ROC6 (DC 1x1); time (ns); counts' P.dc.1x1.RefTime*.09766 250 0 2000
+TH1F hadc_ref 'FADC Reference Time ROC1 (Hodo 1x-); time (ns); counts' H.hod.1x.NegAdcRefTime*.0625 250 0 1000
+TH1F htdc_ref 'TDC Reference Time ROC1 (Hodo 1x-); time (ns); counts' H.hod.1x.NegTdcRefTime*.09766 250 0 2000
+TH1F hdc_ref 'TDC Reference Time ROC3 (DC 1x1); time (ns); counts' H.dc.1x1.RefTime*.09766 250 0 2000
+
+TH2F hcoin_win 'FADC Reference SHMS Vs HMS; time (ns); time (ns)' (T.coin.pFADC_TREF_ROC2_adcPulseTimeRaw)/16. (T.coin.hFADC_TREF_ROC1_adcPulseTimeRaw)/16. 300 250 400 300 400 550
+TH2F hcoin_win_cut 'SHMS Vs HMS CoinTime cut; time (ns); time (ns)' (T.coin.pFADC_TREF_ROC2_adcPulseTimeRaw)/16. (T.coin.hFADC_TREF_ROC1_adcPulseTimeRaw)/16. 300 250 400 300 400 550 coin_ndelta
+
+
+############################
+#  Ndelta
+############################
 TH1F hcoin 'CTime.epCoinTime_ROC2 No Cuts; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 
 #TH1F hcoin_coinpeak_kin_2d 'CTime.epCoinTime_ROC2 coinpeak 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_2d
 #TH1F hcoin_sideband_kin_2d 'CTime.epCoinTime_ROC2 sideband 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_2d

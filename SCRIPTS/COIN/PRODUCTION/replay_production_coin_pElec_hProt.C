@@ -1,4 +1,4 @@
-void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
+void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0, Int_t Segment=0) {
 
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
@@ -16,7 +16,7 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
 
   // Create file name patterns.
   // const char* RunFileNamePattern = "coin_all_%05d.dat";
-  const char* RunFileNamePattern = "ndelta_production_%05d.dat.0";  
+  const char* RunFileNamePattern = "ndelta_production_%05d.dat.%d";  
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
@@ -24,8 +24,8 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   pathList.push_back("./cache");
 
   //const char* RunFileNamePattern = "raw/coin_all_%05d.dat";
-  const char* ROOTFileNamePattern = "ROOTfiles/coin_replay_production_%d_%d.root";
-  
+  const char* ROOTFileNamePattern = "ROOTfiles/coin_replay_production_%d_%d_%d.root";
+
   // Load global parameters
   gHcParms->Define("gen_run_number", "Run Number", RunNumber);
   gHcParms->AddString("g_ctp_database_filename", "DBASE/COIN/standard.database");
@@ -263,7 +263,7 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
 
   // Define the run(s) that we want to analyze.
   // We just set up one, but this could be many.
-  THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
+  THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber, Segment) );
 
   // Set to read in Hall C run database parameters
   run->SetRunParamClass("THcRunParameters");
@@ -275,8 +275,9 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   run->Print();
 
   // Define the analysis parameters
-  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, MaxEvent);
-  analyzer->SetCountMode(2);  // 0 = counter is # of physics triggers
+  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, MaxEvent, Segment);
+
+  analyzer->SetCountMode(0);  // 0 = counter is # of physics triggers
                               // 1 = counter is # of all decode reads
                               // 2 = counter is event number
 
@@ -295,11 +296,16 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   // Define cuts file
   analyzer->SetCutFile("DEF-files/COIN/PRODUCTION/CUTS/coin_production_cuts.def");  // optional
   // File to record accounting information for cuts
-  analyzer->SetSummaryFile(Form("REPORT_OUTPUT/COIN/PRODUCTION/summary_production_%d_%d.report", RunNumber, MaxEvent));  // optional
+  analyzer->SetSummaryFile(Form("REPORT_OUTPUT/COIN/PRODUCTION/summary_production_%d_%d_%d.report", RunNumber, MaxEvent, Segment));  // optional
   // Start the actual analysis.
   analyzer->Process(run);
   // Create report file from template
+  if(Segment==0){
   analyzer->PrintReport("TEMPLATES/COIN/PRODUCTION/coin_production.template",
-  			Form("REPORT_OUTPUT/COIN/PRODUCTION/replay_coin_production_%d_%d.report", RunNumber, MaxEvent));  // optional
-
+  			Form("REPORT_OUTPUT/COIN/PRODUCTION/replay_coin_production_%d_%d_%d.report", RunNumber, MaxEvent, Segment));  // optional
+  }
+  else{
+      analyzer->PrintReport("TEMPLATES/COIN/PRODUCTION/coin_production_no_ps.template",
+  			Form("REPORT_OUTPUT/COIN/PRODUCTION/replay_coin_production_%d_%d_%d.report", RunNumber, MaxEvent, Segment));  // optional
+  }
 }

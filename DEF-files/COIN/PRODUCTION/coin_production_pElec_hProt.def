@@ -1,19 +1,23 @@
-block T.coin.hTRIG*
-block T.coin.pTRIG*
-block CTime*
-block P.kin.*
-block H.kin.*
+block T.coin.*tdcTimeRaw
+block CTime.epCoinTime_ROC2
+block P.kin.primary.W
+block P.kin.primary.Q2
+block H.kin.secondary.emiss
+block H.kin.secondary.pmiss
+block H.kin.secondary.thx_cm
+block H.dc.x_fp
+block H.dc.xp_fp
+block H.dc.y_fp
+block H.dc.yp_fp
 block g*
 
 #include "DEF-files/SHMS/PRODUCTION/DC/pdc_vars.def"
 #include "DEF-files/SHMS/PRODUCTION/GTR/pgtr_vars.def"
 #include "DEF-files/SHMS/PRODUCTION/PID/ppid_vars.def"
-#include "DEF-files/SHMS/PRODUCTION/EPICS/pepics_vars.def"
 #include "DEF-files/SHMS/PRODUCTION/KIN/pkin_vars.def"
 
 #include "DEF-files/HMS/PRODUCTION/GTR/hgtr_vars.def"
 #include "DEF-files/HMS/PRODUCTION/PID/hpid_vars.def"
-#include "DEF-files/HMS/PRODUCTION/EPICS/hepics_vars.def"
 #include "DEF-files/HMS/PRODUCTION/KIN/hkin_vars.def"
 
 begin epics
