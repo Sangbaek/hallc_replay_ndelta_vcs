@@ -128,14 +128,12 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   pscaler->SetUseFirstEvent(kTRUE);
   gHaEvtHandlers->Add(pscaler);
 
-  /*
   //Add SHMS event handler for helicity scalers
   THcHelicityScaler *phelscaler = new THcHelicityScaler("P", "Hall C helicity scaler");
   //phelscaler->SetDebugFile("PHelScaler.txt");
   phelscaler->SetROC(8);   
   phelscaler->SetUseFirstEvent(kTRUE); 
   gHaEvtHandlers->Add(phelscaler); 
-  */
   
   //=:=:=
   // HMS 
@@ -197,14 +195,14 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   hscaler->SetUseFirstEvent(kTRUE);
   gHaEvtHandlers->Add(hscaler);
 
-  /*
+
   // Add HMS event handler for helicity scalers                                                                                             
   THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler"); 
   //hhelscaler->SetDebugFile("HHelScaler.txt");                                                                
   hhelscaler->SetROC(5);
   hhelscaler->SetUseFirstEvent(kTRUE); 
   gHaEvtHandlers->Add(hhelscaler);
-  */
+
   
   //=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
   // Kinematics Modules
@@ -230,6 +228,9 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   // Add trigger detector to trigger apparatus
   THcTrigDet* coin = new THcTrigDet("coin", "Coincidence Trigger Information");
 
+  THcHelicity* helicity = new THcHelicity("helicity", "Helicity Detector");
+  TRG->AddDetector(helicity); // check later
+
   //Add coin physics module
   THcCoinTime* coinTime = new THcCoinTime("CTime", "Coincidende Time Determination", "H", "P", "T.coin");
   gHaPhysics->Add(coinTime);
@@ -239,6 +240,9 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   coin->SetEvtType(1);
   coin->AddEvtType(2);
   TRG->AddDetector(coin); 
+  // Add event handler for prestart event 137
+  THcEvt137Handler* ev137 = new THcEvt137Handler("evt137", "Config Event type 137");
+  gHaEvtHandlers->Add(ev137);
   // Add event handler for prestart event 125.
   THcConfigEvtHandler* ev125 = new THcConfigEvtHandler("HC", "Config Event type 125");
   gHaEvtHandlers->Add(ev125);
@@ -255,7 +259,7 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
 
   // Makes g.evtype = g.tsevtyp
   analyzer->EnableAltEvType();
-  
+  analyzer->EnableHelicity(true);  
   // A simple event class to be output to the resulting tree.
   // Creating your own descendant of THaEvent is one way of
   // defining and controlling the output.
@@ -277,7 +281,7 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   // Define the analysis parameters
   TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, MaxEvent, Segment);
 
-  analyzer->SetCountMode(0);  // 0 = counter is # of physics triggers
+  analyzer->SetCountMode(2);  // 0 = counter is # of physics triggers
                               // 1 = counter is # of all decode reads
                               // 2 = counter is event number
 
