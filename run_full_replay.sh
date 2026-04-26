@@ -15,7 +15,8 @@ rootfiles=()
 jobcount=0
 
 for ((seg=0; seg<maxseg; seg++)); do
-    rawfile="raw/ndelta_production_${runnum}.dat.${seg}"
+    #rawfile="raw/ndelta_production_${runnum}.dat.${seg}"
+    rawfile="cache/ndelta_production_${runnum}.dat.${seg}"
     outfile="ROOTfiles/coin_replay_production_${runnum}_${nev}_${seg}.root"
 
     if [ ! -f "$rawfile" ]; then

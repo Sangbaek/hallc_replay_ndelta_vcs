@@ -16,8 +16,15 @@
 ;hcal_adcrefcut=-5000.
 
 ;Trigger change: PS3 is HMS CLEAN and PS5 SHMS 3/4 & HMS ELREAL
-hdc_tdcrefcut=-18000
-hhodo_tdcrefcut=-31000
-hhodo_adcrefcut=-2600
-hcer_adcrefcut=-2600
-hcal_adcrefcut=-2600.
+;hdc_tdcrefcut=-18000
+;hhodo_tdcrefcut=-31000
+;hhodo_adcrefcut=-2600
+;hcer_adcrefcut=-2600
+;hcal_adcrefcut=-2600.
+
+; ndelta 
+hdc_tdcrefcut=-17000
+hhodo_tdcrefcut=-2500
+hhodo_adcrefcut=-6200
+hcer_adcrefcut=-6200
+hcal_adcrefcut=-6200

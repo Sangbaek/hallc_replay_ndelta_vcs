@@ -16,38 +16,33 @@ ALL_events           SHMS_event || HMS_event || BOTH_SINGLES_event || COIN_ONLY_
 RawDecode_master  ALL_events
 
 Block: Decode
-
-goodctime         ALL_events        #LOOSE CUT AROUND COINTIME PEAK (3 beam buckets)
-tightctime        ALL_events        #TIGHT CUT AROUND COINTIME PEAK (1 beam buckets)
-ranctime          ALL_events        #CUT AWAY FROM COINTIME PEAK (4 beam buckets)
-
-ALL_COIN_NO_EDTM  T.coin.hEDTM_tdcTime==0.0&&T.coin.pEDTM_tdcTime==0.0&&ALL_events
-
-
-Decode_master     ALL_COIN_NO_EDTM
+#include "DEF-files/COIN/PRODUCTION/CUTS/coin_decode_cuts.def"
+;Decode_master ALL_events_NO_EDTM
+Decode_master ALL_events
 
 Block: CoarseTracking
-CoarseTracking_master ALL_COIN_NO_EDTM
+#include "DEF-files/SHMS/PRODUCTION/CUTS/pstackana_coarsetracking_cuts.def"
+#include "DEF-files/HMS/PRODUCTION/CUTS/hstackana_coarsetracking_cuts.def"
+;CoarseTracking_master ALL_events_NO_EDTM
+CoarseTracking_master ALL_events
 
 Block: CoarseReconstruct
-CoarseReconstruct_master ALL_COIN_NO_EDTM
+;CoarseReconstruct_master ALL_events_NO_EDTM
+CoarseReconstruct_master ALL_events
 
 Block: Tracking
-Tracking_master  ALL_COIN_NO_EDTM
+;Tracking_master ALL_events_NO_EDTM
+Tracking_master ALL_events
 
 Block: Reconstruct
-Reconstruct_master ALL_COIN_NO_EDTM
+#include "DEF-files/SHMS/PRODUCTION/CUTS/pstackana_reconstruct_cuts.def"
+#include "DEF-files/HMS/PRODUCTION/CUTS/hstackana_reconstruct_cuts.def"
+;Reconstruct_master ALL_events_NO_EDTM
+Reconstruct_master ALL_events
 
-hcleantrack        H.gtr.index > -1
-pcleantrack        P.gtr.index > -1
-ccleantrack        hcleantrack && pcleantrack
-
-coincut            ccleantrack && goodctime
-tight_coin         ccleantrack && tightctime
-ran_coincut        ccleantrack && ranctime
-
-e_cut_cal          P.cal.etottracknorm > 0.6 && P.cal.etottracknorm < 2.0
-e_cut_cer          P.hgcer.npeSum > 5.0 && P.ngcer.npeSum > 15.0
-select_e_cut       e_cut_cal && e_cut_cer
-betacut_proton     H.gtr.beta > 0.3 && H.gtr.beta < 0.6
-coincut_ep         ccleantrack && select_e_cut && betacut_proton
+Block: Physics
+#include "DEF-files/HMS/PRODUCTION/CUTS/hstackana_physics_cuts.def"
+#include "DEF-files/SHMS/PRODUCTION/CUTS/pstackana_physics_cuts.def"
+#include "DEF-files/COIN/PRODUCTION/CUTS/coin_physics_cuts.def"
+;Physics_master ALL_events_NO_EDTM
+Physics_master ALL_events
