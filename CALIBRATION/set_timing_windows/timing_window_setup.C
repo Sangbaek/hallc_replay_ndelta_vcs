@@ -27,7 +27,7 @@ void run_shms_timing_windows(TString file_name, TString out_file, int RunNumber,
     cout << "Unknown Spec: " << spec << endl;
     return;
   }
-
+  cout <<"Hello"<<endl;
   const char* prefix = "p";
 
   UInt_t nPMT = 21;   //2Y plane has 21 PMTs
@@ -73,10 +73,11 @@ void run_shms_timing_windows(TString file_name, TString out_file, int RunNumber,
     {"hgcer_adcTimeWindowMax",  fHGCerAdcTimeWindowMax,   kDouble, fHGCer, 1},
     {0},
   };
-
+  cout <<"Hello"<<endl;
   gHcParms->LoadParmValues((DBRequest*)&windowList, prefix);
 
   calc_timing_windows(file_name,out_file,"hodo_1x","p",1,fHodoPosAdcTimeWindowMin, fHodoPosAdcTimeWindowMax,newWindows,width);
+  cout <<"Hello"<<endl;
   calc_timing_windows(file_name,out_file,"hodo_1x","p",2,fHodoNegAdcTimeWindowMin, fHodoNegAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"hodo_1y","p",1,fHodoPosAdcTimeWindowMin, fHodoPosAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"hodo_1y","p",2,fHodoNegAdcTimeWindowMin, fHodoNegAdcTimeWindowMax,newWindows,width);
@@ -89,6 +90,7 @@ void run_shms_timing_windows(TString file_name, TString out_file, int RunNumber,
   calc_timing_windows(file_name,out_file,"cal_shwr","p",0,fCaloArrAdcTimeWindowMin,fCaloArrAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"hgcer","p",0,fHGCerAdcTimeWindowMin,fHGCerAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"ngcer","p",0,fNGCerAdcTimeWindowMin,fNGCerAdcTimeWindowMax,newWindows,width);
+
 }
 
 void run_hms_timing_windows(TString file_name, TString out_file, int RunNumber, bool newWindows=false, double width=40., TString spec="hms") {
@@ -182,6 +184,7 @@ void run_coin_timing_windows(TString file_name, TString out_file, int RunNumber,
 void calc_timing_windows(TString golden_file = "", TString out_file = "",
 			 TString detector = "", TString spect = "", Double_t polarity = -1,
 			 Double_t *minArr = 0, Double_t *maxArr = 0, bool newWindows=false, double width=40.) {
+  cout <<"Hello gold"<<golden_file<<endl;
   if (golden_file == "") {
     cout << "Enter golden run root file name: " << endl;
     cin >> golden_file;
@@ -204,13 +207,15 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
     cout << "Enter a detector polarity (pos = 1, neg = 2): " << endl;
     cin >> polarity;
   }
-
+  cout <<"Hello5"<<endl;
   UInt_t offset;
   TString histname = Form("%s%s", spect.Data(), detector.Data());
+  cout <<"Hello6"<<endl;
   if (histname.Contains("hodo") && histname.Contains("1x") && polarity == 1) {
     histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
     offset = 0;
   }
+  cout <<"Hello7"<<endl;  
   if (histname.Contains("hodo") && histname.Contains("1x") && polarity == 2) {
     histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_neg");
     offset = 0;
@@ -279,7 +284,7 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
     histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_neg");
     offset = 13;
   }
-
+  cout<<"Hello8"<<endl;
   TH2F* H1_adctdc_diff_time_vs_pmt;
 
   TFile* f1 = new TFile(golden_file, "READ");
@@ -289,27 +294,28 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
   }
   cout << histname.Data() << endl;
   f1->GetObject(histname.Data(), H1_adctdc_diff_time_vs_pmt);
-
+  cout<<"Hello9"<<endl;
   TFile* f2 = new TFile(out_file, "Update");
   if (f2->IsZombie()) {
     cout << "Cannot find : " << out_file << endl;
     return;
   }
-
+  cout<<"Hello10"<<endl;
   TH1D* H1_pmt;
   TCanvas *currentCanvas = nullptr;
   H1_pmt = (TH1D*)H1_adctdc_diff_time_vs_pmt->ProjectionX("H1_pmt", 1,
                                              H1_adctdc_diff_time_vs_pmt->GetSize() - 2);
-
+  cout<<"Hello11"<<endl;
   TH1D* H1_adctdc_diff_time[H1_pmt->GetSize() - 2];
-
+  cout<<"Hello12"<<endl;
   for (Int_t ipmt = 0; ipmt < (H1_pmt->GetSize() - 2); ipmt++) {
     H1_adctdc_diff_time[ipmt] = (TH1D*)H1_adctdc_diff_time_vs_pmt->ProjectionY(
         Form("H1_adctdc_diff_time_pmt%d", ipmt + 1), ipmt + 1, ipmt + 1);
   }
-
+  cout<<"Hello13"<<endl;
   Double_t H1_adctdc_diff_time_peak[H1_pmt->GetSize() - 2];
   Double_t H1_adctdc_diff_time_fitpeak[H1_pmt->GetSize() - 2];
+  cout<<"Hello14"<<endl;
   for (Int_t ipmt = 0; ipmt < (H1_pmt->GetSize() - 2); ipmt++) {
 
     if (H1_adctdc_diff_time[ipmt]->GetEntries() > 1000) {
