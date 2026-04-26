@@ -1,4 +1,4 @@
-void replay_no_timing_windows_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
+void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
 
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
@@ -11,21 +11,20 @@ void replay_no_timing_windows_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
     cin >> MaxEvent;
     if(MaxEvent == 0) {
       cerr << "...Invalid entry\n";
-      exit;
     }
   }
 
   // Create file name patterns.
-  const char* RunFileNamePattern = "ndelta_production_%05d.dat.0";
+  // const char* RunFileNamePattern = "coin_all_%05d.dat";
+  const char* RunFileNamePattern = "ndelta_production_%05d.dat.0";  
   vector<TString> pathList;
-  pathList.push_back("/net/cdaq/cdaql4data/hccoda/data/raw");
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
 
   //const char* RunFileNamePattern = "raw/coin_all_%05d.dat";
-  const char* ROOTFileNamePattern = "ROOTfiles/coin_noTimingWindows_%d_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/coin_replay_production_%d_%d.root";
   
   // Load global parameters
   gHcParms->Define("gen_run_number", "Run Number", RunNumber);
@@ -38,20 +37,32 @@ void replay_no_timing_windows_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   // Load fadc debug parameters
   gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug.param");
   gHcParms->Load("PARAM/SHMS/GEN/p_fadc_debug.param");
-  // Load the Hall C detector map
-  gHcDetectorMap = new THcDetectorMap();
-  gHcDetectorMap->Load("MAPS/COIN/DETEC/coin.map");
 
-  //==========================================
+  //********  Start-up with no timing windows  *****************
+  //Overwrite the existing reference times with
+  //the default values specified in hallc_replay.  
+  //  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/SHMS/GEN/p_no_reference_times.param");
+  //gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
 
   //Now remove all Timing Windows and revert to 
   //the default values specifid in hallc_replay
   gHcParms->AddString("g_ctp_no_timing_windows_filename", "PARAM/SHMS/GEN/pdet_cuts_no_timing_windows.param");
-  gHcParms->Load(gHcParms->GetString("g_ctp_no_hms_timing_windows_filename"));
-  gHcParms->AddString("g_ctp_no_hms_timing_windows_filename", "PARAM/HMS/GEN/hdet_cuts_no_timing_windows.param");
-  gHcParms->Load(gHcParms->GetString("g_ctp_no_hms_timing_windows_filename"));
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_timing_windows_filename"));
 
-  //==========================================
+  //Overwrite the existing reference times with
+  //the default values specified in hallc_replay.  
+  //gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/HMS/GEN/h_no_reference_times.param");
+  //gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
+
+  //Now remove all Timing Windows and revert to 
+  //the default values specifid in hallc_replay
+  gHcParms->AddString("g_ctp_no_timing_windows_filename", "PARAM/HMS/GEN/hdet_cuts_no_timing_windows.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_timing_windows_filename"));
+  
+  //************************************************************
+  // Load the Hall C detector map
+  gHcDetectorMap = new THcDetectorMap();
+  gHcDetectorMap->Load("MAPS/COIN/DETEC/coin.map");
 
   //=:=:=:=
   // SHMS 
@@ -106,6 +117,8 @@ void replay_no_timing_windows_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   // Add event handler for scaler events
   THcScalerEvtHandler* pscaler = new THcScalerEvtHandler("P", "Hall C scaler event type 1");
   pscaler->AddEvtType(1);
+  pscaler->AddEvtType(2);
+  pscaler->AddEvtType(3);
   pscaler->AddEvtType(4);
   pscaler->AddEvtType(5);
   pscaler->AddEvtType(6);
@@ -171,13 +184,16 @@ void replay_no_timing_windows_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
 
   // Add event handler for scaler events
   THcScalerEvtHandler *hscaler = new THcScalerEvtHandler("H", "Hall C scaler event type 4");  
+  hscaler->AddEvtType(1);
   hscaler->AddEvtType(2);
+  hscaler->AddEvtType(3);
   hscaler->AddEvtType(4);
   hscaler->AddEvtType(5);
   hscaler->AddEvtType(6);
   hscaler->AddEvtType(7);
-  hscaler->AddEvtType(129);
-  hscaler->SetDelayedType(129);
+  //  hscaler->AddEvtType(129);
+  hscaler->AddEvtType(131);
+  hscaler->SetDelayedType(131);
   hscaler->SetUseFirstEvent(kTRUE);
   gHaEvtHandlers->Add(hscaler);
 
@@ -237,6 +253,9 @@ void replay_no_timing_windows_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   // and executes the output routines.
   THcAnalyzer* analyzer = new THcAnalyzer;
 
+  // Makes g.evtype = g.tsevtyp
+  analyzer->EnableAltEvType();
+  
   // A simple event class to be output to the resulting tree.
   // Creating your own descendant of THaEvent is one way of
   // defining and controlling the output.
@@ -268,11 +287,19 @@ void replay_no_timing_windows_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   analyzer->SetCrateMapFileName("MAPS/db_cratemap.dat");
   // Define output ROOT file
   analyzer->SetOutFile(ROOTFileName.Data());
+
   // Define DEF-file+
-  analyzer->SetOdefFile("DEF-files/COIN/TIMING/no_timing_windows.def");
+  if(MaxEvent>100000 || MaxEvent==-1){analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt.def");}
+  else { analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt_all.def");}
+
   // Define cuts file
   analyzer->SetCutFile("DEF-files/COIN/PRODUCTION/CUTS/coin_production_cuts.def");  // optional
+  // File to record accounting information for cuts
+  analyzer->SetSummaryFile(Form("REPORT_OUTPUT/COIN/PRODUCTION/summary_production_%d_%d.report", RunNumber, MaxEvent));  // optional
   // Start the actual analysis.
   analyzer->Process(run);
+  // Create report file from template
+  analyzer->PrintReport("TEMPLATES/COIN/PRODUCTION/coin_production.template",
+  			Form("REPORT_OUTPUT/COIN/PRODUCTION/replay_coin_production_%d_%d.report", RunNumber, MaxEvent));  // optional
 
 }

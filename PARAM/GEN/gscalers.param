@@ -14,11 +14,11 @@
 ;gBCM_Gain   =   5701.8, 5518.8, 4000,  7150.06, 6214.46, 9987.6
 ;gBCM_Offset = 4120.0, 252100.0, 327953, 4445.02, 2438.0, 3551
 
-;Calibration from run 23959 (Dave G's script)
+;Calibration from run HCLOG 4487034 (Dave G's script)
 gNumBCMs    = 6
 gBCM_Names  = " BCM1      BCM2      Unser	BCM4A    BCM4B   BCM4C"
-gBCM_Gain   =   5803.32, 5676.62, 400.6,  13417.81, 6429.0, 10523.47
-gBCM_Offset = 2385.0, 250382.0, 327953,59.57, 1170.92, 254.69
+gBCM_Gain   =   5775.63, 5666.85, 400.6,  11849.91, 6429.0, 14583.72
+gBCM_Offset = 2128.18, 250187.50, 361600, -335.93, 1170.92, -264.66
 
 gBCM_Current_threshold = 1.0
 ; index = 0 to gNumBCMs-1

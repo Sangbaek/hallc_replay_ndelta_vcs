@@ -40,8 +40,8 @@ void replay_production_shms (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   //********  Start-up with no timing windows  *****************
   //Overwrite the existing reference times with
   //the default values specified in hallc_replay.  
-  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/SHMS/GEN/p_no_reference_times.param");
-  gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
+  //  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/SHMS/GEN/p_no_reference_times.param");
+  //  gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
 
   //Now remove all Timing Windows and revert to 
   //the default values specifid in hallc_replay
