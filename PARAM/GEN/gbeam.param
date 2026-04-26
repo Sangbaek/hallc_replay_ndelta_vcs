@@ -74,17 +74,17 @@ gbpmc12_pedestals = 34000, 34000, 34000, 34000
 gbpmc12_rotmatrix = -0.707, 0.707, 0.707, 0.707
 gbpmc12_offsets = 0.0, 0.0
 
-gbpma_calib_rot = 0.02
-gbpma_pedestals = 34000, 34000, 34000, 34000
+gbpma_calib_rot = 1
+gbpma_pedestals = 0, 0, 0, 0
 gbpma_rotmatrix = -0.707, 0.707, 0.707, 0.707
-gbpma_offsets = 0.0, 0.0
+gbpma_offsets = 1.0, 0.0
 
 gbpmb_calib_rot = 0.02
-gbpmb_pedestals = 34000, 34000, 34000, 34000
+gbpmb_pedestals = 12000, 12000, 12000, 12000
 gbpmb_rotmatrix = -0.707, 0.707, 0.707, 0.707
 gbpmb_offsets = 0.0, 0.0
 
 gbpmc_calib_rot = 0.02
-gbpmc_pedestals = 34000, 34000, 34000, 34000
+gbpmc_pedestals = 12000, 12000, 12000, 12000
 gbpmc_rotmatrix = -0.707, 0.707, 0.707, 0.707
 gbpmc_offsets = 0.0, 0.0

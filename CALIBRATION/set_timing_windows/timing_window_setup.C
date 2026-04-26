@@ -27,7 +27,6 @@ void run_shms_timing_windows(TString file_name, TString out_file, int RunNumber,
     cout << "Unknown Spec: " << spec << endl;
     return;
   }
-
   const char* prefix = "p";
 
   UInt_t nPMT = 21;   //2Y plane has 21 PMTs
@@ -73,7 +72,6 @@ void run_shms_timing_windows(TString file_name, TString out_file, int RunNumber,
     {"hgcer_adcTimeWindowMax",  fHGCerAdcTimeWindowMax,   kDouble, fHGCer, 1},
     {0},
   };
-
   gHcParms->LoadParmValues((DBRequest*)&windowList, prefix);
 
   calc_timing_windows(file_name,out_file,"hodo_1x","p",1,fHodoPosAdcTimeWindowMin, fHodoPosAdcTimeWindowMax,newWindows,width);
@@ -89,6 +87,7 @@ void run_shms_timing_windows(TString file_name, TString out_file, int RunNumber,
   calc_timing_windows(file_name,out_file,"cal_shwr","p",0,fCaloArrAdcTimeWindowMin,fCaloArrAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"hgcer","p",0,fHGCerAdcTimeWindowMin,fHGCerAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"ngcer","p",0,fNGCerAdcTimeWindowMin,fNGCerAdcTimeWindowMax,newWindows,width);
+
 }
 
 void run_hms_timing_windows(TString file_name, TString out_file, int RunNumber, bool newWindows=false, double width=40., TString spec="hms") {
@@ -204,7 +203,6 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
     cout << "Enter a detector polarity (pos = 1, neg = 2): " << endl;
     cin >> polarity;
   }
-
   UInt_t offset;
   TString histname = Form("%s%s", spect.Data(), detector.Data());
   if (histname.Contains("hodo") && histname.Contains("1x") && polarity == 1) {
@@ -279,7 +277,6 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
     histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_neg");
     offset = 13;
   }
-
   TH2F* H1_adctdc_diff_time_vs_pmt;
 
   TFile* f1 = new TFile(golden_file, "READ");
@@ -289,25 +286,20 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
   }
   cout << histname.Data() << endl;
   f1->GetObject(histname.Data(), H1_adctdc_diff_time_vs_pmt);
-
   TFile* f2 = new TFile(out_file, "Update");
   if (f2->IsZombie()) {
     cout << "Cannot find : " << out_file << endl;
     return;
   }
-
   TH1D* H1_pmt;
   TCanvas *currentCanvas = nullptr;
   H1_pmt = (TH1D*)H1_adctdc_diff_time_vs_pmt->ProjectionX("H1_pmt", 1,
                                              H1_adctdc_diff_time_vs_pmt->GetSize() - 2);
-
   TH1D* H1_adctdc_diff_time[H1_pmt->GetSize() - 2];
-
   for (Int_t ipmt = 0; ipmt < (H1_pmt->GetSize() - 2); ipmt++) {
     H1_adctdc_diff_time[ipmt] = (TH1D*)H1_adctdc_diff_time_vs_pmt->ProjectionY(
         Form("H1_adctdc_diff_time_pmt%d", ipmt + 1), ipmt + 1, ipmt + 1);
   }
-
   Double_t H1_adctdc_diff_time_peak[H1_pmt->GetSize() - 2];
   Double_t H1_adctdc_diff_time_fitpeak[H1_pmt->GetSize() - 2];
   for (Int_t ipmt = 0; ipmt < (H1_pmt->GetSize() - 2); ipmt++) {
