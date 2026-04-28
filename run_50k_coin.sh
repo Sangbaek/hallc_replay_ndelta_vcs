@@ -11,7 +11,7 @@ SPEC=$(echo "$spec" | tr '[:lower:]' '[:upper:]')
 #    ls raw/"${spec}"_all_*.dat raw/../raw.copiedtotape/"${spec}"_all_*.dat -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {prin#t "$1\n"}' | sort -n | tail -1 \
 #)
 lastRun=$( \
-    ls raw/ndelta_production_*.dat.0 raw/../raw.copiedtotape/ndelta_production_*.dat.0 cache/ndelta_production_*.dat.0 -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {print "$1\n"}' | sort -n | tail -1 \
+    ls raw/vcs2_production_*.dat.0 raw/../raw.copiedtotape/vcs2_production_*.dat.0 cache/vcs2_production_*.dat.0 -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {print "$1\n"}' | sort -n | tail -1 \
 )
 
 # If no arguments are given, ask the user interactively

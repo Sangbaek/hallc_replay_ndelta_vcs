@@ -15,8 +15,19 @@ rootfiles=()
 jobcount=0
 
 for ((seg=0; seg<maxseg; seg++)); do
-    #rawfile="raw/ndelta_production_${runnum}.dat.${seg}"
-    rawfile="cache/ndelta_production_${runnum}.dat.${seg}"
+    # Decide prefix based on run number
+    if (( runnum > 26561 )); then
+        prefix="vcs2_production"
+    else
+        prefix="ndelta_production"
+    fi
+
+    # Try raw/ first, then cache/
+    rawfile="raw/${prefix}_${runnum}.dat.${seg}"
+    if [ ! -f "$rawfile" ]; then
+        rawfile="cache/${prefix}_${runnum}.dat.${seg}"
+    fi
+
     outfile="ROOTfiles/coin_replay_production_${runnum}_${nev}_${seg}.root"
 
     if [ ! -f "$rawfile" ]; then

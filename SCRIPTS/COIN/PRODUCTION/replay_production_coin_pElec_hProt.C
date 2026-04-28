@@ -17,6 +17,7 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   // Create file name patterns.
   // const char* RunFileNamePattern = "coin_all_%05d.dat";
   const char* RunFileNamePattern = "ndelta_production_%05d.dat.%d";  
+  if(RunNumber>=26562)RunFileNamePattern = "vcs2_production_%05d.dat.%d";  
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
