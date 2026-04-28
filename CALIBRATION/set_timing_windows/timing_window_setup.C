@@ -343,7 +343,8 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
   TString newTitle = Form("%s%s%d",subTitle.Data(),"PMT ",ipmt+1);
   H1_adctdc_diff_time[ipmt]->SetTitle(newTitle);
   H1_adctdc_diff_time[ipmt]->GetXaxis()->CenterTitle();
-    H1_adctdc_diff_time[ipmt]->GetXaxis()->SetTitleOffset(1);
+  H1_adctdc_diff_time[ipmt]->GetXaxis()->SetTitleOffset(1);
+  H1_adctdc_diff_time[ipmt]->GetXaxis()->SetRangeUser(-250,250);  
   H1_adctdc_diff_time[ipmt]->Draw();
   currentCanvas->Update();
   ymax = H1_adctdc_diff_time[ipmt]->GetBinContent(H1_adctdc_diff_time[ipmt]->GetMaximumBin());
@@ -357,6 +358,7 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
     minVal = minArr[ipmt];
     maxVal = maxArr[ipmt];
   }
+  cout << "Min/Max"<<newTitle<<"  "<<minVal<<"\t"<<maxVal<<endl;
   minLine = new TLine(minVal,0,minVal,ymax);
   maxLine = new TLine(maxVal,0,maxVal,ymax);
   if(H1_adctdc_diff_time_peak[ipmt] > minVal && H1_adctdc_diff_time_peak[ipmt] < maxVal) {
