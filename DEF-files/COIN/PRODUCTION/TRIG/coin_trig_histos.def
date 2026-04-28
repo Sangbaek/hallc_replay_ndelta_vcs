@@ -90,6 +90,9 @@ TH1F hcoin_coinpeak_kin_6c 'CTime.epCoinTime_ROC2 coinpeak 6c; cointime (ns)' CT
 TH1F hcoin_sideband_kin_6c 'CTime.epCoinTime_ROC2 sideband 6c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_6c
 TH1F hcoin_coinpeak_kin_7c 'CTime.epCoinTime_ROC2 coinpeak 7c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_7c
 TH1F hcoin_sideband_kin_7c 'CTime.epCoinTime_ROC2 sideband 7c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_7c
+
+TH1F hcoin_coinpeak_group1_3a 'CTime.epCoinTime_ROC2 coinpeak group1 3a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_group1_3a
+TH1F hcoin_sideband_group1_3a 'CTime.epCoinTime_ROC2 sideband group1 3a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_group1_3a
 ############################
 #   BETA VS COINTIME
 ############################

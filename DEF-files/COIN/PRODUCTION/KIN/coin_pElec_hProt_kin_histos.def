@@ -66,6 +66,8 @@ TH1F hkin_mmiss_sideband_kin_6c   'HMS M^{2}_{miss}  (sideband kin 6c); M^{2}_{m
 TH1F hkin_mmiss_coinpeak_kin_7c   'HMS M^{2}_{miss} (coin peak kin 7c); M^{2}_{miss} (GeV); Count / 0.001 GeV2'  mmiss 200 -0.1 0.1 coinpeak_kin_7c
 TH1F hkin_mmiss_sideband_kin_7c   'HMS M^{2}_{miss}  (sideband kin 7c); M^{2}_{miss} (GeV); Count / 0.001 GeV2'  mmiss 200 -0.1 0.1 sideband_kin_7c
 
+TH1F hkin_mmiss_coinpeak_group1_3a   'HMS M^{2}_{miss} (coin peak group1 3a); M^{2}_{miss} (GeV); Count / 0.001 GeV2'  mmiss 200 -0.1 0.1 coinpeak_group1_3a
+TH1F hkin_mmiss_sideband_group1_3a   'HMS M^{2}_{miss}  (sideband group1 3a); M^{2}_{miss} (GeV); Count / 0.001 GeV2'  mmiss 200 -0.1 0.1 sideband_group1_3a
 
 
 ############################
@@ -145,6 +147,10 @@ TH1F hkin_thpq_lab_coinpeak_kin_6c     'HMS theta_{pq,lab} (coin peak kin 6c); t
 TH1F hkin_thpq_lab_sideband_kin_6c     'HMS theta_{pq,lab}  (sideband kin 6c); th_{pq, lab} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.th_xq 180 0 90 sideband_kin_6c
 TH1F hkin_thpq_lab_coinpeak_kin_7c     'HMS theta_{pq,lab} (coin peak kin 7c); th_{pq, lab} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.th_xq 180 0 90 coinpeak_kin_7c
 TH1F hkin_thpq_lab_sideband_kin_7c     'HMS theta_{pq,lab}  (sideband kin 7c); th_{pq, lab} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.th_xq 180 0 90 sideband_kin_7c
+
+TH1F hkin_thpq_lab_coinpeak_group1_3a     'HMS theta_{pq,lab} (coin peak  group 3a); th_{pq, lab} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.th_xq 180 0 90 coinpeak_group1_3a
+TH1F hkin_thpq_lab_sideband_group1_3a     'HMS theta_{pq,lab}  (sideband  group 3a); th_{pq, lab} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.th_xq 180 0 90 sideband_group1_3a
+
 TH1F hkin_thpq_cm                       'HMS theta_{pq,cm} (ccleantrack); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 ccleantrack
 #TH1F hkin_thpq_cm_coinpeak_kin_1d      'HMS theta_{pq,cm} (coin peak kin 1d); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 coinpeak_kin_1d
 #TH1F hkin_thpq_cm_sideband_kin_1d      'HMS theta_{pq,cm}  (sideband kin 1d); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 sideband_kin_1d
@@ -202,6 +208,9 @@ TH1F hkin_thpq_cm_coinpeak_kin_6c      'HMS theta_{pq,cm} (coin peak kin 6c); th
 TH1F hkin_thpq_cm_sideband_kin_6c      'HMS theta_{pq,cm}  (sideband kin 6c); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 sideband_kin_6c
 TH1F hkin_thpq_cm_coinpeak_kin_7c      'HMS theta_{pq,cm} (coin peak kin 7c); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 coinpeak_kin_7c
 TH1F hkin_thpq_cm_sideband_kin_7c      'HMS theta_{pq,cm}  (sideband kin 7c); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 sideband_kin_7c
+
+TH1F hkin_thpq_cm_coinpeak_group1_3a      'HMS theta_{pq,cm} (coin peak  group 3a); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 coinpeak_group1_3a
+TH1F hkin_thpq_cm_sideband_group1_3a      'HMS theta_{pq,cm}  (sideband  group 3a); th_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.thx_cm 180 0 90 sideband_group1_3a
 TH1F hkin_phipq_cm                      'HMS phi_{pq,cm} (ccleantrack); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 ccleantrack
 #TH1F hkin_phipq_cm_coinpeak_kin_1d     'HMS phi_{pq,cm} (coin peak kin 1d); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 coinpeak_kin_1d
 #TH1F hkin_phipq_cm_sideband_kin_1d     'HMS phi_{pq,cm}  (sideband kin 1d); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 sideband_kin_1d
@@ -259,6 +268,9 @@ TH1F hkin_phipq_cm_coinpeak_kin_6c     'HMS phi_{pq,cm} (coin peak kin 6c); phi_
 TH1F hkin_phipq_cm_sideband_kin_6c     'HMS phi_{pq,cm}  (sideband kin 6c); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 sideband_kin_6c
 TH1F hkin_phipq_cm_coinpeak_kin_7c     'HMS phi_{pq,cm} (coin peak kin 7c); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 coinpeak_kin_7c
 TH1F hkin_phipq_cm_sideband_kin_7c     'HMS phi_{pq,cm}  (sideband kin 7c); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 sideband_kin_7c
+
+TH1F hkin_phipq_cm_coinpeak_group1_3a     'HMS phi_{pq,cm} (coin peak  group 3a); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 coinpeak_group1_3a
+TH1F hkin_phipq_cm_sideband_group1_3a     'HMS phi_{pq,cm}  (sideband  group 3a); phi_{pq, cm} (deg); Count / 0.5 deg;' 180.0/3.141592*H.kin.secondary.phx_cm 720 -180 180 sideband_group1_3a
 
 ############################
 #   KINEMATICS
@@ -320,6 +332,9 @@ TH1F pkin_Q2_coinpeak_kin_6c           'SHMS Q^{2} (coin peak kin 6c); Q^{2} (Ge
 TH1F pkin_Q2_sideband_kin_6c           'SHMS Q^{2}  (sideband kin 6c); Q^{2} (GeV); Count / 0.01 GeV;' P.kin.primary.Q2 100 0 0.1  sideband_kin_6c
 TH1F pkin_Q2_coinpeak_kin_7c           'SHMS Q^{2} (coin peak kin 7c); Q^{2} (GeV); Count / 0.01 GeV;' P.kin.primary.Q2 100 0 0.1  coinpeak_kin_7c
 TH1F pkin_Q2_sideband_kin_7c           'SHMS Q^{2}  (sideband kin 7c); Q^{2} (GeV); Count / 0.01 GeV;' P.kin.primary.Q2 100 0 0.1  sideband_kin_7c
+
+TH1F pkin_Q2_coinpeak_group1_3a           'SHMS Q^{2} (coin peak  group 3a); Q^{2} (GeV); Count / 0.01 GeV;' P.kin.primary.Q2 100 0 0.1  coinpeak_group1_3a
+TH1F pkin_Q2_sideband_group1_3a           'SHMS Q^{2}  (sideband  group 3a); Q^{2} (GeV); Count / 0.01 GeV;' P.kin.primary.Q2 100 0 0.1  sideband_group1_3a
 TH1F pkin_W2                            'SHMS W^{2} (ccleantrack); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 ccleantrack
 #TH1F pkin_W2_coinpeak_kin_1d           'SHMS W^{2} (coin peak kin 1d); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 coinpeak_kin_1d
 #TH1F pkin_W2_sideband_kin_1d           'SHMS W^{2}  (sideband kin 1d); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 sideband_kin_1d
@@ -377,6 +392,9 @@ TH1F pkin_W2_coinpeak_kin_6c           'SHMS W^{2} (coin peak kin 6c); W^{2} (Ge
 TH1F pkin_W2_sideband_kin_6c           'SHMS W^{2}  (sideband kin 6c); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 sideband_kin_6c
 TH1F pkin_W2_coinpeak_kin_7c           'SHMS W^{2} (coin peak kin 7c); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 coinpeak_kin_7c
 TH1F pkin_W2_sideband_kin_7c           'SHMS W^{2}  (sideband kin 7c); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 sideband_kin_7c
+
+TH1F pkin_W2_coinpeak_group1_3a           'SHMS W^{2} (coin peak  group 3a); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 coinpeak_group1_3a
+TH1F pkin_W2_sideband_group1_3a           'SHMS W^{2}  (sideband  group 3a); W^{2} (GeV2); Count / 0.01 GeV2;' P.kin.primary.W2 400 0.0 4.0 sideband_group1_3a
 TH1F pkin_W                             'SHMS W (ccleantrack); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 ccleantrack
 #TH1F pkin_W_coinpeak_kin_1d            'SHMS W (coin peak kin 1d); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 coinpeak_kin_1d
 #TH1F pkin_W_sideband_kin_1d            'SHMS W  (sideband kin 1d); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 sideband_kin_1d
@@ -434,6 +452,9 @@ TH1F pkin_W_coinpeak_kin_6c            'SHMS W (coin peak kin 6c); W (GeV); Coun
 TH1F pkin_W_sideband_kin_6c            'SHMS W  (sideband kin 6c); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 sideband_kin_6c
 TH1F pkin_W_coinpeak_kin_7c            'SHMS W (coin peak kin 7c); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 coinpeak_kin_7c
 TH1F pkin_W_sideband_kin_7c            'SHMS W  (sideband kin 7c); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 sideband_kin_7c
+
+TH1F pkin_W_coinpeak_group1_3a            'SHMS W (coin peak  group 3a); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 coinpeak_group1_3a
+TH1F pkin_W_sideband_group1_3a            'SHMS W  (sideband  group 3a); W (GeV); Count / 0.001 GeV;' P.kin.primary.W 120 0.6 1.8 sideband_group1_3a
 
 TH2F hW_vs_th_pq 'W vs thpq_{cm} (ccleantrack); thpq_{cm} (deg); W (GeV)' 180.0/3.141592*H.kin.secondary.thx_cm P.kin.primary.W 180 0 90 120 0.6 1.8 ccleantrack
 TH2F hQ2_vs_W 'Q2 vs W (ccleantrack); W (GeV); Q2 (GeV2)' P.kin.primary.W P.kin.primary.Q2 180 0.6 1.8 100 0 0.1 ccleantrack

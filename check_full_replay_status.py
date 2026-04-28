@@ -18,6 +18,8 @@ for runs in data:
         print("{} run {} full replay size is too small".format(configuration, run))
       if "c" in configuration:
         print("{} run {} full replay exists".format(configuration, run))
+      if "e" in configuration:
+        print("{} run {} full replay exists".format(configuration, run))
     else:
       print("{} run {} full replay does not exist".format(configuration, run))
     
