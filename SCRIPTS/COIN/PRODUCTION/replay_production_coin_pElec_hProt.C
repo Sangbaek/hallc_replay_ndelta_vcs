@@ -134,11 +134,11 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   gHaEvtHandlers->Add(pscaler);
 
   //Add SHMS event handler for helicity scalers
-  THcHelicityScaler *phelscaler = new THcHelicityScaler("P", "Hall C helicity scaler");
+  //  THcHelicityScaler *phelscaler = new THcHelicityScaler("P", "Hall C helicity scaler");
   //phelscaler->SetDebugFile("PHelScaler.txt");
-  phelscaler->SetROC(8);   
-  phelscaler->SetUseFirstEvent(kTRUE); 
-  gHaEvtHandlers->Add(phelscaler); 
+  //  phelscaler->SetROC(8);   
+  //  phelscaler->SetUseFirstEvent(kTRUE); 
+  //  gHaEvtHandlers->Add(phelscaler); 
   
   //=:=:=
   // HMS 
