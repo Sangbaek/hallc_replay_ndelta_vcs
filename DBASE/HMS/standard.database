@@ -1,3 +1,7 @@
-0-99999
+0-26065
 g_ctp_parm_filename       = "DBASE/HMS/general_cosmics.param"
+g_ctp_kinematics_filename = "DBASE/HMS/standard.kinematics"
+
+26066-99999
+g_ctp_parm_filename       = "DBASE/HMS/general.param"
 g_ctp_kinematics_filename = "DBASE/HMS/standard.kinematics"
