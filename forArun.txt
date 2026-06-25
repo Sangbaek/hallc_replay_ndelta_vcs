@@ -1,0 +1,49 @@
+
+****************************************
+***** Step  1 **************************
+****************************************
+Replay run from go_analysis dir.
+
+hcana -b -q 'SCRIPTS/COIN/TIMING/replay_no_timing_windows_coin.C(26557,50000)'
+
+
+****************************************
+***** Step  2 **************************
+****************************************
+Replay calibration script
+
+> hcana
+hcana [0] .L CALIBRATION/set_timing_windows/timing_window_setup.C
+hcana [1] run_coin_timing_windows("ROOTfiles/coin_noTimingWindows_26557_50000.root", "practice.root", 26557, true, 40)
+
+(These are the arguments: void run_coin_timing_windows(TString file_name, TString out_file, int RunNumber, bool newWindows = false, double width = 40.))
+
+****************************************
+***** Step  3 **************************
+****************************************
+This produces practice.root.  Open with TBrowser or make PDF with makePDF.C
+
+cdaq@cdaql1:~/ndelta_vcs2-2026/hallc_replay_ndelta_vcs> more makePDF.C
+
+TFile *f = TFile::Open("windows.root");  // CHANGE THIS TO YOUR ROOTFile NAME !!!!!!
+
+// Open the PDF
+TCanvas *c = new TCanvas();
+c->Print("output.pdf[");
+
+// Loop over all objects in the file
+TIter next(f->GetListOfKeys());
+TKey *key;
+
+while ((key = (TKey*)next())) {
+    TObject *obj = key->ReadObj();
+
+    if (obj->InheritsFrom("TCanvas")) {
+        TCanvas *can = (TCanvas*)obj;
+        can->Draw();
+        can->Print("output.pdf");   // add page
+    }
+}
+
+// Close the PDF
+c->Print("output.pdf]");
