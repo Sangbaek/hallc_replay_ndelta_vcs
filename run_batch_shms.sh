@@ -151,26 +151,26 @@ replayReport="${reportFileDir}/replayReport_${spec}_production_${runNum}_${numEv
 } 2>&1 | tee "${replayReport}"
 
 
-{
-    #read -p "Enter a text body for the log entry (or leave blank): " logCaption
-    #echo "$logCaption" >caption.txt
-    touch caption.txt
-   if [ "$numEvents" -eq -1 ]; then
-      title="Full replay plots for run ${runNum}"
-    else
-      title="$((numEvents / 1000))k replay plots for run ${runNum}"
-   fi
-   /site/ace/certified/apps/bin/logentry \
-       -cert /home/cdaq/.elogcert \
-       -t "$title" \
-       -e cdaq \
-       -l HCLOG \
-       -a "./HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf" \
-       -b "caption.txt"
-#       -a ${latestMonPdfFile} \
-#       -a ${latestMonPdfFilehms} \
-#       -a ${latestMonPdfFileshms} \
+# {
+#     #read -p "Enter a text body for the log entry (or leave blank): " logCaption
+#     #echo "$logCaption" >caption.txt
+#     touch caption.txt
+#    if [ "$numEvents" -eq -1 ]; then
+#       title="Full replay plots for run ${runNum}"
+#     else
+#       title="$((numEvents / 1000))k replay plots for run ${runNum}"
+#    fi
+#    /site/ace/certified/apps/bin/logentry \
+#        -cert /home/cdaq/.elogcert \
+#        -t "$title" \
+#        -e cdaq \
+#        -l HCLOG \
+#        -a "./HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf" \
+#        -b "caption.txt"
+# #       -a ${latestMonPdfFile} \
+# #       -a ${latestMonPdfFilehms} \
+# #       -a ${latestMonPdfFileshms} \
 
    
-   rm -rf "caption.txt"
-}
+#    rm -rf "caption.txt"
+# }
