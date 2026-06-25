@@ -3,6 +3,7 @@ block T.coin.*tdcTimeRaw
 block CTime.epCoinTime_ROC2
 block P.kin.primary.W
 block P.kin.primary.Q2
+block P.react.*
 block H.kin.secondary.emiss
 block H.kin.secondary.pmiss
 block H.kin.secondary.thx_cm
@@ -11,6 +12,7 @@ block H.dc.xp_fp
 block H.dc.y_fp
 block H.dc.yp_fp
 block g*
+block H.react.*
 
 #include "DEF-files/SHMS/PRODUCTION/DC/pdc_vars.def"
 #include "DEF-files/SHMS/PRODUCTION/GTR/pgtr_vars.def"

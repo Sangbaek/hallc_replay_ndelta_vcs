@@ -5,6 +5,7 @@ pcleantrack        P.gtr.index > -1
 ccleantrack        hcleantrack && pcleantrack
 
 coin_ndelta       abs(CTime.epCoinTime_ROC2-160) < 10 
+coin_vcs2         abs(CTime.epCoinTime_ROC2-160) < 10 
 sideband1         abs(CTime.epCoinTime_ROC2-180) < 10 
 sideband2         abs(CTime.epCoinTime_ROC2-140) < 10 
 sideband          sideband1 || sideband2
@@ -26,67 +27,136 @@ pbetacut_proton     H.gtr.beta > 0.3 && H.gtr.beta < 0.6
 pcoincut_ep         ccleantrack && pselect_e_cut && pbetacut_proton
 
 h_mom_acc_cut       H.gtr.dp >-8.0 && H.gtr.dp <8.0
+h_mom_high_cut      H.gtr.dp>8.0
+h_mom_low_cut       H.gtr.dp<-8.0
 p_mom_acc_cut       P.gtr.dp > -10 && P.gtr.dp < 22
 
 detector_cut        h_mom_acc_cut && p_mom_acc_cut && pselect_e_cut # Bill's log 4482768
 
-W_cut               abs(P.kin.primary.W - 1.230) < 0.005 # +- 5 MeV universal for all ndelta
+W_cut               abs(P.kin.primary.W - 1.230) < 0.05 # +- 5 MeV universal for all ndelta
+
+#Q2_cut_vcs2_a        abs(P.kin.primary.Q2 - 0.05 ) < 0.01 # same for *d settings
+Q2_cut_vcs2_c        abs(P.kin.primary.Q2 - 0.25 ) < 0.01 # same for *a settings
+
+th_pq_cut_vcs2_1c    abs(H.kin.secondary.thx_cm * 180/3.141952 - 10) < 5
+th_pq_cut_vcs2_2c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 10) < 5
+th_pq_cut_vcs2_3c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 30) < 5
+th_pq_cut_vcs2_4c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 30) < 5
+th_pq_cut_vcs2_5c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 50) < 5
+th_pq_cut_vcs2_6c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 50) < 5
+th_pq_cut_vcs2_7c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 65) < 5
+
+vcs2_cut_vcs2_1c     W_cut && Q2_cut_vcs2_c && th_pq_cut_vcs2_1c
+vcs2_cut_vcs2_2c     W_cut && Q2_cut_vcs2_c && th_pq_cut_vcs2_2c
+vcs2_cut_vcs2_3c     W_cut && Q2_cut_vcs2_c && th_pq_cut_vcs2_3c
+vcs2_cut_vcs2_4c     W_cut && Q2_cut_vcs2_c && th_pq_cut_vcs2_4c
+vcs2_cut_vcs2_5c     W_cut && Q2_cut_vcs2_c && th_pq_cut_vcs2_5c
+vcs2_cut_vcs2_6c     W_cut && Q2_cut_vcs2_c && th_pq_cut_vcs2_6c
+vcs2_cut_vcs2_7c     W_cut && Q2_cut_vcs2_c && th_pq_cut_vcs2_7c
+
+ana_vcs2_1c          vcs2_cut_vcs2_1c && detector_cut
+ana_vcs2_2c          vcs2_cut_vcs2_2c && detector_cut
+ana_vcs2_3c          vcs2_cut_vcs2_3c && detector_cut
+ana_vcs2_4c          vcs2_cut_vcs2_4c && detector_cut
+ana_vcs2_5c          vcs2_cut_vcs2_5c && detector_cut
+ana_vcs2_6c          vcs2_cut_vcs2_6c && detector_cut
+ana_vcs2_7c          vcs2_cut_vcs2_7c && detector_cut
+
+coinpeak_vcs2_1c     coin_vcs2 && ana_vcs2_1c
+coinpeak_vcs2_2c     coin_vcs2 && ana_vcs2_2c
+coinpeak_vcs2_3c     coin_vcs2 && ana_vcs2_3c
+coinpeak_vcs2_4c     coin_vcs2 && ana_vcs2_4c
+coinpeak_vcs2_5c     coin_vcs2 && ana_vcs2_5c
+coinpeak_vcs2_6c     coin_vcs2 && ana_vcs2_6c
+coinpeak_vcs2_7c     coin_vcs2 && ana_vcs2_7c
+
+sideband_vcs2_1c     sideband && ana_vcs2_1c
+sideband_vcs2_2c     sideband && ana_vcs2_2c
+sideband_vcs2_3c     sideband && ana_vcs2_3c
+sideband_vcs2_4c     sideband && ana_vcs2_4c
+sideband_vcs2_5c     sideband && ana_vcs2_5c
+sideband_vcs2_6c     sideband && ana_vcs2_6c
+sideband_vcs2_7c     sideband && ana_vcs2_7c
+
+#th_pq_cut_vcs2_1a    abs(H.kin.secondary.thx_cm * 180/3.141952 - 20) < 5
+#th_pq_cut_vcs2_2a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 20) < 5
+#th_pq_cut_vcs2_3a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 31) < 5
+#th_pq_cut_vcs2_4a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 31) < 5
+#th_pq_cut_vcs2_5a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 47) < 5
+#th_pq_cut_vcs2_6a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 70) < 5
+#
+#vcs2_cut_vcs2_1a     W_cut && Q2_cut_vcs2_a && th_pq_cut_vcs2_1a
+#vcs2_cut_vcs2_2a     W_cut && Q2_cut_vcs2_a && th_pq_cut_vcs2_2a
+#vcs2_cut_vcs2_3a     W_cut && Q2_cut_vcs2_a && th_pq_cut_vcs2_3a
+#vcs2_cut_vcs2_4a     W_cut && Q2_cut_vcs2_a && th_pq_cut_vcs2_4a
+#vcs2_cut_vcs2_5a     W_cut && Q2_cut_vcs2_a && th_pq_cut_vcs2_5a
+#vcs2_cut_vcs2_6a     W_cut && Q2_cut_vcs2_a && th_pq_cut_vcs2_6a
+#
+#ana_vcs2_1a          vcs2_cut_vcs2_1a && detector_cut
+#ana_vcs2_2a          vcs2_cut_vcs2_2a && detector_cut
+#ana_vcs2_3a          vcs2_cut_vcs2_3a && detector_cut
+#ana_vcs2_4a          vcs2_cut_vcs2_4a && detector_cut
+#ana_vcs2_5a          vcs2_cut_vcs2_5a && detector_cut
+#ana_vcs2_6a          vcs2_cut_vcs2_6a && detector_cut
+#
+#coinpeak_vcs2_1a     coin_vcs2 && ana_vcs2_1a
+#coinpeak_vcs2_2a     coin_vcs2 && ana_vcs2_2a
+#coinpeak_vcs2_3a     coin_vcs2 && ana_vcs2_3a
+#coinpeak_vcs2_4a     coin_vcs2 && ana_vcs2_4a
+#coinpeak_vcs2_5a     coin_vcs2 && ana_vcs2_5a
+#coinpeak_vcs2_6a     coin_vcs2 && ana_vcs2_6a
+#
+#sideband_vcs2_1a     sideband && ana_vcs2_1a
+#sideband_vcs2_2a     sideband && ana_vcs2_2a
+#sideband_vcs2_3a     sideband && ana_vcs2_3a
+#sideband_vcs2_4a     sideband && ana_vcs2_4a
+#sideband_vcs2_5a     sideband && ana_vcs2_5a
+#sideband_vcs2_6a     sideband && ana_vcs2_6a
 
 #Q2_cut_kin_d        abs(P.kin.primary.Q2 - 0.05 ) < 0.005 # same for *d settings
 #Q2_cut_kin_a        abs(P.kin.primary.Q2 - 0.026 ) < 0.005 # same for *a settings
 #Q2_cut_kin_b        abs(P.kin.primary.Q2 - 0.032 ) < 0.005 # same for *b settings
-Q2_cut_kin_c        abs(P.kin.primary.Q2 - 0.04 ) < 0.005 # same for *c settings
-Q2_cut_kin_group1   abs(P.kin.primary.Q2 - 0.05 ) < 0.005 # same for group1
+#Q2_cut_kin_c        abs(P.kin.primary.Q2 - 0.04 ) < 0.005 # same for *c settings
 
-th_pq_cut_kin_1c    H.kin.secondary.thx_cm * 180/3.141952 < 10
-th_pq_cut_kin_2c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 17.5) < 3
-th_pq_cut_kin_3c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 27.5) < 3
-th_pq_cut_kin_4c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 35) < 3
-th_pq_cut_kin_5c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 55) < 3
-th_pq_cut_kin_6c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 75) < 3
-th_pq_cut_kin_7c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 85) < 3
+#th_pq_cut_kin_1c    H.kin.secondary.thx_cm * 180/3.141952 < 10
+#th_pq_cut_kin_2c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 17.5) < 3
+#th_pq_cut_kin_3c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 27.5) < 3
+#th_pq_cut_kin_4c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 35) < 3
+#th_pq_cut_kin_5c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 55) < 3
+#th_pq_cut_kin_6c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 75) < 3
+#th_pq_cut_kin_7c    abs(H.kin.secondary.thx_cm * 180/3.141592 - 85) < 3
 
-kine_cut_kin_1c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_1c
-kine_cut_kin_2c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_2c
-kine_cut_kin_3c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_3c
-kine_cut_kin_4c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_4c
-kine_cut_kin_5c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_5c
-kine_cut_kin_6c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_6c
-kine_cut_kin_7c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_7c
+#kine_cut_kin_1c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_1c
+#kine_cut_kin_2c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_2c
+#kine_cut_kin_3c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_3c
+#kine_cut_kin_4c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_4c
+#kine_cut_kin_5c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_5c
+#kine_cut_kin_6c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_6c
+#kine_cut_kin_7c     W_cut && Q2_cut_kin_c && th_pq_cut_kin_7c
 
-ana_kin_1c          kine_cut_kin_1c && detector_cut
-ana_kin_2c          kine_cut_kin_2c && detector_cut
-ana_kin_3c          kine_cut_kin_3c && detector_cut
-ana_kin_4c          kine_cut_kin_4c && detector_cut
-ana_kin_5c          kine_cut_kin_5c && detector_cut
-ana_kin_6c          kine_cut_kin_6c && detector_cut
-ana_kin_7c          kine_cut_kin_7c && detector_cut
+#ana_kin_1c          kine_cut_kin_1c && detector_cut
+#ana_kin_2c          kine_cut_kin_2c && detector_cut
+#ana_kin_3c          kine_cut_kin_3c && detector_cut
+#ana_kin_4c          kine_cut_kin_4c && detector_cut
+#ana_kin_5c          kine_cut_kin_5c && detector_cut
+#ana_kin_6c          kine_cut_kin_6c && detector_cut
+#ana_kin_7c          kine_cut_kin_7c && detector_cut
 
-coinpeak_kin_1c     coin_ndelta && ana_kin_1c
-coinpeak_kin_2c     coin_ndelta && ana_kin_2c
-coinpeak_kin_3c     coin_ndelta && ana_kin_3c
-coinpeak_kin_4c     coin_ndelta && ana_kin_4c
-coinpeak_kin_5c     coin_ndelta && ana_kin_5c
-coinpeak_kin_6c     coin_ndelta && ana_kin_6c
-coinpeak_kin_7c     coin_ndelta && ana_kin_7c
+#coinpeak_kin_1c     coin_ndelta && ana_kin_1c
+#coinpeak_kin_2c     coin_ndelta && ana_kin_2c
+#coinpeak_kin_3c     coin_ndelta && ana_kin_3c
+#coinpeak_kin_4c     coin_ndelta && ana_kin_4c
+#coinpeak_kin_5c     coin_ndelta && ana_kin_5c
+#coinpeak_kin_6c     coin_ndelta && ana_kin_6c
+#coinpeak_kin_7c     coin_ndelta && ana_kin_7c
 
-sideband_kin_1c     sideband && ana_kin_1c
-sideband_kin_2c     sideband && ana_kin_2c
-sideband_kin_3c     sideband && ana_kin_3c
-sideband_kin_4c     sideband && ana_kin_4c
-sideband_kin_5c     sideband && ana_kin_5c
-sideband_kin_6c     sideband && ana_kin_6c
-sideband_kin_7c     sideband && ana_kin_7c
-
-th_pq_cut_group1_3a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 31) < 3
-
-kine_cut_group1_3a     W_cut && Q2_cut_kin_c && th_pq_cut_group1_3a
-
-ana_group1_3a          kine_cut_group1_3a && detector_cut
-
-coinpeak_group1_3a     coin_ndelta && ana_group1_3a
-
-sideband_group1_3a     sideband && ana_group1_3a
+#sideband_kin_1c     sideband && ana_kin_1c
+#sideband_kin_2c     sideband && ana_kin_2c
+#sideband_kin_3c     sideband && ana_kin_3c
+#sideband_kin_4c     sideband && ana_kin_4c
+#sideband_kin_5c     sideband && ana_kin_5c
+#sideband_kin_6c     sideband && ana_kin_6c
+#sideband_kin_7c     sideband && ana_kin_7c
 
 #th_pq_cut_kin_1b    H.kin.secondary.thx_cm * 180/3.141952 < 10
 #th_pq_cut_kin_2b    abs(H.kin.secondary.thx_cm * 180/3.141592 - 17.5) < 3
@@ -95,7 +165,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #th_pq_cut_kin_5b    abs(H.kin.secondary.thx_cm * 180/3.141592 - 55) < 3
 #th_pq_cut_kin_6b    abs(H.kin.secondary.thx_cm * 180/3.141592 - 75) < 3
 #th_pq_cut_kin_7b    abs(H.kin.secondary.thx_cm * 180/3.141592 - 85) < 3
-#
+
 #kine_cut_kin_1b     W_cut && Q2_cut_kin_b && th_pq_cut_kin_1b
 #kine_cut_kin_2b     W_cut && Q2_cut_kin_b && th_pq_cut_kin_2b
 #kine_cut_kin_3b     W_cut && Q2_cut_kin_b && th_pq_cut_kin_3b
@@ -103,7 +173,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #kine_cut_kin_5b     W_cut && Q2_cut_kin_b && th_pq_cut_kin_5b
 #kine_cut_kin_6b     W_cut && Q2_cut_kin_b && th_pq_cut_kin_6b
 #kine_cut_kin_7b     W_cut && Q2_cut_kin_b && th_pq_cut_kin_7b
-#
+
 #ana_kin_1b          kine_cut_kin_1b && detector_cut
 #ana_kin_2b          kine_cut_kin_2b && detector_cut
 #ana_kin_3b          kine_cut_kin_3b && detector_cut
@@ -111,7 +181,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #ana_kin_5b          kine_cut_kin_5b && detector_cut
 #ana_kin_6b          kine_cut_kin_6b && detector_cut
 #ana_kin_7b          kine_cut_kin_7b && detector_cut
-#
+
 #coinpeak_kin_1b     coin_ndelta && ana_kin_1b
 #coinpeak_kin_2b     coin_ndelta && ana_kin_2b
 #coinpeak_kin_3b     coin_ndelta && ana_kin_3b
@@ -119,7 +189,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #coinpeak_kin_5b     coin_ndelta && ana_kin_5b
 #coinpeak_kin_6b     coin_ndelta && ana_kin_6b
 #coinpeak_kin_7b     coin_ndelta && ana_kin_7b
-#
+
 #sideband_kin_1b     sideband && ana_kin_1b
 #sideband_kin_2b     sideband && ana_kin_2b
 #sideband_kin_3b     sideband && ana_kin_3b
@@ -135,7 +205,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #th_pq_cut_kin_5a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 55) < 3
 #th_pq_cut_kin_6a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 75) < 3
 #th_pq_cut_kin_7a    abs(H.kin.secondary.thx_cm * 180/3.141592 - 85) < 3
-#
+
 #kine_cut_kin_1a     W_cut && Q2_cut_kin_a && th_pq_cut_kin_1a
 #kine_cut_kin_2a     W_cut && Q2_cut_kin_a && th_pq_cut_kin_2a
 #kine_cut_kin_3a     W_cut && Q2_cut_kin_a && th_pq_cut_kin_3a
@@ -143,7 +213,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #kine_cut_kin_5a     W_cut && Q2_cut_kin_a && th_pq_cut_kin_5a
 #kine_cut_kin_6a     W_cut && Q2_cut_kin_a && th_pq_cut_kin_6a
 #kine_cut_kin_7a     W_cut && Q2_cut_kin_a && th_pq_cut_kin_7a
-#
+
 #ana_kin_1a          kine_cut_kin_1a && detector_cut
 #ana_kin_2a          kine_cut_kin_2a && detector_cut
 #ana_kin_3a          kine_cut_kin_3a && detector_cut
@@ -151,7 +221,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #ana_kin_5a          kine_cut_kin_5a && detector_cut
 #ana_kin_6a          kine_cut_kin_6a && detector_cut
 #ana_kin_7a          kine_cut_kin_7a && detector_cut
-#
+
 #coinpeak_kin_1a     coin_ndelta && ana_kin_1a
 #coinpeak_kin_2a     coin_ndelta && ana_kin_2a
 #coinpeak_kin_3a     coin_ndelta && ana_kin_3a
@@ -159,7 +229,7 @@ sideband_group1_3a     sideband && ana_group1_3a
 #coinpeak_kin_5a     coin_ndelta && ana_kin_5a
 #coinpeak_kin_6a     coin_ndelta && ana_kin_6a
 #coinpeak_kin_7a     coin_ndelta && ana_kin_7a
-#
+
 #sideband_kin_1a     sideband && ana_kin_1a
 #sideband_kin_2a     sideband && ana_kin_2a
 #sideband_kin_3a     sideband && ana_kin_3a
@@ -167,37 +237,36 @@ sideband_group1_3a     sideband && ana_group1_3a
 #sideband_kin_5a     sideband && ana_kin_5a
 #sideband_kin_6a     sideband && ana_kin_6a
 #sideband_kin_7a     sideband && ana_kin_7a
-#
-##th_pq_cut_kin_1d    H.kin.secondary.thx_cm * 180/3.141952 < 10
-##th_pq_cut_kin_2d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 17.5) < 3
-##th_pq_cut_kin_3d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 33) < 3
-##th_pq_cut_kin_5d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 55) < 3
-##th_pq_cut_kin_6d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 75) < 3
-##th_pq_cut_kin_7d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 85) < 3
-##
-##kine_cut_kin_1d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_1d
-##kine_cut_kin_2d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_2d
-##kine_cut_kin_3d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_3d
-##kine_cut_kin_5d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_5d
-##kine_cut_kin_6d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_6d
-##kine_cut_kin_7d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_7d
-##ana_kin_1d          kine_cut_kin_1d && detector_cut
-##ana_kin_2d          kine_cut_kin_2d && detector_cut
-##ana_kin_3d          kine_cut_kin_3d && detector_cut
-##ana_kin_5d          kine_cut_kin_5d && detector_cut
-##ana_kin_6d          kine_cut_kin_6d && detector_cut
-##ana_kin_7d          kine_cut_kin_7d && detector_cut
-##coinpeak_kin_1d     coin_ndelta && ana_kin_1d
-##coinpeak_kin_2d     coin_ndelta && ana_kin_2d
-##coinpeak_kin_3d     coin_ndelta && ana_kin_3d
-##coinpeak_kin_4d     coinpeak_kin_3d
-##coinpeak_kin_5d     coin_ndelta && ana_kin_5d
-##coinpeak_kin_6d     coin_ndelta && ana_kin_6d
-##coinpeak_kin_7d     coin_ndelta && ana_kin_7d
-##sideband_kin_1d     sideband && ana_kin_1d
-##sideband_kin_2d     sideband && ana_kin_2d
-##sideband_kin_3d     sideband && ana_kin_3d
-##sideband_kin_4d     sideband_kin_3d
-##sideband_kin_5d     sideband && ana_kin_5d
-##sideband_kin_6d     sideband && ana_kin_6d
-##sideband_kin_7d     sideband && ana_kin_7d
+
+#th_pq_cut_kin_1d    H.kin.secondary.thx_cm * 180/3.141952 < 10
+#th_pq_cut_kin_2d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 17.5) < 3
+#th_pq_cut_kin_3d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 33) < 3
+#th_pq_cut_kin_5d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 55) < 3
+#th_pq_cut_kin_6d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 75) < 3
+#th_pq_cut_kin_7d    abs(H.kin.secondary.thx_cm * 180/3.141592 - 85) < 3
+#kine_cut_kin_1d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_1d
+#kine_cut_kin_2d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_2d
+#kine_cut_kin_3d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_3d
+#kine_cut_kin_5d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_5d
+#kine_cut_kin_6d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_6d
+#kine_cut_kin_7d     W_cut && Q2_cut_kin_d && th_pq_cut_kin_7d
+#ana_kin_1d          kine_cut_kin_1d && detector_cut
+#ana_kin_2d          kine_cut_kin_2d && detector_cut
+#ana_kin_3d          kine_cut_kin_3d && detector_cut
+#ana_kin_5d          kine_cut_kin_5d && detector_cut
+#ana_kin_6d          kine_cut_kin_6d && detector_cut
+#ana_kin_7d          kine_cut_kin_7d && detector_cut
+#coinpeak_kin_1d     coin_ndelta && ana_kin_1d
+#coinpeak_kin_2d     coin_ndelta && ana_kin_2d
+#coinpeak_kin_3d     coin_ndelta && ana_kin_3d
+#coinpeak_kin_4d     coinpeak_kin_3d
+#coinpeak_kin_5d     coin_ndelta && ana_kin_5d
+#coinpeak_kin_6d     coin_ndelta && ana_kin_6d
+#coinpeak_kin_7d     coin_ndelta && ana_kin_7d
+#sideband_kin_1d     sideband && ana_kin_1d
+#sideband_kin_2d     sideband && ana_kin_2d
+#sideband_kin_3d     sideband && ana_kin_3d
+#sideband_kin_4d     sideband_kin_3d
+#sideband_kin_5d     sideband && ana_kin_5d
+#sideband_kin_6d     sideband && ana_kin_6d
+#sideband_kin_7d     sideband && ana_kin_7d

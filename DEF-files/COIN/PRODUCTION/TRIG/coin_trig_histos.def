@@ -8,8 +8,8 @@ TH1F hadc_ref 'FADC Reference Time ROC1 (Hodo 1x-); time (ns); counts' H.hod.1x.
 TH1F htdc_ref 'TDC Reference Time ROC1 (Hodo 1x-); time (ns); counts' H.hod.1x.NegTdcRefTime*.09766 250 0 2000
 TH1F hdc_ref 'TDC Reference Time ROC3 (DC 1x1); time (ns); counts' H.dc.1x1.RefTime*.09766 250 0 2000
 
-TH2F hcoin_win 'FADC Reference SHMS Vs HMS; time (ns); time (ns)' (T.coin.pFADC_TREF_ROC2_adcPulseTimeRaw)/16. (T.coin.hFADC_TREF_ROC1_adcPulseTimeRaw)/16. 300 250 400 300 400 550
-TH2F hcoin_win_cut 'SHMS Vs HMS CoinTime cut; time (ns); time (ns)' (T.coin.pFADC_TREF_ROC2_adcPulseTimeRaw)/16. (T.coin.hFADC_TREF_ROC1_adcPulseTimeRaw)/16. 300 250 400 300 400 550 coin_ndelta
+TH2F hcoin_win 'FADC Reference SHMS Vs HMS; time (ns); time (ns)' (T.coin.pFADC_TREF_ROC2_adcPulseTimeRaw)/16. (T.coin.hFADC_TREF_ROC1_adcPulseTimeRaw)/16. 300 250 400 400 350 550
+TH2F hcoin_win_cut 'SHMS Vs HMS CoinTime cut; time (ns); time (ns)' (T.coin.pFADC_TREF_ROC2_adcPulseTimeRaw)/16. (T.coin.hFADC_TREF_ROC1_adcPulseTimeRaw)/16. 300 250 400 400 350 550 coin_ndelta
 
 TH1F ppr_raw_atime 'SHMS Preshower ADC Time; time (ch); counts' P.cal.pr.negAdcPulseTimeRaw 100 0 8000
 TH1F pcal_raw_atime 'SHMS Shower ADC Time; time (ch); counts' P.cal.fly.adcPulseTimeRaw 100 0 8000
@@ -27,72 +27,23 @@ TH1F hhodo_raw_ttime 'HMS Hodoscope TDC Time; time (ch); counts' H.hod.1x.negTdc
 TH1F hdc_raw_ttime 'HMS Drift Chamber  TDC Time; time (ch); counts' H.dc.1x1.rawnorefcorrtdc 100 0 10000
 
 ############################
-#  Ndelta
+#  VCS2-Ndelta
 ############################
 TH1F hcoin 'CTime.epCoinTime_ROC2 No Cuts; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 
-#TH1F hcoin_coinpeak_kin_1d 'CTime.epCoinTime_ROC2 coinpeak 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_1d
-#TH1F hcoin_sideband_kin_1d 'CTime.epCoinTime_ROC2 sideband 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_1d
-#TH1F hcoin_coinpeak_kin_2d 'CTime.epCoinTime_ROC2 coinpeak 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_2d
-#TH1F hcoin_sideband_kin_2d 'CTime.epCoinTime_ROC2 sideband 2d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_2d
-#TH1F hcoin_coinpeak_kin_3d 'CTime.epCoinTime_ROC2 coinpeak 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_3d
-#TH1F hcoin_sideband_kin_3d 'CTime.epCoinTime_ROC2 sideband 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_3d
-#TH1F hcoin_coinpeak_kin_4d 'CTime.epCoinTime_ROC2 coinpeak 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_4d
-#TH1F hcoin_sideband_kin_4d 'CTime.epCoinTime_ROC2 sideband 3d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_4d
-#TH1F hcoin_coinpeak_kin_5d 'CTime.epCoinTime_ROC2 coinpeak 5d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_5d
-#TH1F hcoin_sideband_kin_5d 'CTime.epCoinTime_ROC2 sideband 5d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_5d
-#TH1F hcoin_coinpeak_kin_6d 'CTime.epCoinTime_ROC2 coinpeak 6d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_6d
-#TH1F hcoin_sideband_kin_6d 'CTime.epCoinTime_ROC2 sideband 6d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_6d
-#TH1F hcoin_coinpeak_kin_7d 'CTime.epCoinTime_ROC2 coinpeak 7d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_7d
-#TH1F hcoin_sideband_kin_7d 'CTime.epCoinTime_ROC2 sideband 7d; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_7d
+TH1F hcoin_coinpeak_vcs2_7c 'CTime.epCoinTime_ROC2 coinpeak vcs2 7c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_vcs2_7c
+TH1F hcoin_sideband_vcs2_7c 'CTime.epCoinTime_ROC2 sideband vcs2 7c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_vcs2_7c
+TH1F hcoin_coinpeak_vcs2_6c 'CTime.epCoinTime_ROC2 coinpeak vcs2 6c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_vcs2_6c
+TH1F hcoin_sideband_vcs2_6c 'CTime.epCoinTime_ROC2 sideband vcs2 6c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_vcs2_6c
 
-#TH1F hcoin_coinpeak_kin_1a 'CTime.epCoinTime_ROC2 coinpeak 1a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_1a
-#TH1F hcoin_sideband_kin_1a 'CTime.epCoinTime_ROC2 sideband 1a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_1a
-#TH1F hcoin_coinpeak_kin_2a 'CTime.epCoinTime_ROC2 coinpeak 2a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_2a
-#TH1F hcoin_sideband_kin_2a 'CTime.epCoinTime_ROC2 sideband 2a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_2a
-#TH1F hcoin_coinpeak_kin_3a 'CTime.epCoinTime_ROC2 coinpeak 3a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_3a
-#TH1F hcoin_sideband_kin_3a 'CTime.epCoinTime_ROC2 sideband 3a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_3a
-#TH1F hcoin_coinpeak_kin_4a 'CTime.epCoinTime_ROC2 coinpeak 4a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_4a
-#TH1F hcoin_sideband_kin_4a 'CTime.epCoinTime_ROC2 sideband 4a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_4a
-#TH1F hcoin_coinpeak_kin_5a 'CTime.epCoinTime_ROC2 coinpeak 5a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_5a
-#TH1F hcoin_sideband_kin_5a 'CTime.epCoinTime_ROC2 sideband 5a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_5a
-#TH1F hcoin_coinpeak_kin_6a 'CTime.epCoinTime_ROC2 coinpeak 6a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_6a
-#TH1F hcoin_sideband_kin_6a 'CTime.epCoinTime_ROC2 sideband 6a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_6a
-#TH1F hcoin_coinpeak_kin_7a 'CTime.epCoinTime_ROC2 coinpeak 7a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_7a
-#TH1F hcoin_sideband_kin_7a 'CTime.epCoinTime_ROC2 sideband 7a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_7a
+############################
+#   DELTA VS COINTIME
+############################
 
+TH2F hgtr_dp_vs_coin    'HMS Delta vs CTime.epCoinTime_ROC2; cointime / 1ns; HMS Delta/0.2' CTime.epCoinTime_ROC2 H.gtr.dp 100, 100, 200, 100, -10, 10 ccleantrack
+TH1F hcoin_coinpeak_h_mom_acc_cut 'CTime.epCoinTime_ROC2 (hsdelta in [-8, 8]); cointime (ns)' CTime.epCoinTime_ROC2 100 100 200 ccleantrack&&h_mom_acc_cut
+TH1F hcoin_coinpeak_h_mom_high_cut 'CTime.epCoinTime_ROC2 (hsdelta higher than 8); cointime (ns)' CTime.epCoinTime_ROC2 100 100 200 ccleantrack&&h_mom_high_cut
+TH1F hcoin_coinpeak_h_mom_low_cut 'CTime.epCoinTime_ROC2 (hsdelta lower than -8); cointime (ns)' CTime.epCoinTime_ROC2 100 100 200 ccleantrack&&h_mom_low_cut
 
-#TH1F hcoin_coinpeak_kin_1b 'CTime.epCoinTime_ROC2 coinpeak 1b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_1b
-#TH1F hcoin_sideband_kin_1b 'CTime.epCoinTime_ROC2 sideband 1b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_1b
-#TH1F hcoin_coinpeak_kin_2b 'CTime.epCoinTime_ROC2 coinpeak 2b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_2b
-#TH1F hcoin_sideband_kin_2b 'CTime.epCoinTime_ROC2 sideband 2b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_2b
-#TH1F hcoin_coinpeak_kin_3b 'CTime.epCoinTime_ROC2 coinpeak 3b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_3b
-#TH1F hcoin_sideband_kin_3b 'CTime.epCoinTime_ROC2 sideband 3b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_3b
-#TH1F hcoin_coinpeak_kin_4b 'CTime.epCoinTime_ROC2 coinpeak 4b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_4b
-#TH1F hcoin_sideband_kin_4b 'CTime.epCoinTime_ROC2 sideband 4b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_4b
-#TH1F hcoin_coinpeak_kin_5b 'CTime.epCoinTime_ROC2 coinpeak 5b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_5b
-#TH1F hcoin_sideband_kin_5b 'CTime.epCoinTime_ROC2 sideband 5b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_5b
-#TH1F hcoin_coinpeak_kin_6b 'CTime.epCoinTime_ROC2 coinpeak 6b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_6b
-#TH1F hcoin_sideband_kin_6b 'CTime.epCoinTime_ROC2 sideband 6b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_6b
-#TH1F hcoin_coinpeak_kin_7b 'CTime.epCoinTime_ROC2 coinpeak 7b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_7b
-#TH1F hcoin_sideband_kin_7b 'CTime.epCoinTime_ROC2 sideband 7b; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_7b
-
-TH1F hcoin_coinpeak_kin_1c 'CTime.epCoinTime_ROC2 coinpeak 1c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_1c
-TH1F hcoin_sideband_kin_1c 'CTime.epCoinTime_ROC2 sideband 1c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_1c
-TH1F hcoin_coinpeak_kin_2c 'CTime.epCoinTime_ROC2 coinpeak 2c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_2c
-TH1F hcoin_sideband_kin_2c 'CTime.epCoinTime_ROC2 sideband 2c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_2c
-TH1F hcoin_coinpeak_kin_3c 'CTime.epCoinTime_ROC2 coinpeak 3c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_3c
-TH1F hcoin_sideband_kin_3c 'CTime.epCoinTime_ROC2 sideband 3c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_3c
-TH1F hcoin_coinpeak_kin_4c 'CTime.epCoinTime_ROC2 coinpeak 4c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_4c
-TH1F hcoin_sideband_kin_4c 'CTime.epCoinTime_ROC2 sideband 4c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_4c
-TH1F hcoin_coinpeak_kin_5c 'CTime.epCoinTime_ROC2 coinpeak 5c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_5c
-TH1F hcoin_sideband_kin_5c 'CTime.epCoinTime_ROC2 sideband 5c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_5c
-TH1F hcoin_coinpeak_kin_6c 'CTime.epCoinTime_ROC2 coinpeak 6c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_6c
-TH1F hcoin_sideband_kin_6c 'CTime.epCoinTime_ROC2 sideband 6c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_6c
-TH1F hcoin_coinpeak_kin_7c 'CTime.epCoinTime_ROC2 coinpeak 7c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_kin_7c
-TH1F hcoin_sideband_kin_7c 'CTime.epCoinTime_ROC2 sideband 7c; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_kin_7c
-
-TH1F hcoin_coinpeak_group1_3a 'CTime.epCoinTime_ROC2 coinpeak group1 3a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 coinpeak_group1_3a
-TH1F hcoin_sideband_group1_3a 'CTime.epCoinTime_ROC2 sideband group1 3a; cointime (ns)' CTime.epCoinTime_ROC2 500 0 300 sideband_group1_3a
 ############################
 #   BETA VS COINTIME
 ############################

@@ -19,6 +19,7 @@ void replay_production_hms(Int_t RunNumber=0, Int_t MaxEvent=0) {
   //  const char* RunFileNamePattern = "hms_all_%05d.dat.0";
   //  const char* RunFileNamePattern = "rsidis_production_%05d.dat.0";
   const char* RunFileNamePattern = "ndelta_production_%05d.dat.0";  
+  if(RunNumber>=26562)RunFileNamePattern = "vcs2_production_%05d.dat.0";  
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
