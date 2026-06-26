@@ -299,7 +299,7 @@ void replay_production_coin_pElec_hProt (Int_t RunNumber = 0, Int_t MaxEvent = 0
   analyzer->SetOutFile(ROOTFileName.Data());
 
   // Define DEF-file+
-  if(MaxEvent>100000 || MaxEvent==-1){analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt.def");}
+  if(MaxEvent>100000 || MaxEvent==-1){analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt_calib.def");}
   else { analyzer->SetOdefFile("DEF-files/COIN/PRODUCTION/coin_production_pElec_hProt_all.def");}
 
   // Define cuts file
