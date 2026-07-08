@@ -17,8 +17,8 @@
 ;Calibration from run HCLOG 4487034 (Dave G's script)
 gNumBCMs    = 6
 gBCM_Names  = " BCM1      BCM2      Unser	BCM4A    BCM4B   BCM4C"
-gBCM_Gain   =   5775.63, 5666.85, 400.6,  11849.91, 6429.0, 14583.72
-gBCM_Offset = 2128.18, 250187.50, 361600, -335.93, 1170.92, -264.66
+gBCM_Gain   =   5775.63, 5666.85, 400.6,  11849.91, 37268.96, 14583.72
+gBCM_Offset = 2128.18, 250187.50, 361600, -335.93, -6859.65, -264.66
 
 gBCM_Current_threshold = 1.0
 ; index = 0 to gNumBCMs-1
