@@ -1,5 +1,5 @@
-void replay_no_reference_times_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
-  //Made from replay_production_coin_pElec_hProt.C
+void replay_no_reference_times_coin  (Int_t RunNumber = 0, Int_t MaxEvent = 0, Int_t Segment=0) {
+
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
     cout << "Enter a Run Number (-1 to exit): ";
@@ -11,15 +11,14 @@ void replay_no_reference_times_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
     cin >> MaxEvent;
     if(MaxEvent == 0) {
       cerr << "...Invalid entry\n";
-      exit;
     }
   }
 
   // Create file name patterns.
-  //const char* RunFileNamePattern = "coin_all_%05d.dat";
-  const char* RunFileNamePattern = "rsidis_production_%05d.dat.0";
+  // const char* RunFileNamePattern = "coin_all_%05d.dat";
+  const char* RunFileNamePattern = "ndelta_production_%05d.dat.%d";  
+  if(RunNumber>=26562)RunFileNamePattern = "vcs2_production_%05d.dat.%d";  
   vector<TString> pathList;
-  pathList.push_back("/net/cdaq/cdaql4data/hccoda/data/raw");
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
@@ -114,6 +113,8 @@ void replay_no_reference_times_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
   // Add event handler for scaler events
   THcScalerEvtHandler* pscaler = new THcScalerEvtHandler("P", "Hall C scaler event type 1");
   pscaler->AddEvtType(1);
+  pscaler->AddEvtType(2);
+  pscaler->AddEvtType(3);
   pscaler->AddEvtType(4);
   pscaler->AddEvtType(5);
   pscaler->AddEvtType(6);
@@ -179,13 +180,15 @@ void replay_no_reference_times_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
 
   // Add event handler for scaler events
   THcScalerEvtHandler *hscaler = new THcScalerEvtHandler("H", "Hall C scaler event type 4");  
+  hscaler->AddEvtType(1);
   hscaler->AddEvtType(2);
+  hscaler->AddEvtType(3);
   hscaler->AddEvtType(4);
   hscaler->AddEvtType(5);
   hscaler->AddEvtType(6);
   hscaler->AddEvtType(7);
-  hscaler->AddEvtType(129);
-  hscaler->SetDelayedType(129);
+  hscaler->AddEvtType(131);
+  hscaler->SetDelayedType(131);
   hscaler->SetUseFirstEvent(kTRUE);
   gHaEvtHandlers->Add(hscaler);
 
@@ -271,7 +274,7 @@ void replay_no_reference_times_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
 
   analyzer->SetEvent(event);
   // Set EPICS event type
-  analyzer->SetEpicsEvtType(180);
+  analyzer->SetEpicsEvtType(182);
   // Define crate map
   analyzer->SetCrateMapFileName("MAPS/db_cratemap.dat");
   // Define output ROOT file
