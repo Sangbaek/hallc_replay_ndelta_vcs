@@ -1,5 +1,5 @@
-void replay_no_reference_times_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
-  //Made from replay_production_coin_pElec_hProt.C
+void replay_no_reference_times_coin  (Int_t RunNumber = 0, Int_t MaxEvent = 0, Int_t Segment=0) {
+
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
     cout << "Enter a Run Number (-1 to exit): ";
@@ -11,15 +11,14 @@ void replay_no_reference_times_coin (Int_t RunNumber = 0, Int_t MaxEvent = 0) {
     cin >> MaxEvent;
     if(MaxEvent == 0) {
       cerr << "...Invalid entry\n";
-      exit;
     }
   }
 
   // Create file name patterns.
-  //const char* RunFileNamePattern = "coin_all_%05d.dat";
-  const char* RunFileNamePattern = "rsidis_production_%05d.dat.0";
+  // const char* RunFileNamePattern = "coin_all_%05d.dat";
+  const char* RunFileNamePattern = "ndelta_production_%05d.dat.%d";  
+  if(RunNumber>=26562)RunFileNamePattern = "vcs2_production_%05d.dat.%d";  
   vector<TString> pathList;
-  pathList.push_back("/net/cdaq/cdaql4data/hccoda/data/raw");
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
