@@ -9,6 +9,9 @@ from scratch:
     tcoin.param
     h_reftime_cut_coindaq.param
     p_reftime_cut.param
+
+Saves out diagnostic PDF plots upon successful completion in both interactive
+and non-interactive modes.
 """
 
 from __future__ import annotations
@@ -942,91 +945,20 @@ def main():
                 baseline_ref["label"] = "default parameters"
                 baseline_ref["run_num"] = "default"
 
-    # Initialize visual workspace app
+    # Initialize Visual Workspace
     app = ReftimeCutApp(args.run, channels, arrays, want_branches,
                         progress_path=None if args.non_interactive else progress_path,
                         baseline_ref=baseline_ref, this_run_ref=this_run_ref, 
                         interactive=not args.non_interactive)
 
-    if args.non_interactive:
-# Generate the diagnostic PDF report
-        pdf_path = out_dir / f"reftime_cuts_{args.run}.pdf"
-        print(f"Generating diagnostic PDF: {pdf_path}")
-        
-        from matplotlib.backends.backend_pdf import PdfPages
-        
-        # We temporarily enable interactive plotting or use a local figure 
-        # so we don't run into GUI backend issues on a headless node.
-        with PdfPages(pdf_path) as pdf:
-            fig, ax = plt.subplots(figsize=(11, 8.5))
-            
-            for idx, (name, kind) in enumerate(channels):
-                ax.clear()
-                d = app.data.get(name)
-                needed = name in NEEDED_SET
-                
-                if d is None:
-                    ax.text(0.5, 0.5, f"{name} ({kind.upper()})\nNo Data Available", 
-                            ha='center', va='center', fontsize=14)
-                    ax.set_title(f"{name} ({kind.upper()}) - Missing Branch")
-                    pdf.savefig(fig)
-                    continue
-                
-                # Draw the multi-hit histograms
-                rng = (d["data_min"], d["data_max"])
-                draw_mult_histograms(ax, d, rng, bins=300)
-                
-                # Set range with a slight margin
-                margin = 0.02 * max(rng[1] - rng[0], 1.0)
-                ax.set_xlim(rng[0] - margin, rng[1] + margin)
-                
-                # Retrieve and plot baseline/reference cuts (grey dashed)
-                ref_lo, ref_hi = app.get_reference_values(baseline_ref, name, needed)
-                ref_label = None
-                if ref_lo is not None or ref_hi is not None:
-                    ref_lo_str = f"{ref_lo:.1f}" if ref_lo is not None else "-"
-                    ref_hi_str = f"{ref_hi:.1f}" if ref_hi is not None else "-"
-                    ref_label = f"cuts-ref run {baseline_ref.get('run_num', 'default')} (lo={ref_lo_str}, hi={ref_hi_str})"
-                    
-                    for x in (ref_lo, ref_hi):
-                        if x is not None:
-                            ax.axvline(x, color="dimgray", ls="--", lw=1.0)
-                
-                # Retrieve and plot current run cuts (orange solid)
-                # Headless mode seeds results from 'this_run_ref' inside ReftimeCutApp initialization
-                stored = app.results.get(name)
-                this_label = None
-                if stored is not None and stored.lo is not None:
-                    lo, hi = stored.lo, stored.hi
-                    lo_str = f"{lo:.1f}"
-                    hi_str = f"{hi:.1f}" if hi is not None else "-"
-                    this_label = f"cuts-this run {args.run} (lo={lo_str}, hi={hi_str})"
-                    
-                    for x in (lo, hi):
-                        if x is not None:
-                            ax.axvline(x, color="orange", ls="-", lw=1.5)
-                
-                # Add dummy points to force legend entries if they exist
-                if ref_label:
-                    ax.plot([], [], color="dimgray", ls="--", label=ref_label)
-                if this_label:
-                    ax.plot([], [], color="orange", ls="-", label=this_label)
-                
-                usage = describe_channel_usage(name, kind)
-                ax.set_title(f"[{idx + 1}/{len(channels)}] {name} ({kind.upper()}) - {usage}", fontsize=10)
-                ax.legend(fontsize=8, loc="upper right")
-                
-                pdf.savefig(fig)
-            
-            plt.close(fig)
-        return
+    if not args.non_interactive:
+        app.run_interactive()
+        if not app.finished:
+            return  # Exited via Pause or window closure without completing
 
-    app.run_interactive()
-
-    if not app.finished:
-        return
-
-    # Process and write resulting modifications
+    # ==========================================================================
+    # Unified Processing on Complete (Writes .param AND compilation PDF report)
+    # ==========================================================================
     tdc_min, tdc_max = app.resolve_window_arrays()
     param_summary = app.resolve_param_values()
 
@@ -1045,6 +977,74 @@ def main():
     shms_path.write_text(generate_shms_param(
         args.run, v("pdc_tdcrefcut"), v("phodo_tdcrefcut"), v("phodo_adcrefcut"),
         v("pngcer_adcrefcut"), v("phgcer_adcrefcut"), v("paero_adcrefcut"), v("pcal_adcrefcut")))
+
+    # --- Generate PDF Report ---
+    pdf_path = out_dir / f"reftime_cuts_{args.run}.pdf"
+    print(f"Generating calibration summary report: {pdf_path}")
+    
+    from matplotlib.backends.backend_pdf import PdfPages
+    
+    # Force use a local non-interactive setup for file rendering to protect against X11 disruptions
+    fig, ax = plt.subplots(figsize=(11, 8.5))
+    
+    with PdfPages(pdf_path) as pdf:
+        for idx, (name, kind) in enumerate(channels):
+            ax.clear()
+            d = app.data.get(name)
+            needed = name in NEEDED_SET
+            
+            if d is None:
+                ax.text(0.5, 0.5, f"{name} ({kind.upper()})\nNo Data Branch Located", 
+                        ha='center', va='center', fontsize=14, color="tab:red")
+                ax.set_title(f"{name} ({kind.upper()}) - Missing Branch")
+                pdf.savefig(fig)
+                continue
+            
+            # Re-draw channel multi-hit histogram configurations
+            rng = (d["data_min"], d["data_max"])
+            draw_mult_histograms(ax, d, rng, bins=300)
+            margin = 0.02 * max(rng[1] - rng[0], 1.0)
+            ax.set_xlim(rng[0] - margin, rng[1] + margin)
+            
+            # Map out reference baseline targets
+            ref_lo, ref_hi = app.get_reference_values(baseline_ref, name, needed)
+            ref_label = None
+            if ref_lo is not None or ref_hi is not None:
+                ref_lo_str = f"{ref_lo:.1f}" if ref_lo is not None else "-"
+                ref_hi_str = f"{ref_hi:.1f}" if ref_hi is not None else "-"
+                ref_label = f"cuts-ref run {baseline_ref.get('run_num', 'default')} (lo={ref_lo_str}, hi={ref_hi_str})"
+                
+                for x in (ref_lo, ref_hi):
+                    if x is not None:
+                        ax.axvline(x, color="dimgray", ls="--", lw=1.0)
+            
+            # Map out current run selections
+            stored = app.results.get(name)
+            this_label = None
+            if stored is not None and stored.lo is not None:
+                lo, hi = stored.lo, stored.hi
+                lo_str = f"{lo:.1f}"
+                hi_str = f"{hi:.1f}" if hi is not None else "-"
+                this_label = f"cuts-this run {args.run} (lo={lo_str}, hi={hi_str})"
+                
+                for x in (lo, hi):
+                    if x is not None:
+                        ax.axvline(x, color="orange", ls="-", lw=1.5)
+            
+            # Populate transparent proxy lines for legend alignment
+            if ref_label:
+                ax.plot([], [], color="dimgray", ls="--", label=ref_label)
+            if this_label:
+                ax.plot([], [], color="orange", ls="-", label=this_label)
+            
+            usage = describe_channel_usage(name, kind)
+            ax.set_title(f"[{idx + 1}/{len(channels)}] {name} ({kind.upper()}) - {usage}", fontsize=10)
+            ax.legend(fontsize=8, loc="upper right")
+            
+            pdf.savefig(fig)
+            
+    plt.close(fig)
+    print("Run completed successfully.")
 
 
 if __name__ == "__main__":
