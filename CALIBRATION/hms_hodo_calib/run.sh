@@ -19,4 +19,7 @@ root -l -b -q 'lambda_calib_app.C(26927, "", "1", true, "1", 10.0, 100.0, "", ".
 #root -l -b -q 'lambda_calib_app.C(26138, "", "0", true, "0", 10.0, 100.0, "", "./lambda_qa", "../../PARAM", "vanilla", true, true, true, true)'
 #root -l -b -q 'lambda_calib_app.C(26927, "", "1", true, "1", 10.0, 100.0, "", "./lambda_qa", "../../PARAM", "vanilla", false, false, true, true)'
 
-
+# After the calibration, manually update the TW and VP, ex)
+# for i in {0..81}; do   sed -i '' 's/hhodo_Vpcalib/hhodo_Vpcalib_0/g' "general_${i}.param"; done
+# for i in {82..99}; do   sed -i '' 's/hhodo_Vpcalib/hhodo_Vpcalib_1/g' "general_${i}.param"; done
+# The same thing can be done for TW.
