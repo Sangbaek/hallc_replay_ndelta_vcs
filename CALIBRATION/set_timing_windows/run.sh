@@ -40,6 +40,15 @@
 #git add -f [run_number]_all_summary.pdf
 #```
 
+# After the time window was surveyed, 
+# ```
+# python3 merge_hodo_qa.py
+# ```
+# was used to generate the related hodoscope cuts.
+# Other related parts were coped from the existing hhodo_cuts.param, phodo_cuts.param
+
+
+
 # Similarly, root -l -b -q "other_det_timediff_cut_app.C(\"all\", ${runnum})";
 # will open the other detector timing cut window
 # However, this script was not used.
@@ -54,5 +63,4 @@
 #  root -l -b -q "hodo_timediff_cut_app.C(${runnum}, 0, true)";
 #done
 #echo "Do not runnum this... too slow. do verification_generator.sh"
-
 
