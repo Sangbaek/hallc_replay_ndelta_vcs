@@ -35,6 +35,13 @@
 // default/seeded range, writes the summary PDF and param/json files, exits:
 //   root -l -b -q 'timewalk_calib_app.C(26107, 26092, "", true)'
 //
+// Compare-only batch mode: fits every channel fresh (red curve) against a
+// loaded reference (black dotted curve) in the summary PDF, but NEVER
+// writes JSON/.param output -- use this to sanity-check a new fit against
+// the currently-stored calibration without touching it. Needs a
+// referenceRun/referenceTag to have anything to compare against:
+//   root -l -b -q 'timewalk_calib_app.C(26107, 26092, "", true, "", 1.0e9, "", "./timewalk_qa", "../../PARAM", 1200.0, 20.0, 300.0, true)'
+//
 // Combining several runs into one TChain (e.g. adding statistics across a
 // set of clean calibration runs), with an optional P.gtr.dp cut to keep
 // away from elastic-peak bias -- pass a comma-separated run list as the
@@ -169,6 +176,7 @@ Double_t gTwFitRangeLow = 20.0, gTwFitRangeHigh = 300.0;
 std::vector<Int_t> gRunList;  // non-empty -> BuildHistos chains all these runs together
 TString  gRunTag;             // output-file tag: single run number, or "first-last" when chained
 Double_t gDpCut = 1.0e9;      // |P.gtr.dp| < gDpCut cut; default effectively off (elastic-peak avoidance)
+Bool_t   gCompareOnly = kFALSE; // batch mode: write the summary PDF (new fit vs. reference) but never touch JSON/.param output
 
 std::vector<Channel> gChannels;
 std::map<TString, TH2F*> gHist;        // key = ChanLabel -> raw h2(amp, tdc-adc diff)
@@ -449,7 +457,11 @@ TString LegacyParamPath(const TString &tag, Bool_t staged) {
 
 void LoadReference() {
   // A referenceTag (e.g. "26483-26488", a chained-run tag) takes priority
-  // over a plain referenceRun number when both are given.
+  // over a plain referenceRun number when both are given. The literal
+  // string "vanilla" explicitly loads PARAM/SHMS/HODO/phodo_TWcalib.param
+  // (the untagged file hcana actually reads) rather than relying on a
+  // staged-tag lookup incidentally not being found.
+  if (gReferenceTag == "vanilla") { LoadLegacyParam(LegacyParamPath("", kFALSE)); return; }
   if (gReferenceTag.Length() == 0 && gReferenceRun == 0) return;
   TString refTag = (gReferenceTag.Length() > 0) ? gReferenceTag : Form("%d", gReferenceRun);
   TString staged = LegacyParamPath(refTag, kTRUE);
@@ -579,8 +591,8 @@ void DrawChannel() {
     gRefFit = new TF1("refFit", TwFitFunc, dispLo, dispHi, 2);
     gRefFit->SetNpx(2000);
     gRefFit->SetParameters(rr.c1, rr.c2);
-    gRefFit->SetLineColor(kGray + 2);
-    gRefFit->SetLineStyle(2);
+    gRefFit->SetLineColor(kBlack);
+    gRefFit->SetLineStyle(3); // dotted
     gRefFit->Draw("SAME");
   }
 
@@ -610,6 +622,7 @@ void DrawChannel() {
     pt.AddText(Form("#chi^{2}/NDF = %.2f", r.chi2ndf));
   } else pt.AddText("(not fitted)");
   pt.AddText(Form("source: %s", r.source.Data()));
+  if (gRefResults.count(key)) pt.AddText("red = new fit, black dotted = stored/reference");
   pt.DrawClone();
 
   gPad->Modified(); gPad->Update();
@@ -735,8 +748,12 @@ void RunNonInteractive() {
   TString closePath = pdfPath + ")";
   c.Print(closePath);
   printf("Wrote %s\n", pdfPath.Data());
-  SaveJSON(gRunTag);
-  WriteLegacyParam(gRunTag);
+  if (!gCompareOnly) {
+    SaveJSON(gRunTag);
+    WriteLegacyParam(gRunTag);
+  } else {
+    printf("[compareOnly: PDF written for comparison, nothing saved -- current fit results and .param file left untouched]\n");
+  }
 }
 
 // ===========================================================================
@@ -748,7 +765,8 @@ void timewalk_calib_app(Int_t run = 0, Int_t referenceRun = 0, TString reference
                               TString runs = "", Double_t dpCut = 1.0e9,
                               TString rootFile = "", TString outDir = "./timewalk_qa",
                               TString paramDir = "../../PARAM", Double_t tdcThresh = 1200.0,
-                              Double_t fitRangeLow = 20.0, Double_t fitRangeHigh = 300.0) {
+                              Double_t fitRangeLow = 20.0, Double_t fitRangeHigh = 300.0,
+                              Bool_t compareOnly = kTRUE) {
   if (run == 0 && runs.Length() == 0) {
     printf("ERROR: must supply a run number, e.g. timewalk_calib_app(26107)\n"); return;
   }
@@ -757,6 +775,9 @@ void timewalk_calib_app(Int_t run = 0, Int_t referenceRun = 0, TString reference
   gOutDir = outDir; gParamDir = paramDir;
   gTdcThresh = tdcThresh; gTwFitRangeLow = fitRangeLow; gTwFitRangeHigh = fitRangeHigh;
   gDpCut = dpCut;
+  gCompareOnly = compareOnly;
+  if (compareOnly && referenceTag.Length() == 0 && referenceRun == 0)
+    printf("WARNING: compareOnly=true but no referenceRun/referenceTag given -- there will be nothing to compare against.\n");
 
   gRunList.clear();
   if (runs.Length() > 0) {

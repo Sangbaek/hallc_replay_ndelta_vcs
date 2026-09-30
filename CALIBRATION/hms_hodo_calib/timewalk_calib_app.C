@@ -46,6 +46,14 @@
 //   root -l -b -q 'timewalk_calib_app.C(26138, 0, "", true, "0")'   // -50V setting  -> hhodo_TWcalib_0.param
 //   root -l -b -q 'timewalk_calib_app.C(26927, 0, "", true, "1")'   // nominal HV    -> hhodo_TWcalib_1.param
 //
+// Compare-only batch mode: fits every channel fresh (red curve) against a
+// loaded reference (black dotted curve) in the summary PDF, but NEVER
+// writes JSON/.param output -- use this to sanity-check a new fit against
+// the currently-stored calibration without touching it. compareOnly is
+// the last positional arg; needs a referenceRun/referenceTag to compare
+// against:
+//   root -l -b -q 'timewalk_calib_app.C(26138, 0, "0", true, "", "", 1.0e9, "", "./timewalk_qa", "../../PARAM", 120.0, 50.0, 300.0, false, -1.0e8, 40.0, true)'
+//
 // Combining several runs into one TChain, with an optional H.gtr.dp cut
 // to keep away from elastic-peak bias -- pass a comma-separated run list
 // as the "runs" argument (6th positional arg) and it overrides the
@@ -192,6 +200,7 @@ std::vector<Int_t> gRunList;  // non-empty -> BuildHistos chains all these runs 
 TString  gRunTag;             // output-file tag: single run number, or "first-last" when chained
 TString  gOutputTag;          // if non-empty, overrides gRunTag for output filenames (e.g. "0"/"1" for HV setting)
 Double_t gDpCut = 1.0e9;      // |H.gtr.dp| < gDpCut cut; default effectively off (elastic-peak avoidance / acceptance sanity cut)
+Bool_t   gCompareOnly = kFALSE; // batch mode: write the summary PDF (new fit vs. reference) but never touch JSON/.param output
 Bool_t   gApplyPidRefCuts = kFALSE; // off by default, matching the uploaded HMS script's actual behavior
 
 std::vector<Channel> gChannels;
@@ -499,7 +508,11 @@ TString EffectiveTag() { return gOutputTag.Length() > 0 ? gOutputTag : gRunTag; 
 
 void LoadReference() {
   // A referenceTag (e.g. "0"/"1", a saved-output tag) takes priority
-  // over a plain referenceRun number when both are given.
+  // over a plain referenceRun number when both are given. The literal
+  // string "vanilla" explicitly loads PARAM/HMS/HODO/hhodo_TWcalib.param
+  // (the untagged file hcana actually reads) rather than relying on a
+  // staged-tag lookup incidentally not being found.
+  if (gReferenceTag == "vanilla") { LoadLegacyParam(LegacyParamPath("", kFALSE)); return; }
   if (gReferenceTag.Length() == 0 && gReferenceRun == 0) return;
   TString refTag = (gReferenceTag.Length() > 0) ? gReferenceTag : Form("%d", gReferenceRun);
   TString staged = LegacyParamPath(refTag, kTRUE);
@@ -630,8 +643,8 @@ void DrawChannel() {
     gRefFit = new TF1("refFit", TwFitFunc, dispLo, dispHi, 2);
     gRefFit->SetNpx(2000);
     gRefFit->SetParameters(rr.c1, rr.c2);
-    gRefFit->SetLineColor(kGray + 2);
-    gRefFit->SetLineStyle(2);
+    gRefFit->SetLineColor(kBlack);
+    gRefFit->SetLineStyle(3); // dotted
     gRefFit->Draw("SAME");
   }
 
@@ -650,17 +663,31 @@ void DrawChannel() {
   loLine.SetLineColor(kOrange + 2); loLine.SetLineStyle(2); loLine.DrawClone();
   hiLine.SetLineColor(kOrange + 2); hiLine.SetLineStyle(2); hiLine.DrawClone();
 
-  TPaveText pt(0.5, 0.12, 0.89, 0.36, "NDC");
+  // The y-window actually used to restrict the FIT (not the display) --
+  // see DoFit()'s temporary GetYaxis()->SetRangeUser(). Shown here as
+  // horizontal lines so it's visible even though the fit itself doesn't
+  // touch the drawn axis range.
+  Double_t yLoFull = h2->GetYaxis()->GetXmin(), yHiFull = h2->GetYaxis()->GetXmax();
+  Double_t yLoFit = (gFitYLo > -1.0e7) ? gFitYLo : yLoFull;
+  Double_t yHiFit = (gFitYHi <  1.0e7) ? gFitYHi : yHiFull;
+  TLine yLoLine(h2->GetXaxis()->GetXmin(), yLoFit, h2->GetXaxis()->GetXmax(), yLoFit);
+  TLine yHiLine(h2->GetXaxis()->GetXmin(), yHiFit, h2->GetXaxis()->GetXmax(), yHiFit);
+  yLoLine.SetLineColor(kGreen + 2); yLoLine.SetLineStyle(2); yLoLine.DrawClone();
+  yHiLine.SetLineColor(kGreen + 2); yHiLine.SetLineStyle(2); yHiLine.DrawClone();
+
+  TPaveText pt(0.5, 0.12, 0.89, 0.40, "NDC");
   pt.SetFillColor(kWhite); pt.SetTextAlign(12); pt.SetFillStyle(1001);
   pt.AddText(Form("Channel %d / %d: %s", gIdx + 1, (int)gChannels.size(), key.Data()));
   pt.AddText(Form("Entries = %.0f", h2->GetEntries()));
-  pt.AddText(Form("Range = [%.1f, %.1f] mV", r.lo, r.hi));
+  pt.AddText(Form("x-range (orange) = [%.1f, %.1f] mV", r.lo, r.hi));
+  pt.AddText(Form("y-window (green, fit only) = [%.1f, %.1f] ns", yLoFit, yHiFit));
   if (r.fitted) {
     pt.AddText(Form("c1 = %.3f #pm %.3f", r.c1, r.c1err));
     pt.AddText(Form("c2 = %.3f #pm %.3f", r.c2, r.c2err));
     pt.AddText(Form("#chi^{2}/NDF = %.2f", r.chi2ndf));
   } else pt.AddText("(not fitted)");
   pt.AddText(Form("source: %s", r.source.Data()));
+  if (gRefResults.count(key)) pt.AddText("red = new fit, black dotted = stored/reference");
   pt.DrawClone();
 
   gPad->Modified(); gPad->Update();
@@ -786,8 +813,12 @@ void RunNonInteractive() {
   TString closePath = pdfPath + ")";
   c.Print(closePath);
   printf("Wrote %s\n", pdfPath.Data());
-  SaveJSON(EffectiveTag());
-  WriteLegacyParam(EffectiveTag());
+  if (!gCompareOnly) {
+    SaveJSON(EffectiveTag());
+    WriteLegacyParam(EffectiveTag());
+  } else {
+    printf("[compareOnly: PDF written for comparison, nothing saved -- current fit results and .param file left untouched]\n");
+  }
 }
 
 // ===========================================================================
@@ -801,7 +832,8 @@ void timewalk_calib_app(Int_t run = 0, Int_t referenceRun = 0, TString reference
                               TString paramDir = "../../PARAM", Double_t tdcThresh = 120.0,
                               Double_t fitRangeLow = 50.0, Double_t fitRangeHigh = 300.0,
                               Bool_t applyPidRefCuts = kFALSE,
-                              Double_t fitYLow = 10.0, Double_t fitYHigh = 30.0) {
+                              Double_t fitYLow = 10.0, Double_t fitYHigh = 30.0,
+                              Bool_t compareOnly = kTRUE) {//change it to kFalse to do the new calibration
   if (run == 0 && runs.Length() == 0) {
     printf("ERROR: must supply a run number, e.g. timewalk_calib_app(26138)\n"); return;
   }
@@ -813,6 +845,9 @@ void timewalk_calib_app(Int_t run = 0, Int_t referenceRun = 0, TString reference
   gFitYLo = fitYLow; gFitYHi = fitYHigh;
   gDpCut = dpCut;
   gApplyPidRefCuts = applyPidRefCuts;
+  gCompareOnly = compareOnly;
+  if (compareOnly && referenceTag.Length() == 0 && referenceRun == 0)
+    printf("WARNING: compareOnly=true but no referenceRun/referenceTag given -- there will be nothing to compare against.\n");
 
   gRunList.clear();
   if (runs.Length() > 0) {
