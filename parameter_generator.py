@@ -363,6 +363,88 @@ def write_param_files_for_configuration(df, configuration, out_run=None, out_dir
     for p in paths:
         print(" ", p)
     return list(paths.keys())
+
+
+# ---------------------------------------------------------------------------
+# standard.kinematics generation (from rcdb_draft.csv)
+# ---------------------------------------------------------------------------
+ELECTRON_MASS = 0.000511
+PROTON_MASS   = 0.938272
+TARGMASS_AMU  = 1.00794   # always the proton, regardless of the target (see standard.kinematics header)
+KIN_FIRST_AUTO_RUN = 26148  # runs before this are hand-written in standard.kinematics (optics/checkout, SHMS p missing in rcdb)
+
+KIN_COLS = ["Beam energy (GeV)",
+            "HMS Angle (deg)", "HMS Momentum (GeV/c)", "HMS Polarity",
+            "SHMS Angle (deg)", "SHMS Momentum (GeV/c)", "SHMS Polarity"]
+
+def _num(v):
+    """Shortest decimal string, no float noise (e.g. 1.424427, -46.47)."""
+    return repr(round(float(v), 6))
+
+def _partmass(polarity):
+    pol = str(polarity).strip().lower()
+    if pol == "electron":
+        return ELECTRON_MASS
+    if pol == "proton":
+        return PROTON_MASS
+    raise ValueError(f"Unknown polarity {polarity!r}")
+
+def generate_kinematics_text(run_db, first_run=KIN_FIRST_AUTO_RUN, last_run_max=99999):
+    """Build the standard.kinematics text from rcdb_draft.csv (run_db, already filtered).
+
+    Consecutive runs with identical (beam, HMS angle/p/particle, SHMS angle/p/particle)
+    are merged into one 'min - max' block. Each block ends the run before the next one
+    starts (same convention as the existing file); the last block ends at last_run_max.
+      htheta_lab : -|HMS angle|   hpcentral : |HMS momentum|   hpartmass from HMS polarity
+      ptheta_lab : +|SHMS angle|  ppcentral : |SHMS momentum|  ppartmass from SHMS polarity
+      gtargmass_amu : 1.00794 for every target
+    Runs with missing values are reported and skipped.
+    """
+    d = run_db.loc[run_db["Run Number"] >= first_run, ["Run Number"] + KIN_COLS]
+    d = d.sort_values("Run Number")
+
+    bad = d[d[KIN_COLS].isna().any(axis=1)]
+    if len(bad):
+        print("WARNING: skipped runs with missing kinematics in rcdb:",
+              bad["Run Number"].astype(int).tolist())
+        d = d.drop(bad.index)
+
+    key = d[KIN_COLS].round(6).astype(str).agg("|".join, axis=1)
+    block_id = (key != key.shift()).cumsum()
+    d = d.assign(block=block_id.to_numpy())
+
+    starts = d.groupby("block")["Run Number"].min().astype(int).tolist()
+    ends = [s - 1 for s in starts[1:]] + [last_run_max]
+
+    txt = ""
+    for (_, g), lo, hi in zip(d.groupby("block", sort=True), starts, ends):
+        r = g.iloc[0]
+        txt += f"{lo} - {hi}\n"
+        txt += f"gpbeam={_num(r['Beam energy (GeV)'])}\n"
+        txt += f"gtargmass_amu={TARGMASS_AMU}\n"
+        txt += f"htheta_lab={_num(-abs(r['HMS Angle (deg)']))}\n"
+        txt += f"hpcentral={_num(abs(r['HMS Momentum (GeV/c)']))}\n"
+        txt += f"ptheta_lab={_num(abs(r['SHMS Angle (deg)']))}\n"
+        txt += f"ppcentral={_num(abs(r['SHMS Momentum (GeV/c)']))}\n"
+        txt += f"ppartmass={_num(_partmass(r['SHMS Polarity']))}\n"
+        txt += f"hpartmass={_num(_partmass(r['HMS Polarity']))}\n\n"
+    return txt
+
+def check_unique_kinematics_per_period(run_db, group_col="Configuration"):
+    """For every run period (Configuration), list the kinematics columns that take more than
+    one distinct value. Returns a DataFrame; empty means every period is unique."""
+    out = []
+    for cfg, g in run_db.groupby(group_col):
+        for c in KIN_COLS:
+            col = g[c].dropna()
+            vals = col.round(6).unique() if pd.api.types.is_numeric_dtype(col) else col.unique()
+            if len(vals) > 1:
+                out.append({"Configuration": cfg, "column": c, "n_values": len(vals),
+                            "runs": f"{int(g['Run Number'].min())}-{int(g['Run Number'].max())}",
+                            "values": list(vals)[:6]})
+    return pd.DataFrame(out)
+
+
 rows = [survey_row(run, config, tcoin_p, hms_p, shms_p)
         for run, config, tcoin_p, hms_p, shms_p in zip(run_numbers, configuration_params, tcoin_params, hms_params, shms_params)]
 df = pd.DataFrame(rows).set_index("run").sort_index()
@@ -418,3 +500,12 @@ for i in range(len(run_period_mins)):
     general_param_file_this_run.writelines(general_param_this_run)
 print(standard_database_txt)
 
+# standard.kinematics (paste from first_run on; earlier runs are hand-written)
+standard_kinematics_txt = generate_kinematics_text(run_db)
+print(standard_kinematics_txt)
+
+# Sanity check, expected hits: scans (configs 0, 1, 52) and small angle jitter (54-57, 89)
+kin_violations = check_unique_kinematics_per_period(run_db)
+if len(kin_violations):
+    print("Configurations with more than one kinematics value:")
+    print(kin_violations.to_string())
