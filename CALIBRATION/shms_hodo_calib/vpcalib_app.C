@@ -15,16 +15,29 @@
 // replay done with an up-to-date phodo_TWcalib.param -- run this AFTER
 // the time-walk-corrected replay, not on raw data.
 //
-// SCOPE NOTE: fitHodoCalib.C also computes a third parameter,
-// phodo_PosSigma/NegSigma (a per-paddle hit-position resolution), via a
-// separate THIRD event-loop pass that needs the just-fit velocity/cable
-// values plugged back in. That's out of scope here -- this app only does
-// the velocity+cable-offset linear fit. When staging the output file,
-// if an existing phodo_Vpcalib.param is found under paramDir, its
-// PosSigma/NegSigma blocks are carried over unchanged so the staged file
-// stays complete for hcana; otherwise a 1.0 placeholder is written (the
-// same fallback fitHodoCalib.C itself uses when a fit fails twice) and
-// you'll want a proper sigma pass before relying on it.
+// SIGMA (phodo_PosSigma/NegSigma, a per-paddle timing resolution) is
+// computed here too -- NOT as a separate app/tree-read. It was
+// originally built as its own sigma_calib_app.C, but that just
+// re-derived the identical single-hit-per-plane candidates this app's
+// own BuildHistos() already computes, then re-opened the ROOT files a
+// second time for a quantity that fitHodoCalib.C itself gets almost for
+// free as a byproduct of the same event loop -- so it's folded in
+// directly: BuildHistos()'s existing pass caches those same candidates
+// (EventCand), and ComputeSigma() turns them into PosSigma/NegSigma
+// right before any save, using whatever v_p/cable this session currently
+// holds per paddle (fresh fit, resumed, or reference-copied). Formula,
+// confirmed from fitHodoCalib.C's actual Part-3 block (not recalled from
+// memory -- an earlier read of this had gotten tangled up with stale
+// commented-out code from an older revision):
+//   DiffDistTWCorr = v_p * 0.5*(TW_neg - 2*cable - TW_pos)   [cm]
+//   residual       = DiffDistTWCorr - TrackPos               [cm]
+//   sigma          = StdDev(residual) / (2 * v_p)            [ns]
+// phodo_PosSigma and phodo_NegSigma are the SAME array written twice in
+// the original script -- there is no separate pos/neg sigma quantity,
+// despite the naming. Skipped entirely under compareOnly (see below).
+// If an existing phodo_Vpcalib.param has PosSigma/NegSigma and this
+// session computes nothing new for some reason, those are carried over
+// unchanged rather than overwritten with a 1.0 placeholder.
 //
 // PID cuts (P.cal.etracknorm, P.hgcer.npeSum, P.dc.ntrack) are applied by
 // default, matching fitHodoCalib.C, and can be turned off independently:
@@ -55,6 +68,15 @@
 // this run's own histograms for context. Nothing is fit, nothing is
 // saved -- Pause/Save&&Finish are disabled for the whole session.
 //
+// SIGMAONLY: like compareOnly, loads this tag's already-saved
+// velFit/cableFit instead of fitting -- but, UNLIKE compareOnly, DOES
+// save: ComputeSigma() runs against the cached candidates using those
+// loaded (not freshly fit) v_p/cable values, and the merged output is
+// written with velFit/cableFit exactly as loaded (unchanged) plus a
+// freshly recomputed PosSigma/NegSigma. Use this to update sigma alone
+// after the fact, without re-touching the velocity/cable calibration.
+// (compareOnly and sigmaOnly together is nonsensical -- compareOnly wins.)
+//
 // Usage (must run interactively -- NOT with -q, it waits for clicks):
 //   root -l 'vpcalib_app.C(26107)'
 //   root -l 'vpcalib_app.C(26107, 0, "0")'     // + reference = a saved tag
@@ -64,6 +86,9 @@
 //
 // Review an already-saved calibration against vanilla, no fitting:
 //   root -l -b -q 'vpcalib_app.C(0, 0, "vanilla", true, "", "26483,26484,26485,26486,26487,26488", 10.0, "", "./vpcalib_qa", "../../PARAM", -40.0, 40.0, true, 0.0, true, true, true)'
+//
+// Recompute sigma only, leaving velFit/cableFit as already saved:
+//   root -l -b -q 'vpcalib_app.C(0, 0, "", true, "", "26483,26484,26485,26486,26487,26488", 10.0, "", "./vpcalib_qa", "../../PARAM", -40.0, 40.0, true, 0.0, true, true, false, true)'
 //
 // Combining several runs into one TChain, with an optional |P.gtr.dp| cut
 // to keep away from elastic-peak bias -- pass a comma-separated run list
@@ -210,11 +235,31 @@ Bool_t   gApplyCalCut = kTRUE;   // P.cal.etracknorm cut -- turn off for a proto
 Bool_t   gApplyCerCut = kTRUE;   // P.hgcer.npeSum cut -- same reasoning
 Bool_t   gApplyTrackCut = kTRUE; // P.dc.ntrack cut (species-independent track quality, usually fine to leave on)
 Bool_t   gCompareOnly = kFALSE; // batch mode: write the summary PDF (new fit vs. reference) but never touch JSON/.param output
+Bool_t   gSigmaOnly = kFALSE;   // load this tag's ALREADY-SAVED velFit/cableFit (no fitting, like compareOnly),
+                                 // but DOES save -- recomputes+writes sigma, leaving velFit/cableFit as loaded
 
 std::vector<Channel> gChannels;
+
+// Sigma (timing resolution) support -- merged in from what used to be a
+// separate sigma_calib_app.C. Cached during BuildHistos()'s existing
+// single-hit-per-plane pass (same candidates, same cuts, no second tree
+// read), then turned into PosSigma/NegSigma right before any save, once
+// this session's v_p/cable values are known.
+struct EventCand { Int_t pad[4]; Double_t twPos[4], twNeg[4]; Double_t trackX[4], trackY[4]; };
+std::vector<EventCand> gCandidates;
+Double_t gSigma[4][nBarsMax] = {{0}};
+Bool_t   gSigmaComputed = kFALSE;
 std::map<TString, TH2F*> gHist;        // key = ChanLabel -> h2(track pos, half TW-corr time diff)
 std::map<TString, FitRec> gResults;
 std::map<TString, FitRec> gRefResults;
+// The reference file's own PosSigma, loaded alongside velFit/cableFit --
+// used for any channel whose vp/cable were themselves copied from this
+// same reference (source "reference-copied"/"reference-copied-lowstat"):
+// that paddle has too little of THIS run's own data to fit vp/cable, so
+// it has just as little to compute a meaningful sigma residual from --
+// use the reference's own sigma there instead of a near-empty StdDev().
+Double_t gReferenceSigma[4][nBarsMax] = {{0}};
+Bool_t   gHaveReferenceSigma = kFALSE;
 
 Int_t     gIdx = 0;
 TCanvas  *gCanvas = nullptr;
@@ -224,8 +269,8 @@ TF1      *gRefFit = nullptr;
 Int_t     gClickStage = 0;
 Double_t  gPendingLo = 0.0;
 
-// Sigma blocks carried over from an existing phodo_Vpcalib.param, if any
-// (see the SCOPE NOTE at the top of the file).
+// Sigma blocks carried over from an existing phodo_Vpcalib.param -- only
+// used as a fallback if ComputeSigma() (see below) has nothing new.
 TString gSigmaPosBlockRaw, gSigmaNegBlockRaw; // raw comma-separated rows, verbatim
 Bool_t  gHaveCarriedSigma = kFALSE;
 
@@ -378,6 +423,19 @@ void BuildHistos() {
     if (!singleHit) continue;
     ++nSingleHit4Plane;
 
+    // Same candidate used for the Vp/cable scatter fill below also goes
+    // into the sigma cache -- by construction every plane here already
+    // passed the <200ns hard cut (that's what made it "good" above), so
+    // no extra filtering is needed later when sigma is computed from this.
+    EventCand cand;
+    for (Int_t ipl = 0; ipl < 4; ipl++) {
+      Int_t ipad = goodPaddle[ipl];
+      cand.pad[ipl] = ipad;
+      cand.twPos[ipl] = twPos[ipl][ipad - 1]; cand.twNeg[ipl] = twNeg[ipl][ipad - 1];
+      cand.trackX[ipl] = trackX[ipl]; cand.trackY[ipl] = trackY[ipl];
+    }
+    gCandidates.push_back(cand);
+
     for (Int_t ipl = 0; ipl < 4; ipl++) {
       Int_t ipad = goodPaddle[ipl];
       TString key = ChanLabel(Channel{ipl, 0, ipad});
@@ -484,9 +542,9 @@ void ParseParamBlock(std::ifstream &in, const TString &key, Double_t out[4][nBar
   for (Int_t i = 0; i < (Int_t)vals.size() && i < 4 * nBarsMax; i++) out[i % 4][i / 4] = vals[i];
 }
 
-// Grabs a whole sigma block's raw text verbatim (from "= " through the
-// last comma-row) so it can be carried over unchanged into the staged
-// output file -- we don't compute sigma ourselves (see SCOPE NOTE).
+// Grabs a whole param block's raw text verbatim (from "= " through the
+// last comma-row) -- used as a fallback carry-over for PosSigma/NegSigma
+// if ComputeSigma() has nothing new to write for some reason.
 TString ExtractRawBlock(const TString &path, const TString &key) {
   std::ifstream in(path.Data());
   if (!in.is_open()) return "";
@@ -518,9 +576,13 @@ TString EffectiveTag() { return gOutputTag.Length() > 0 ? gOutputTag : gRunTag; 
 void LoadLegacyParam(const TString &path) {
   std::ifstream in(path.Data());
   if (!in.is_open()) { printf("  (no legacy param file at %s)\n", path.Data()); return; }
-  Double_t vel[4][nBarsMax] = {{0}}, cable[4][nBarsMax] = {{0}};
+  Double_t vel[4][nBarsMax] = {{0}}, cable[4][nBarsMax] = {{0}}, sig[4][nBarsMax] = {{0}};
   ParseParamBlock(in, "phodo_velFit", vel);
   in.clear(); in.seekg(0); ParseParamBlock(in, "phodo_cableFit", cable);
+  in.clear(); in.seekg(0); ParseParamBlock(in, "phodo_PosSigma", sig);
+  for (Int_t ipl = 0; ipl < 4; ipl++)
+    for (Int_t ipad = 0; ipad < nBarsMax; ipad++) gReferenceSigma[ipl][ipad] = sig[ipl][ipad];
+  gHaveReferenceSigma = (ExtractRawBlock(path, "phodo_PosSigma").Length() > 0);
   Int_t nSkippedPermanent = 0;
   for (Int_t ipl = 0; ipl < 4; ipl++)
     for (Int_t ipad = 1; ipad <= gNbars[ipl]; ipad++) {
@@ -591,11 +653,20 @@ void SeedFromOwnPriorSave() {
   if (!test.is_open()) return;
   test.close();
   std::map<TString, FitRec> saved = gRefResults;
+  // LoadLegacyParam() also loads PosSigma into the reference-sigma slots;
+  // keep the real reference's sigma, not this tag's own prior save.
+  Double_t savedSigma[4][nBarsMax];
+  for (Int_t ipl = 0; ipl < 4; ipl++)
+    for (Int_t ipad = 0; ipad < nBarsMax; ipad++) savedSigma[ipl][ipad] = gReferenceSigma[ipl][ipad];
+  Bool_t savedHaveSigma = gHaveReferenceSigma;
   gRefResults.clear();
   LoadLegacyParam(path);
   for (auto &kv : gRefResults)
     if (!gResults.count(kv.first)) { gResults[kv.first] = kv.second; gResults[kv.first].source = "resumed"; }
   gRefResults = saved;
+  for (Int_t ipl = 0; ipl < 4; ipl++)
+    for (Int_t ipad = 0; ipad < nBarsMax; ipad++) gReferenceSigma[ipl][ipad] = savedSigma[ipl][ipad];
+  gHaveReferenceSigma = savedHaveSigma;
 }
 
 // Try to carry over PosSigma/NegSigma from whatever Vpcalib.param already
@@ -611,6 +682,79 @@ void LoadCarriedSigma() {
   gHaveCarriedSigma = (gSigmaPosBlockRaw.Length() > 0 && gSigmaNegBlockRaw.Length() > 0);
   if (gHaveCarriedSigma) printf("Carried over PosSigma/NegSigma from %s\n", sourcePath.Data());
   else printf("No existing PosSigma/NegSigma found -- will write a 1.0 placeholder (a proper sigma pass is still needed).\n");
+}
+
+// True if this channel's current vp AND cable match the loaded reference
+// (vanilla) values to within the precision the .param files are written
+// with (6 decimals). Such a channel has the same timing calibration as
+// the reference, so the reference's sigma is carried over instead of
+// being recomputed. Covers explicit reference copies as well as fits or
+// resumed values that end up identical to the reference.
+const Double_t kRefMatchTol = 1.0e-6;
+Bool_t SameAsReference(const TString &key) {
+  if (!gHaveReferenceSigma) return kFALSE;
+  if (!gResults.count(key) || !gRefResults.count(key)) return kFALSE;
+  const FitRec &r = gResults[key];
+  const FitRec &rr = gRefResults[key];
+  if (!r.fitted) return kFALSE;
+  return (TMath::Abs(r.vp - rr.vp) < kRefMatchTol && TMath::Abs(r.cable - rr.cable) < kRefMatchTol);
+}
+
+// Computes phodo_PosSigma/phodo_NegSigma from the SAME candidates cached
+// during BuildHistos() (no second tree read), using whatever v_p/cable
+// this session currently holds in gResults for each paddle -- fresh fit,
+// resumed, or reference-copied, whatever's actually there at save time.
+// phodo_PosSigma and phodo_NegSigma are the same array written twice in
+// the original script; there's no separate pos/neg sigma quantity.
+//   DiffDistTWCorr = v_p * 0.5*(TW_neg - 2*cable - TW_pos)   [cm]
+//   residual       = DiffDistTWCorr - TrackPos               [cm]
+//   sigma          = StdDev(residual) / (2 * v_p)            [ns]
+// Skipped entirely under compareOnly (nothing gets saved anyway).
+void ComputeSigma() {
+  if (gCandidates.empty()) { printf("No cached candidates -- cannot compute sigma.\n"); return; }
+  std::map<TString, TH1F*> resid;
+  for (auto &ch : gChannels) resid[ChanLabel(ch)] = new TH1F("resid", "", 2000, -120, 80);
+
+  for (auto &c : gCandidates) {
+    for (Int_t ipl = 0; ipl < 4; ipl++) {
+      Int_t ipad = c.pad[ipl];
+      TString key = ChanLabel(Channel{ipl, 0, ipad});
+      if (!resid.count(key)) continue;
+      if (!(gResults.count(key) && gResults[key].fitted)) continue; // need this paddle's v_p/cable to be known
+      // A channel whose vp/cable were themselves copied from the
+      // reference (not fit from this run's own data) has just as little
+      // of this run's data to compute a meaningful residual from -- skip
+      // filling it here; the final loop below uses the reference's own
+      // sigma for these instead of a near-empty StdDev().
+      if (gResults[key].source.BeginsWith("reference-copied") || SameAsReference(key)) continue;
+      Double_t vp = gResults[key].vp, cable = gResults[key].cable;
+      if (vp == 0.0) continue;
+      Double_t diffDist = vp * 0.5 * (c.twNeg[ipl] - 2.0 * cable - c.twPos[ipl]);
+      Double_t trackPos = (ipl == 0 || ipl == 2) ? c.trackY[ipl] : c.trackX[ipl];
+      resid[key]->Fill(diffDist - trackPos);
+    }
+  }
+
+  Int_t nComputed = 0, nCopiedFromRef = 0;
+  for (auto &ch : gChannels) {
+    TString key = ChanLabel(ch);
+    TH1F *h = resid[key];
+    if (gResults.count(key) && (gResults[key].source.BeginsWith("reference-copied") || SameAsReference(key))) {
+      if (gHaveReferenceSigma) {
+        gSigma[ch.plane][ch.paddle - 1] = gReferenceSigma[ch.plane][ch.paddle - 1];
+        ++nCopiedFromRef;
+      }
+      // else: no reference sigma available either -- leaves gSigma at 0,
+      // same "not yet determined" convention as an unfit channel.
+    } else if (h->GetEntries() > 0 && gResults.count(key) && gResults[key].fitted && gResults[key].vp != 0.0) {
+      gSigma[ch.plane][ch.paddle - 1] = h->GetStdDev() / (2.0 * gResults[key].vp);
+      ++nComputed;
+    }
+    delete h;
+  }
+  gSigmaComputed = (nComputed > 0 || nCopiedFromRef > 0);
+  printf("Computed sigma for %d paddle(s) from this run's own data, copied reference sigma for %d paddle(s) (vp/cable itself was reference-copied), out of %d total.\n",
+         nComputed, nCopiedFromRef, (int)gChannels.size());
 }
 
 void WriteLegacyParam(const TString &tag) {
@@ -646,12 +790,30 @@ void WriteLegacyParam(const TString &tag) {
   writeBlock("phodo_velFit", kTRUE);
   writeBlock("phodo_cableFit", kFALSE);
 
-  if (gHaveCarriedSigma) {
-    out << ";PMTs Time Diff. Sigma Parameters (carried over, not recomputed by this app)" << std::endl;
+  if (gSigmaComputed) {
+    out << ";PMTs Time Diff. Sigma Parameters (computed this session)" << std::endl;
+    auto writeSigmaBlock = [&](const TString &name) {
+      out << name << " = ";
+      for (Int_t ipad = 0; ipad < nBarsMax; ipad++) {
+        for (Int_t ipl = 0; ipl < 4; ipl++) {
+          Double_t v = (ipad < gNbars[ipl] && !IsPermanentlyOff(ipl, 0, ipad + 1)) ? gSigma[ipl][ipad] : 0.0;
+          out << std::fixed << v;
+          if (ipl != 3) out << ", ";
+        }
+        out << "," << std::endl;
+      }
+      out << std::endl;
+    };
+    // PosSigma and NegSigma are the same array written twice, matching
+    // the original script -- there's no separate pos/neg sigma quantity.
+    writeSigmaBlock("phodo_PosSigma");
+    writeSigmaBlock("phodo_NegSigma");
+  } else if (gHaveCarriedSigma) {
+    out << ";PMTs Time Diff. Sigma Parameters (carried over, not recomputed this session)" << std::endl;
     out << gSigmaPosBlockRaw.Data() << std::endl;
     out << gSigmaNegBlockRaw.Data() << std::endl;
   } else {
-    out << ";PMTs Time Diff. Sigma Parameters (placeholder -- run a sigma pass)" << std::endl;
+    out << ";PMTs Time Diff. Sigma Parameters (placeholder)" << std::endl;
     out << "phodo_PosSigma = ";
     for (Int_t i = 0; i < nBarsMax; i++) out << "1.000000, 1.000000, 1.000000, 1.000000," << std::endl;
     out << std::endl;
@@ -852,6 +1014,7 @@ void GoToChannelPrompt() {
 
 void PauseSave() {
   if (gCompareOnly) { printf("compareOnly is on -- saving is disabled for this session.\n"); return; }
+  ComputeSigma();
   SaveJSON(EffectiveTag()); WriteLegacyParam(EffectiveTag()); printf("[progress saved]\n");
 }
 
@@ -904,7 +1067,7 @@ void MakeControlBar() {
 // ===========================================================================
 
 void RunNonInteractive() {
-  if (!gCompareOnly) {
+  if (!gCompareOnly && !gSigmaOnly) {
     for (auto &ch : gChannels) {
       TString key = ChanLabel(ch);
       TH2F *h2 = gHist[key];
@@ -931,9 +1094,9 @@ void RunNonInteractive() {
       }
     }
   }
-  // else: gCompareOnly -- gResults was already fully populated by
-  // LoadOwnSavedResults() before this function was ever called; no
-  // fitting happens here at all.
+  // else: gCompareOnly or gSigmaOnly -- gResults was already fully
+  // populated by LoadOwnSavedResults() before this function was ever
+  // called; no fitting happens here at all in either mode.
   gSystem->mkdir(gOutDir, kTRUE);
   TString pdfPath = Form("%s/vpcalib_shms_%s_summary.pdf", gOutDir.Data(), EffectiveTag().Data());
   TCanvas c("c", "c", 900, 700);
@@ -950,6 +1113,7 @@ void RunNonInteractive() {
   c.Print(closePath);
   printf("Wrote %s\n", pdfPath.Data());
   if (!gCompareOnly) {
+    ComputeSigma();
     SaveJSON(EffectiveTag());
     WriteLegacyParam(EffectiveTag());
   } else {
@@ -969,7 +1133,7 @@ void vpcalib_app(Int_t run = 0, Int_t referenceRun = 0, TString referenceTag = "
                   Double_t fitRangeLow = -40.0, Double_t fitRangeHigh = 40.0,
                   Bool_t applyCalCut = kTRUE, Double_t minEntriesForFit = 0.0,
                   Bool_t applyCerCut = kTRUE, Bool_t applyTrackCut = kTRUE,
-                  Bool_t compareOnly = kFALSE) {
+                  Bool_t compareOnly = kFALSE, Bool_t sigmaOnly = kFALSE) {
   if (run == 0 && runs.Length() == 0) {
     printf("ERROR: must supply a run number, e.g. vpcalib_app(26107)\n"); return;
   }
@@ -1011,15 +1175,21 @@ void vpcalib_app(Int_t run = 0, Int_t referenceRun = 0, TString referenceTag = "
     else gRootFile = rootFile;
   }
 
-  if (compareOnly) {
+  gSigmaOnly = sigmaOnly;
+  if (compareOnly && sigmaOnly)
+    printf("WARNING: both compareOnly and sigmaOnly are set -- compareOnly wins, nothing will be saved.\n");
+
+  if (compareOnly || sigmaOnly) {
     // Assert the calibration was already committed (interactive session,
-    // or a prior batch run with compareOnly=false) -- compareOnly is a
-    // review mode, not a fitting mode, and never fits from scratch.
+    // or a prior batch run) -- neither mode fits from scratch; both load
+    // this tag's existing velFit/cableFit instead. compareOnly never
+    // saves; sigmaOnly DOES save (recomputed sigma + velFit/cableFit as
+    // loaded, unchanged).
     TString ownPath = LegacyParamPath(EffectiveTag(), kTRUE);
     std::ifstream ownTest(ownPath.Data());
     if (!ownTest.is_open()) {
-      printf("ERROR: compareOnly requires an existing staged calibration for tag \"%s\", but none found at %s.\n"
-             "Run vpcalib_app interactively, or in batch mode with compareOnly=false, to produce it first.\n",
+      printf("ERROR: compareOnly/sigmaOnly requires an existing staged calibration for tag \"%s\", but none found at %s.\n"
+             "Run vpcalib_app in a normal (fitting) session first to produce it.\n",
              EffectiveTag().Data(), ownPath.Data());
       return;
     }
@@ -1033,7 +1203,7 @@ void vpcalib_app(Int_t run = 0, Int_t referenceRun = 0, TString referenceTag = "
   BuildChannelList();
   BuildHistos();
   LoadReference();
-  if (compareOnly) LoadOwnSavedResults(); // already confirmed to exist above; no fitting, ever
+  if (compareOnly || sigmaOnly) LoadOwnSavedResults(); // already confirmed to exist above; no fitting, ever
   else SeedFromOwnPriorSave();
   LoadCarriedSigma();
 

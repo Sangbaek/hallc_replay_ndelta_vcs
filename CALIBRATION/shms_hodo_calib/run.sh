@@ -14,8 +14,18 @@
 # After the intractive mode, produce the pdf file using the following command to turn on compareOnly (not updating the param file).
 #root -l -b -q 'vpcalib_app.C(0, 0, "vanilla", true, "", "26483,26484,26485,26486,26487,26488", 10.0, "", "./vpcalib_qa", "../../PARAM", -40.0, 40.0, true, 0.0, true, true, true)'
 
+# Note that the previous version didn't update sigma. Updating only sigma can be done with the following command.
+root -l -b -q 'vpcalib_app.C(0, 0, "vanilla", true, "", "26483,26484,26485,26486,26487,26488", 10.0, "", "./vpcalib_qa", "../../PARAM", -40.0, 40.0, true, 0.0, true, true, false, true)'
+
 # lambda calibration can be done in non-interactive mode.
 root -l -b -q 'lambda_calib_app.C(0, "26483,26484,26485,26486,26487,26488", "", true, "", 10.0, 125.0, "", "./lambda_qa", "../../PARAM", "vanilla", true, true, true, false)'
 
-## to only compare without update, use
+
+## to only compare lambda between reference (vanilla) and the calibration results, without update, use
 #root -l -b -q 'lambda_calib_app.C(0, "26483,26484,26485,26486,26487,26488", "", true, "", 10.0, 125.0, "", "./lambda_qa", "../../PARAM", "vanilla", true, true, true, true)'
+
+#After the hodoscope calibration, manually update the param file, for example, for the Vp one,
+#for i in {0..99}; do
+#   sed -i 's/phodo_Vpcalib/phodo_Vpcalib_26483-26488/g' "general_${i}.param"
+#done
+# The same thing can be done for TW.
