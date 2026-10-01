@@ -386,16 +386,20 @@ for i in range(len(run_period_mins)):
   this_configuration = this_configuration[0]
   if ~np.isin(this_configuration, df.configuration):#target boiling studies---the same with 90
     continue
-  write_param_files_for_configuration(df, this_configuration, out_dir_coin = "PARAM/TRIG", out_dir_hms = "PARAM/HMS/GEN", out_dir_shms = "PARAM/SHMS/GEN")
+
+  # Time window frozen as of Oct 1 2026. Uncomment this as needed.
+  # write_param_files_for_configuration(df, this_configuration, out_dir_coin = "PARAM/TRIG", out_dir_hms = "PARAM/HMS/GEN", out_dir_shms = "PARAM/SHMS/GEN")
+
   this_experiment    = run_db.loc[(run_db["Run Number"] >= run_period_min) & (run_db["Run Number"] <= run_period_max), "Experiment"].unique()[0]
   this_kinematics    = run_db.loc[(run_db["Run Number"] >= run_period_min) & (run_db["Run Number"] <= run_period_max), "Kinematics Setting"].unique()[0]
-  
+  this_target        = run_db.loc[(run_db["Run Number"] >= run_period_min) & (run_db["Run Number"] <= run_period_max), "Target"].unique()[0]
+
   if i == 0:
-    standard_database_txt = "#{}. {} {}\n".format(this_configuration, this_experiment, this_kinematics)
-  elif i == 90:
-    standard_database_txt = standard_database_txt+ "#{}. {} {} This includes configs 91, 92, 93, which are target boiling studies.\n".format(this_configuration, this_experiment, this_kinematics)
+    standard_database_txt = "#{}. {} {} {}\n".format(this_configuration, this_experiment, this_kinematics, this_target)
+  elif this_configuration == 90:
+    standard_database_txt = standard_database_txt+ "#{}. {} {} {} This includes configs 91, 92, 93, which are target boiling studies.\n".format(this_configuration, this_experiment, this_kinematics, this_target)
   else:
-    standard_database_txt = standard_database_txt+ "#{}. {} {}\n".format(this_configuration, this_experiment, this_kinematics)
+    standard_database_txt = standard_database_txt+ "#{}. {} {} {}\n".format(this_configuration, this_experiment, this_kinematics, this_target)
 
   standard_database_txt  = standard_database_txt+ "{}--{}\n".format(run_period_min, run_period_max)
   standard_database_txt  = standard_database_txt + 'g_ctp_parm_filename       = "DBASE/COIN/general_{}.param"\n'.format(this_configuration)
