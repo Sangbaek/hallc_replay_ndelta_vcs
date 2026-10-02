@@ -543,7 +543,7 @@ for i in range(len(run_period_mins)):
   else:
     standard_database_txt = standard_database_txt + header
 
-  standard_database_txt  = standard_database_txt+ "{}--{}\n".format(run_period_min, run_period_max)
+  standard_database_txt  = standard_database_txt+ "{}-{}\n".format(run_period_min, run_period_max)
   standard_database_txt  = standard_database_txt + 'g_ctp_parm_filename       = "DBASE/COIN/general_{}.param"\n'.format(this_configuration)
   standard_database_txt  = standard_database_txt + 'g_ctp_kinematics_filename = "DBASE/COIN/standard.kinematics"\n'
   standard_database_txt  = standard_database_txt + 'g_ctp_map_filename        = "MAPS/COIN/DETEC/coin.map"\n'
