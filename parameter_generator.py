@@ -560,8 +560,8 @@ for i in range(len(run_period_mins)):
   general_param_this_run[41-1] = general_param_this_run[41-1].replace('hhodo_Vpcalib.param', 'hhodo_Vpcalib_{}.param'.format(int(this_configuration>81)))
   general_param_this_run[51-1] = general_param_this_run[51-1].replace('p_reftime_cut.param', 'p_reftime_cut_{}.param'.format(this_configuration))
   general_param_this_run[64-1] = general_param_this_run[64-1].replace('phodo_cuts.param', 'phodo_cuts_ndelta_vcs2.param')
-  general_param_this_run[40-1] = general_param_this_run[40-1].replace('phodo_TWcalib.param', 'phodo_TWcalib_26483-26488.param')
-  general_param_this_run[41-1] = general_param_this_run[41-1].replace('phodo_Vpcalib.param', 'phodo_Vpcalib_26483-26488.param')
+  general_param_this_run[74-1] = general_param_this_run[74-1].replace('phodo_TWcalib.param', 'phodo_TWcalib_26483-26488.param')
+  general_param_this_run[75-1] = general_param_this_run[75-1].replace('phodo_Vpcalib.param', 'phodo_Vpcalib_26483-26488.param')
   with open("DBASE/COIN/general_{}.param".format(this_configuration), "w") as general_param_file_this_run:
     general_param_file_this_run.writelines(general_param_this_run)
 print(standard_database_txt)
