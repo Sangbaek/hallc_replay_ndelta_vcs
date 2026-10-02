@@ -11,7 +11,7 @@
 ## vp calibration  used interactive mode.
 #root -l 'vpcalib_app.C(0, 0, "vanilla", false, "", "26483,26484,26485,26486,26487,26488", 10.0, "", "./vpcalib_qa", "../../PARAM", -40.0, 40.0)'
 
-# After the intractive mode, produce the pdf file using the following command to turn on compareOnly (not updating the param file).
+# After fitting, produce the pdf using the following command. compareOnly is on. (Or, someone can update the code to produce pdf files at one place. Sorry that I didn't!)
 root -l -b -q 'vpcalib_app.C(0, 0, "vanilla", true, "", "26483,26484,26485,26486,26487,26488", 10.0, "", "./vpcalib_qa", "../../PARAM", -40.0, 40.0, true, 0.0, true, true, true)'
 #
 ## lambda calibration can be done in non-interactive mode.
