@@ -420,14 +420,14 @@ def generate_kinematics_text(run_db, first_run=KIN_FIRST_AUTO_RUN, last_run_max=
     for (_, g), lo, hi in zip(d.groupby("block", sort=True), starts, ends):
         r = g.iloc[0]
         txt += f"{lo} - {hi}\n"
-        txt += f"gpbeam={_num(r['Beam energy (GeV)'])}\n"
-        txt += f"gtargmass_amu={TARGMASS_AMU}\n"
-        txt += f"htheta_lab={_num(-abs(r['HMS Angle (deg)']))}\n"
-        txt += f"hpcentral={_num(abs(r['HMS Momentum (GeV/c)']))}\n"
-        txt += f"ptheta_lab={_num(abs(r['SHMS Angle (deg)']))}\n"
-        txt += f"ppcentral={_num(abs(r['SHMS Momentum (GeV/c)']))}\n"
-        txt += f"ppartmass={_num(_partmass(r['SHMS Polarity']))}\n"
-        txt += f"hpartmass={_num(_partmass(r['HMS Polarity']))}\n\n"
+        txt += f"gpbeam = {_num(r['Beam energy (GeV)'])}\n"
+        txt += f"gtargmass_amu = {TARGMASS_AMU}\n"
+        txt += f"htheta_lab = {_num(-abs(r['HMS Angle (deg)']))}\n"
+        txt += f"hpcentral = {_num(abs(r['HMS Momentum (GeV/c)']))}\n"
+        txt += f"ptheta_lab = {_num(abs(r['SHMS Angle (deg)']))}\n"
+        txt += f"ppcentral = {_num(abs(r['SHMS Momentum (GeV/c)']))}\n"
+        txt += f"ppartmass = {_num(_partmass(r['SHMS Polarity']))}\n"
+        txt += f"hpartmass = {_num(_partmass(r['HMS Polarity']))}\n\n"
     return txt
 
 def check_unique_kinematics_per_period(run_db, group_col="Configuration"):
