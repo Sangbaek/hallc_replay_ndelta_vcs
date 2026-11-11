@@ -3,6 +3,7 @@ phodo_num_planes = 4
 phodo_plane_names = "1x 1y 2x 2y"
 
 ppathlength_central = 1810
+SHMS_CentralPathLen = 1810
 
 ; Many dimensions were updated on 7/28/17 by hcf from construction drawings.
 
