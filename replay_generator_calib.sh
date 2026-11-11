@@ -1,8 +1,11 @@
 #!/bin/bash
 # replay_generator.sh
 # Usage: ./replay_generator.sh <run_number>
+# More practically, do following: 
+# for run in `cat calib_run_list.csv`; do echo $run; ./replay_generator_calib.sh $run; sbatch SLURM/jobs/replay_calib_$run.slurm; done
 
 runnum=$1
+flag=$2
 nev=2000000
 seg=0
 jobdir="SLURM/jobs"
@@ -40,11 +43,11 @@ cat > "$jobfile" <<EOF
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=2500
-#SBATCH --job-name=replay_${runnum}
+#SBATCH --job-name=replay${flag}_${runnum}
 #SBATCH --time=24:00:00
 #SBATCH --gres=disk:1G
-#SBATCH --output=${logdir}/replay_calib_${runnum}.out
-#SBATCH --error=${logdir}/replay_calib_${runnum}.err
+#SBATCH --output=/farm_out/%u/%x-%A.out
+#SBATCH --error=/farm_out/%u/%x-%A.err
 
 echo "Running run ${runnum} segment ${seg} on \$(hostname)"
 
